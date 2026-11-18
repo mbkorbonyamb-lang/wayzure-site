@@ -1,3 +1,5 @@
+import Image from "next/image";
+
 // Icônes des produits Wayzure, reprises des logos officiels (mêmes tracés que dans WayPulse).
 const MARKS: Record<string, (id: string) => React.ReactNode> = {
   waypulse: () => (
@@ -49,15 +51,12 @@ export function ProductMark({ slug, className = "size-10" }: { slug: string; cla
   return mark ? <svg viewBox="0 0 32 32" className={`${className} shrink-0`} aria-hidden>{mark(`pm-${slug}`)}</svg> : null;
 }
 
-/** Marque Wayzure : W tracé en deux bandes, bleu Wayzure. Logo officiel à fournir si différent. */
+/** Logo officiel Wayzure : le W en ruban (image) suivi du nom en texte, pour rester lisible en mode sombre. */
 export function Logo({ className = "" }: { className?: string }) {
   return (
     <span className={`inline-flex items-center gap-2 ${className}`}>
-      <svg viewBox="0 0 32 32" className="size-7" aria-hidden>
-        <rect width="32" height="32" rx="7" fill="var(--accent)" />
-        <path d="M7 10l4 13 5-9 5 9 4-13" fill="none" stroke="#fff" strokeWidth="2.6" strokeLinecap="round" strokeLinejoin="round" />
-      </svg>
-      <span className="font-display text-[1.15rem] font-semibold tracking-tight text-fg">Wayzure</span>
+      <Image src="/logo-mark.png" alt="" width={268} height={179} priority className="h-7 w-auto" />
+      <span className="font-display text-[1.15rem] font-semibold tracking-tight text-fg"><span className="text-accent">W</span>ayzure</span>
     </span>
   );
 }

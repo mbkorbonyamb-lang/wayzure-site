@@ -31,6 +31,7 @@ const ORG_LD = JSON.stringify({
   name: COMPANY.name,
   legalName: COMPANY.legalName,
   url: SITE_URL,
+  logo: `${SITE_URL}/logo-wayzure.png`,
   email: COMPANY.email,
   ...(COMPANY.phone ? { telephone: COMPANY.phone } : {}),
   vatID: COMPANY.vat,
