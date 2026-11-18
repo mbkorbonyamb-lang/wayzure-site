@@ -2,7 +2,11 @@ import Link from "next/link";
 import { notFound } from "next/navigation";
 import { Arrow, Check, CtaBand, Page, PageHero, SectionTitle } from "@/components/chrome";
 import { ExpertiseIcon } from "@/components/icons";
+import { JsonLd, breadcrumb } from "@/components/json-ld";
 import { ProductMark } from "@/components/marks";
+import { SolutionVisual } from "@/components/solution-visual";
+import { SITE_URL } from "@/lib/company";
+import { contactHref } from "@/lib/contact-link";
 import { ALL_EXPERTISES, SOLUTIONS } from "@/lib/content";
 import { meta } from "@/lib/seo";
 
@@ -28,6 +32,14 @@ export default async function ExpertisePage({ params }: Props) {
 
   return (
     <Page>
+      <JsonLd data={[
+        breadcrumb([["Expertises", "/expertises"], [e.name, `/expertises/${e.slug}`]]),
+        {
+          "@context": "https://schema.org", "@type": "Service", name: e.name, description: e.seo, serviceType: e.name,
+          provider: { "@type": "Organization", name: "Wayzure", url: SITE_URL }, areaServed: ["FR", "GN"], url: `${SITE_URL}/expertises/${e.slug}`,
+          hasOfferCatalog: { "@type": "OfferCatalog", name: e.name, itemListElement: e.items.map(it => ({ "@type": "Offer", itemOffered: { "@type": "Service", name: it.t, description: it.d } })) },
+        },
+      ]} />
       <PageHero
         eyebrow={<Link href="/expertises" className="hover:text-white">Expertises</Link>}
         title={e.name}
@@ -35,7 +47,7 @@ export default async function ExpertisePage({ params }: Props) {
       >
         <p className="mt-5 max-w-2xl text-xl leading-relaxed text-white/90">{e.lead}</p>
         <p className="mt-4 max-w-2xl leading-relaxed text-on-deep-2">{e.intro}</p>
-        <Link href="/contact" className="group mt-8 inline-flex items-center gap-2 rounded-full bg-btn px-6 py-3.5 text-sm font-medium text-white transition-colors hover:bg-[#055e8f]">Parler de votre projet <Arrow /></Link>
+        <a href={contactHref(`Projet : ${e.name}`, e.name)} className="group mt-8 inline-flex items-center gap-2 rounded-full bg-btn px-6 py-3.5 text-sm font-medium text-white transition-colors hover:bg-[#055e8f]">Parler de votre projet <Arrow /></a>
       </PageHero>
 
       <section className="mx-auto max-w-7xl px-4 py-20 sm:px-6 lg:px-8">
@@ -78,7 +90,10 @@ export default async function ExpertisePage({ params }: Props) {
             <div data-reveal style={{ "--d": "90ms" } as React.CSSProperties}>
               <p className="text-sm font-medium text-accent">La preuve par nos produits</p>
               <p className="mt-3 text-fg-2">Ces logiciels Wayzure mobilisent ce savoir-faire en production.</p>
-              <div className="mt-6 space-y-3">
+              <Link href={`/solutions/${related[0].slug}`} className="mt-6 block" aria-label={`Voir ${related[0].name} en images`}>
+                <SolutionVisual slug={related[0].slug} compact sizes="(min-width: 1024px) 560px, 100vw" />
+              </Link>
+              <div className="mt-4 space-y-3">
                 {related.map(s => (
                   <Link key={s.slug} href={`/solutions/${s.slug}`} className="group flex items-center gap-4 rounded-2xl border border-line p-4 transition-shadow hover:shadow-lg hover:shadow-black/5">
                     <ProductMark slug={s.slug} className="size-10" />

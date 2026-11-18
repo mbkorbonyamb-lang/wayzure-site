@@ -3,8 +3,12 @@ import { Arrow, Check, CtaBand, GridGlow, Page, SectionTitle } from "@/component
 import { HeroArt } from "@/components/hero-art";
 import { ExpertiseIcon } from "@/components/icons";
 import { ProductMark } from "@/components/marks";
-import { COMPANY, GUINEA } from "@/lib/company";
+import { SolutionVisual } from "@/components/solution-visual";
+import { VideoPlayer } from "@/components/video-player";
+import { JsonLd } from "@/components/json-ld";
+import { COMPANY, GUINEA, SITE_URL } from "@/lib/company";
 import { EXPERTISES, IT_SERVICES, SOLUTIONS, STEPS } from "@/lib/content";
+import { FILM } from "@/lib/media";
 
 // Situation de départ, puis ce qui change. Formulées à partir de cas fréquents, sans client nommé.
 const STORIES = [
@@ -17,6 +21,7 @@ const STORIES = [
 export default function Home() {
   return (
     <Page>
+      <JsonLd data={{ "@context": "https://schema.org", "@type": "VideoObject", name: FILM.title, description: FILM.caption, thumbnailUrl: `${SITE_URL}${FILM.poster}`, contentUrl: `${SITE_URL}${FILM.mp4}`, uploadDate: "2026-11-18", duration: FILM.duration }} />
       {/* Accroche */}
       <section className="relative overflow-hidden bg-deep text-on-deep">
         <GridGlow />
@@ -111,6 +116,21 @@ export default function Home() {
         </div>
       </section>
 
+      {/* Film */}
+      <section className="relative overflow-hidden bg-deep text-on-deep">
+        <GridGlow />
+        <div className="relative mx-auto grid max-w-7xl items-center gap-12 px-4 py-20 sm:px-6 sm:py-24 lg:grid-cols-[1fr_1.6fr] lg:px-8">
+          <div data-reveal>
+            <p className="text-sm font-medium text-[#9fd3f1]">Wayzure en 30 secondes</p>
+            <h2 className="mt-3 font-display text-3xl font-semibold tracking-tight text-white sm:text-4xl">Une ESN qui fait tourner ses propres logiciels.</h2>
+            <p className="mt-4 leading-relaxed text-on-deep-2">{FILM.caption} Les écrans montrés sont ceux de nos applications, avec leurs données d&apos;exemple.</p>
+          </div>
+          <figure data-reveal style={{ "--d": "120ms" } as React.CSSProperties}>
+            <VideoPlayer video={FILM} sizes="(min-width: 1024px) 760px, 100vw" />
+          </figure>
+        </div>
+      </section>
+
       {/* Solutions */}
       <section className="mx-auto max-w-7xl px-4 py-24 sm:px-6 lg:px-8">
         <div className="flex flex-wrap items-end justify-between gap-6">
@@ -119,14 +139,20 @@ export default function Home() {
           </SectionTitle>
           <Link href="/solutions" className="group inline-flex items-center gap-2 text-sm font-medium text-accent hover:text-accent-hover">Toutes nos solutions <Arrow /></Link>
         </div>
-        <div className="mt-14 grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
+        <div className="mt-14 grid gap-6 md:grid-cols-2">
           {SOLUTIONS.map((s, i) => (
-            <Link key={s.slug} href={`/solutions/${s.slug}`} data-reveal style={{ "--d": `${i * 70}ms` } as React.CSSProperties} className="group flex flex-col rounded-3xl border border-line p-6 transition-all hover:-translate-y-0.5 hover:shadow-xl hover:shadow-black/5">
-              <ProductMark slug={s.slug} className="size-11" />
-              <p className="mt-5 font-display text-xl font-semibold tracking-tight">{s.name}</p>
-              <p className="text-sm font-medium text-accent">{s.category}</p>
-              <p className="mt-3 flex-1 text-sm leading-relaxed text-fg-2">{s.tagline}</p>
-              <p className="mt-5 flex items-center justify-between text-xs text-muted"><span>{s.market}</span><Arrow /></p>
+            <Link key={s.slug} href={`/solutions/${s.slug}`} data-reveal style={{ "--d": `${(i % 2) * 90}ms` } as React.CSSProperties} className="group flex flex-col overflow-hidden rounded-3xl border border-line transition-all hover:-translate-y-0.5 hover:shadow-xl hover:shadow-black/5">
+              <div className="transition-transform duration-700 group-hover:scale-[1.015]"><SolutionVisual slug={s.slug} compact sizes="(min-width: 768px) 560px, 100vw" /></div>
+              <div className="flex flex-1 flex-col p-6 sm:p-7">
+                <div className="flex items-center gap-3">
+                  <ProductMark slug={s.slug} className="size-9" />
+                  <p className="font-display text-xl font-semibold tracking-tight">{s.name}</p>
+                  <span className="ml-auto rounded-full bg-surface px-2.5 py-1 text-xs text-muted">{s.market}</span>
+                </div>
+                <p className="mt-3 text-sm font-medium text-accent">{s.category}</p>
+                <p className="mt-2 flex-1 leading-relaxed text-fg-2">{s.tagline}</p>
+                <p className="mt-5 inline-flex items-center gap-2 text-sm font-medium text-accent">Voir {s.name} en images <Arrow /></p>
+              </div>
             </Link>
           ))}
         </div>

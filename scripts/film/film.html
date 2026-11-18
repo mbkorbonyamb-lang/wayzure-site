@@ -1,0 +1,108 @@
+<!doctype html>
+<!--
+  Film institutionnel Wayzure (30 s, 1920x1080, sans son).
+  Chaque élément porte data-in / data-out (secondes) et un type d'entrée. render(t) fixe l'état
+  de l'image à l'instant t : le rendu image par image est donc exact et reproductible.
+  Rendu : node scripts/film/render.mjs  (voir ce fichier).
+-->
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<style>
+@font-face { font-family: Head; src: url(../../app/fonts/plus-jakarta-sans-latin-var.woff2) format("woff2"); font-weight: 200 800; }
+@font-face { font-family: Body; src: url(../../app/fonts/inter-latin-var.woff2) format("woff2"); font-weight: 100 900; }
+* { box-sizing: border-box; margin: 0; }
+html, body { width: 1920px; height: 1080px; overflow: hidden; background: #0f222b; }
+body { font-family: Body, sans-serif; color: #fff; -webkit-font-smoothing: antialiased; }
+#stage { position: relative; width: 1920px; height: 1080px; overflow: hidden;
+  background: radial-gradient(1200px 700px at 78% 18%, rgba(7,130,198,.38), transparent 60%), radial-gradient(900px 600px at 10% 100%, rgba(7,130,198,.18), transparent 60%), #19323e; }
+#grid { position: absolute; inset: -60px; background-image: linear-gradient(rgba(255,255,255,.05) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,.05) 1px, transparent 1px); background-size: 80px 80px; }
+.el { position: absolute; opacity: 0; will-change: transform, opacity; }
+.h { font-family: Head, sans-serif; font-weight: 650; letter-spacing: -0.025em; line-height: 1.05; }
+.eyebrow { font-size: 26px; font-weight: 500; color: #9fd3f1; letter-spacing: .02em; }
+.blue { color: #3aa7e3; }
+.card { border: 1px solid rgba(255,255,255,.14); background: rgba(255,255,255,.05); border-radius: 28px; padding: 36px 38px; }
+.card .n { font-family: ui-monospace, monospace; font-size: 22px; color: #7cc4ec; }
+.card .t { font-family: Head; font-weight: 650; font-size: 40px; letter-spacing: -0.02em; margin-top: 14px; line-height: 1.1; }
+.card .d { font-size: 22px; color: rgba(255,255,255,.72); margin-top: 14px; line-height: 1.4; }
+.shot { border-radius: 22px; overflow: hidden; box-shadow: 0 40px 120px rgba(0,0,0,.45), 0 0 0 1px rgba(255,255,255,.12); background: #fff; }
+.shot img { display: block; width: 100%; }
+.phone { border-radius: 54px; padding: 14px; background: #0b1820; box-shadow: 0 40px 120px rgba(0,0,0,.5), 0 0 0 2px rgba(255,255,255,.14); }
+.phone img { display: block; width: 100%; border-radius: 42px; }
+.tag { display: inline-flex; align-items: center; gap: 14px; font-size: 24px; color: rgba(255,255,255,.8); }
+.tag b { font-family: Head; font-size: 64px; font-weight: 650; color: #fff; letter-spacing: -0.02em; }
+.pill { display: inline-block; border: 1px solid rgba(255,255,255,.2); border-radius: 999px; padding: 12px 26px; font-size: 24px; color: rgba(255,255,255,.85); }
+.bar { height: 6px; border-radius: 3px; background: #3aa7e3; transform-origin: left; }
+</style>
+</head>
+<body>
+<div id="stage">
+  <div id="grid" class="el" data-in="0" data-out="30" data-fx="drift" style="opacity:1"></div>
+
+  <!-- 1. Marque (0-4,5 s) -->
+  <img class="el" src="../../public/brand/wayzure-mark-blanc.svg" data-in="0.3" data-out="4.4" data-fx="rise" style="left:810px; top:300px; width:300px">
+  <img class="el" src="../../public/brand/wayzure-wordmark-blanc.svg" data-in="1.0" data-out="4.4" data-fx="rise" style="left:660px; top:540px; width:600px">
+  <p class="el eyebrow" data-in="1.8" data-out="4.4" data-fx="rise" style="left:0; width:1920px; top:700px; text-align:center">ESN et éditeur de solutions numériques · France · Guinée</p>
+
+  <!-- 2. Signature (4,6-8,6 s) -->
+  <h1 class="el h" data-in="4.7" data-out="8.6" data-fx="rise" style="left:180px; top:330px; font-size:124px; width:1560px">Le numérique qui fait</h1>
+  <h1 class="el h" data-in="5.2" data-out="8.6" data-fx="rise" style="left:180px; top:470px; font-size:124px; width:1560px"><span class="blue">avancer</span> votre entreprise.</h1>
+  <div class="el bar" data-in="5.9" data-out="8.6" data-fx="grow" style="left:184px; top:650px; width:360px"></div>
+
+  <!-- 3. Pôles (8,8-15 s) -->
+  <p class="el eyebrow" data-in="8.8" data-out="15" data-fx="rise" style="left:140px; top:150px">Nos expertises</p>
+  <h2 class="el h" data-in="9.0" data-out="15" data-fx="rise" style="left:140px; top:200px; font-size:84px">Quatre pôles. Une même équipe.</h2>
+  <div class="el card" data-in="9.6" data-out="15" data-fx="rise" style="left:140px; top:380px; width:390px; height:330px"><p class="n">01</p><p class="t">Data &amp; IA</p><p class="d">Pilotage, valorisation des données, IA générative, automatisation.</p></div>
+  <div class="el card" data-in="9.85" data-out="15" data-fx="rise" style="left:555px; top:380px; width:390px; height:330px"><p class="n">02</p><p class="t">Conseil</p><p class="d">Stratégie numérique, SI, audit, cybersécurité, gestion de projet.</p></div>
+  <div class="el card" data-in="10.1" data-out="15" data-fx="rise" style="left:970px; top:380px; width:390px; height:330px"><p class="n">03</p><p class="t">Développement numérique</p><p class="d">Logiciels métiers, web, mobile, SaaS, ERP et CRM.</p></div>
+  <div class="el card" data-in="10.35" data-out="15" data-fx="rise" style="left:1385px; top:380px; width:390px; height:330px"><p class="n">04</p><p class="t">Formation</p><p class="d">Numérique, data et IA, cybersécurité, conduite du changement.</p></div>
+  <div class="el card" data-in="11.4" data-out="15" data-fx="rise" style="left:140px; top:740px; width:1635px; height:auto; padding:30px 38px; background:rgba(7,130,198,.18); border-color:rgba(124,196,236,.35)">
+    <p style="font-size:30px"><b style="font-family:Head">Services IT au quotidien</b><span style="color:rgba(255,255,255,.75)"> : support utilisateurs, helpdesk, systèmes et réseaux, maintenance, infogérance.</span></p>
+  </div>
+
+  <!-- 4. Solutions (15,2-25 s) -->
+  <p class="el eyebrow" data-in="15.2" data-out="25" data-fx="rise" style="left:140px; top:150px">Nos solutions, en production</p>
+  <h2 class="el h" data-in="15.4" data-out="25" data-fx="rise" style="left:140px; top:200px; font-size:84px; width:820px">Nous éditons nos propres logiciels.</h2>
+
+  <div class="el" data-in="16.2" data-out="18.7" data-fx="swap" style="left:140px; top:560px"><p class="tag"><b>WayPulse</b></p><p class="eyebrow" style="margin-top:10px">Prospection commerciale intelligente · France</p></div>
+  <div class="el shot" data-in="16.0" data-out="18.8" data-fx="slide" style="left:930px; top:170px; width:900px"><img src="../../public/captures/waypulse/pipeline.webp"></div>
+
+  <div class="el" data-in="18.7" data-out="21.0" data-fx="swap" style="left:140px; top:560px"><p class="tag"><b>WayPilot</b></p><p class="eyebrow" style="margin-top:10px">Contrôle qualité des catalogues e-commerce · France</p></div>
+  <div class="el shot" data-in="18.6" data-out="21.1" data-fx="slide" style="left:930px; top:150px; width:900px"><img src="../../public/captures/waypilot/rapport.webp"></div>
+
+  <div class="el" data-in="21.0" data-out="23.2" data-fx="swap" style="left:140px; top:560px"><p class="tag"><b>WayLog</b></p><p class="eyebrow" style="margin-top:10px">Preuve de livraison et logistique · Guinée</p></div>
+  <div class="el phone" data-in="20.9" data-out="23.3" data-fx="slide" style="left:1120px; top:110px; width:400px"><img src="../../public/captures/waylog/suivi-mobile.webp"></div>
+
+  <div class="el" data-in="23.2" data-out="25" data-fx="swap" style="left:140px; top:560px"><p class="tag"><b>Waycare</b></p><p class="eyebrow" style="margin-top:10px">Plateforme numérique de santé · Guinée</p></div>
+  <div class="el phone" data-in="23.1" data-out="25" data-fx="slide" style="left:1120px; top:110px; width:400px"><img src="../../public/captures/waycare/accueil-mobile.webp"></div>
+
+  <!-- 5. France Guinée (25,2-27,6 s) -->
+  <h2 class="el h" data-in="25.2" data-out="27.6" data-fx="rise" style="left:0; width:1920px; text-align:center; top:300px; font-size:96px">Entre la France et la Guinée.</h2>
+  <div class="el" data-in="25.6" data-out="27.6" data-fx="rise" style="left:0; width:1920px; top:500px; display:flex; justify-content:center; gap:28px"><p class="pill">France · Wayzure SAS · Clamart</p><p class="pill">Guinée · Wayzure SASU · Conakry</p></div>
+  <p class="el eyebrow" data-in="26.1" data-out="27.6" data-fx="rise" style="left:0; width:1920px; text-align:center; top:640px">Une seule équipe, du cadrage à la mise en service.</p>
+
+  <!-- 6. Fin (27,8-30 s) -->
+  <img class="el" src="../../public/brand/wayzure-logo-horizontal-blanc.svg" data-in="27.8" data-out="30.5" data-fx="rise" style="left:610px; top:330px; width:700px">
+  <p class="el h" data-in="28.2" data-out="30.5" data-fx="rise" style="left:0; width:1920px; text-align:center; top:590px; font-size:56px">Parlons de votre projet.</p>
+  <p class="el eyebrow" data-in="28.5" data-out="30.5" data-fx="rise" style="left:0; width:1920px; text-align:center; top:690px; font-size:30px">wayzure.com · contact@wayzure.com</p>
+</div>
+<script>
+const els = [...document.querySelectorAll('.el')].map(e => ({ e, a: +e.dataset.in, b: +e.dataset.out, fx: e.dataset.fx }));
+const ease = x => 1 - Math.pow(1 - Math.min(Math.max(x, 0), 1), 3);
+const D_IN = 0.7, D_OUT = 0.45;
+window.render = t => {
+  for (const { e, a, b, fx } of els) {
+    if (fx === 'drift') { e.style.transform = `translate(${-t * 4}px, ${-t * 2}px)`; continue; }
+    const i = ease((t - a) / D_IN), o = ease((t - (b - D_OUT)) / D_OUT);
+    const vis = t < a || t > b ? 0 : i * (1 - o);
+    e.style.opacity = vis;
+    if (fx === 'rise') e.style.transform = `translateY(${(1 - i) * 40 - o * 20}px)`;
+    if (fx === 'swap') e.style.transform = `translateY(${(1 - i) * 30 - o * 30}px)`;
+    if (fx === 'slide') e.style.transform = `translateX(${(1 - i) * 120 - o * 80}px) scale(${0.97 + 0.03 * i})`;
+    if (fx === 'grow') e.style.transform = `scaleX(${i})`;
+  }
+};
+window.render(0);
+</script>
+</body>
+</html>
