@@ -21,6 +21,7 @@ export const COMPANY = {
 export const GUINEA = {
   legalName: "Wayzure SASU",
   address: "Conakry, République de Guinée",
+  office: "Almamya, Conakry",
   rccm: "RCCM GN.TCC.2023.B.01274",
 };
 

@@ -1,4 +1,4 @@
-import { Hero, Page } from "@/components/chrome";
+import { Page, PageHero } from "@/components/chrome";
 import { COMPANY, GUINEA, HOST } from "@/lib/company";
 import { meta } from "@/lib/seo";
 
@@ -7,7 +7,7 @@ export const metadata = meta("/mentions-legales", "Mentions légales", "Éditeur
 export default function MentionsLegales() {
   return (
     <Page>
-      <Hero title="Mentions légales" />
+      <PageHero eyebrow="Informations légales" title="Mentions légales" />
       <section className="prose-legal mx-auto max-w-3xl px-4 py-12 sm:px-6">
         <h2>Éditeur du site</h2>
         <p>{COMPANY.legalName}, {COMPANY.form.toLowerCase()}{COMPANY.capital ? ` au capital de ${COMPANY.capital}` : ""}.</p>
@@ -17,7 +17,7 @@ export default function MentionsLegales() {
         <p>Directeur de la publication : {COMPANY.publisher}.</p>
 
         <h2>Société en Guinée</h2>
-        <p>{GUINEA.legalName}, {GUINEA.address}, {GUINEA.rccm}. Société distincte de {COMPANY.legalName}.</p>
+        <p>{GUINEA.legalName}, {GUINEA.address}, {GUINEA.rccm}. Bureau : {GUINEA.office}.{COMPANY.phoneGuinea ? ` Téléphone : ${COMPANY.phoneGuinea}.` : ""} Société distincte de {COMPANY.legalName}.</p>
 
         <h2>Hébergement</h2>
         <p>{HOST.name}, {HOST.address}. <a href={HOST.url} rel="noopener">{HOST.url.replace("https://", "")}</a></p>

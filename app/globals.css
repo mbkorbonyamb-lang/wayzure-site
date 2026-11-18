@@ -1,38 +1,43 @@
 @import "tailwindcss";
 
-/* Clair par défaut, sombre selon le réglage de l'appareil. Bleu Wayzure réservé aux accents. */
+/* Identité Wayzure : bleu #0782C6, bleu profond #19323E, noir et blanc.
+   Clair par défaut, sombre selon le réglage de l'appareil. */
 :root {
   color-scheme: light dark;
   --bg: #ffffff;
-  --surface: #f7f8fa;
-  --border: #e6e7eb;
-  --fg: #16181d;
-  --fg-2: #4a4d55;
-  --muted: #7c7f88;
-  --accent: #0a84c6;
-  --accent-hover: #0874ae;
-  --accent-soft: #eaf4fb;
-  --night: #0d1b2a;
+  --surface: #f4f7f9;
+  --border: #e2e8ec;
+  --fg: #0c1418;
+  --fg-2: #44525a;
+  --muted: #5f6c74;
+  --accent: #0670aa;
+  --accent-hover: #066ea8;
+  --accent-soft: #e6f3fa;
+  --deep: #19323e;
+  --deep-2: #0f222b;
+  --on-deep: #e9f1f5;
+  --on-deep-2: #a9bdc7;
 }
 
 @media (prefers-color-scheme: dark) {
   :root {
-    --bg: #0b0c0f;
-    --surface: #121419;
-    --border: #23262d;
-    --fg: #ecedf0;
-    --fg-2: #b4b7bf;
-    --muted: #80838c;
-    --accent: #3aa6e6;
-    --accent-hover: #5bb6ec;
-    --accent-soft: #10273a;
-    --night: #070d14;
+    --bg: #0a1216;
+    --surface: #0f1b21;
+    --border: #1f3039;
+    --fg: #eef3f6;
+    --fg-2: #b3c1c8;
+    --muted: #82939b;
+    --accent: #3aa7e3;
+    --accent-hover: #63b9ea;
+    --accent-soft: #0f2a3a;
+    --deep: #122630;
+    --deep-2: #0b1a21;
   }
 }
 
 @theme inline {
-  --font-sans: var(--font-inter), ui-sans-serif, system-ui, -apple-system, "Segoe UI", sans-serif;
-  --font-display: var(--font-display), var(--font-inter), ui-sans-serif, system-ui, sans-serif;
+  --font-sans: var(--font-body), ui-sans-serif, system-ui, -apple-system, "Segoe UI", sans-serif;
+  --font-display: var(--font-head), var(--font-body), ui-sans-serif, system-ui, sans-serif;
   --color-bg: var(--bg);
   --color-surface: var(--surface);
   --color-line: var(--border);
@@ -42,19 +47,45 @@
   --color-accent: var(--accent);
   --color-accent-hover: var(--accent-hover);
   --color-accent-soft: var(--accent-soft);
-  --color-night: var(--night);
+  --color-deep: var(--deep);
+  --color-deep-2: var(--deep-2);
+  --color-on-deep: var(--on-deep);
+  --color-on-deep-2: var(--on-deep-2);
+  --color-brand: #0782c6;
+  --color-btn: #0670aa;
 }
 
-html { scroll-behavior: smooth; }
-body { background: var(--bg); color: var(--fg); }
-::selection { background: var(--accent-soft); }
-:focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; border-radius: 4px; }
+html { scroll-behavior: smooth; -webkit-text-size-adjust: 100%; }
+body { background: var(--bg); color: var(--fg); font-feature-settings: "ss01", "cv11"; }
+::selection { background: #0782c633; }
+:focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; border-radius: 6px; }
+h1, h2, h3 { text-wrap: balance; }
+p { text-wrap: pretty; }
 
-.prose-legal h2 { font-weight: 600; font-size: 1.125rem; margin: 2.25rem 0 .75rem; color: var(--fg); }
+/* Apparition douce au défilement. Sans JavaScript, tout reste visible. */
+.js [data-reveal] { opacity: 0; transform: translateY(14px); transition: opacity .7s cubic-bezier(.2,.7,.2,1), transform .7s cubic-bezier(.2,.7,.2,1); transition-delay: var(--d, 0ms); }
+.js [data-reveal].is-in { opacity: 1; transform: none; }
+
+/* Lignes du motif de l'accueil */
+@keyframes draw { to { stroke-dashoffset: 0; } }
+.hero-line { stroke-dasharray: 900; stroke-dashoffset: 900; animation: draw 2.4s cubic-bezier(.3,.6,.2,1) .2s forwards; }
+@keyframes pulse-dot { 0%, 100% { opacity: .35; } 50% { opacity: 1; } }
+.hero-dot { animation: pulse-dot 3.2s ease-in-out infinite; }
+
+.prose-legal h2 { font-family: var(--font-head), sans-serif; font-weight: 600; font-size: 1.15rem; margin: 2.25rem 0 .75rem; color: var(--fg); }
 .prose-legal p, .prose-legal li { color: var(--fg-2); line-height: 1.75; margin: .5rem 0; }
 .prose-legal ul { list-style: disc; padding-left: 1.25rem; }
 .prose-legal a { color: var(--accent); text-decoration: underline; text-underline-offset: 3px; }
 
+.logo-dark { display: none !important; }
+@media (prefers-color-scheme: dark) {
+  .logo-light { display: none !important; }
+  .logo-dark { display: flex !important; }
+}
+
 @media (prefers-reduced-motion: reduce) {
   html { scroll-behavior: auto; }
+  .js [data-reveal] { opacity: 1; transform: none; transition: none; }
+  .hero-line { animation: none; stroke-dashoffset: 0; }
+  .hero-dot { animation: none; }
 }
