@@ -1,27 +1,40 @@
 # wayzure.com
 
-Site vitrine de Wayzure, refait en Next.js (remplace le site WordPress.com).
+Site vitrine de Wayzure en Next.js, hébergé sur Vercel. Remplace l'ancien site WordPress.com.
 
-## Décisions (Moussa, 18/11/2026)
+## Positionnement (cahier des charges de Moussa, 18/11/2026)
 
-- Quatre pôles : Data, Conseil, Développement numérique, Formation.
-- Ne pas afficher l'infogérance ni la cybersécurité tant que Wayzure ne les livre pas. Le cloud apparaît seulement comme partie du développement.
-- Formation : aucune mention « éligible OPCO » sans certification Qualiopi.
-- Les produits (WayPulse, WayPilot, WayLog, Waycare) servent de preuves concrètes.
-- Pas de promesse de délai de réponse, pas de témoignage anonyme.
-- Style des textes : phrases simples, pas de tirets, pas de formules creuses.
+- Wayzure est une ESN et un éditeur de solutions numériques, en France (Wayzure SAS) et en Guinée (Wayzure SASU).
+- Signature : « Le numérique qui fait avancer votre entreprise. »
+- Quatre pôles : Data & Intelligence artificielle, Conseil, Développement numérique, Formation. Plus les services IT (support, helpdesk, administration systèmes et réseaux, maintenance, infogérance).
+- Quatre solutions : WayPulse, WayPilot, WayLog, Waycare. Les faits repris sur chaque produit viennent de son propre site.
+- Couleurs : bleu #0782C6, bleu profond #19323E, noir et blanc. Les boutons et liens utilisent #0670AA, une nuance du bleu qui passe le contraste minimal d'accessibilité sur fond blanc.
+- Aucun client, témoignage ou chiffre inventé. Formation : aucune mention « éligible OPCO » sans certification Qualiopi.
 
 ## Où modifier
 
 - Coordonnées et informations légales : `lib/company.ts` (une seule source pour tout le site).
-- Textes des pôles et des produits : `lib/content.ts`.
-- Redirections des anciennes adresses WordPress : `next.config.ts`.
+- Pôles, services IT, solutions, méthode : `lib/content.ts`.
+- Anciennes adresses redirigées : `next.config.ts`.
+- Logos : `public/brand/` (symbole couleur, versions noire et blanche vectorisées). Originaux fournis par Moussa dans les fichiers du projet, dossier `logo/`.
+
+## Formulaire de contact
+
+Le formulaire envoie un e-mail via l'API Resend. À renseigner dans Vercel, Settings > Environment Variables :
+
+- `RESEND_API_KEY` (obligatoire) : clé API Resend, avec le domaine wayzure.com vérifié dans Resend.
+- `CONTACT_TO` (facultatif) : destinataire, par défaut contact@wayzure.com.
+- `CONTACT_FROM` (facultatif) : expéditeur, par défaut `Site Wayzure <site@wayzure.com>`.
+
+Sans clé, le formulaire affiche un message d'erreur qui renvoie vers l'adresse e-mail.
+
+Autres variables facultatives : `GOOGLE_SITE_VERIFICATION`, `BING_SITE_VERIFICATION`.
 
 ## Mise en ligne : ne toucher qu'à A et www
 
-Le domaine wayzure.com est enregistré chez WordPress.com, et sa zone DNS y est gérée. Cette zone porte les e-mails IONOS (MX, SPF, DKIM, DMARC), DKIM Resend et les sous domaines waypulse, waypilot, waylog.
+Le domaine wayzure.com est enregistré chez WordPress.com, et sa zone DNS y est gérée. Cette zone porte les e-mails IONOS (MX, SPF, DKIM), DMARC, Resend et les sous domaines waypulse, waypilot, waylog.
 
-Pour basculer vers Vercel : ajouter wayzure.com et www.wayzure.com au projet Vercel, puis changer uniquement l'enregistrement A de wayzure.com et le CNAME www, avec les valeurs que Vercel affiche. Ne jamais modifier ni supprimer MX, TXT ou les autres sous domaines.
+Pour basculer vers Vercel : ajouter wayzure.com et www.wayzure.com au projet Vercel, vérifier que la branche de production est `main`, puis changer uniquement l'enregistrement A de wayzure.com et le CNAME www, avec les valeurs que Vercel affiche. Ne jamais modifier ni supprimer MX, TXT ou les autres sous domaines.
 
 ## Commandes
 
@@ -30,5 +43,3 @@ npm install
 npm run dev      # http://localhost:3000
 npm run build
 ```
-
-Audit de l'ancien site : https://claude.ai/artifact/P1ZDPg9Yo7rPTwaiyiDLB9

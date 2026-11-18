@@ -1,15 +1,17 @@
 import type { Metadata, Viewport } from "next";
-import { Inter, Inter_Tight } from "next/font/google";
+import localFont from "next/font/local";
 import "./globals.css";
 import { COMPANY, GUINEA, SITE_URL } from "@/lib/company";
 
-const DESCRIPTION = "Wayzure accompagne les PME et les organisations en data, conseil, développement numérique et formation. Basée à Clamart.";
+const DESCRIPTION =
+  "Wayzure, ESN et éditeur de solutions numériques : data et intelligence artificielle, conseil IT, développement d'applications, formation et services IT, en France et en Guinée.";
 
 export const metadata: Metadata = {
   metadataBase: new URL(SITE_URL),
-  title: { default: "Wayzure : data, conseil et développement numérique", template: "%s · Wayzure" },
+  title: { default: "Wayzure : le numérique qui fait avancer votre entreprise", template: "%s · Wayzure" },
   description: DESCRIPTION,
-  openGraph: { type: "website", locale: "fr_FR", siteName: "Wayzure", title: "Wayzure", description: DESCRIPTION },
+  alternates: { canonical: "/" },
+  openGraph: { type: "website", locale: "fr_FR", siteName: "Wayzure", title: "Wayzure : le numérique qui fait avancer votre entreprise", description: DESCRIPTION, url: "/" },
   twitter: { card: "summary_large_image" },
   verification: {
     ...(process.env.GOOGLE_SITE_VERIFICATION ? { google: process.env.GOOGLE_SITE_VERIFICATION } : {}),
@@ -18,12 +20,12 @@ export const metadata: Metadata = {
 };
 
 export const viewport: Viewport = {
-  themeColor: [{ media: "(prefers-color-scheme: light)", color: "#ffffff" }, { media: "(prefers-color-scheme: dark)", color: "#0b0c0f" }],
+  themeColor: [{ media: "(prefers-color-scheme: light)", color: "#ffffff" }, { media: "(prefers-color-scheme: dark)", color: "#0a1216" }],
 };
 
-// Polices servies par le site lui-même : aucune requête des visiteurs vers Google.
-const inter = Inter({ subsets: ["latin"], weight: ["400", "500", "600"], variable: "--font-inter", display: "swap" });
-const display = Inter_Tight({ subsets: ["latin"], weight: ["500", "600"], variable: "--font-display", display: "swap" });
+// Polices hébergées avec le site (Inter et Plus Jakarta Sans, licence SIL OFL) : aucune requête vers Google.
+const body = localFont({ src: "./fonts/inter-latin-var.woff2", weight: "100 900", variable: "--font-body", display: "swap" });
+const head = localFont({ src: "./fonts/plus-jakarta-sans-latin-var.woff2", weight: "200 800", variable: "--font-head", display: "swap" });
 
 const ORG_LD = JSON.stringify({
   "@context": "https://schema.org",
@@ -31,18 +33,24 @@ const ORG_LD = JSON.stringify({
   name: COMPANY.name,
   legalName: COMPANY.legalName,
   url: SITE_URL,
-  logo: `${SITE_URL}/logo-wayzure.png`,
+  logo: `${SITE_URL}/brand/wayzure-logo-couleur.png`,
+  slogan: "Le numérique qui fait avancer votre entreprise.",
   email: COMPANY.email,
   ...(COMPANY.phone ? { telephone: COMPANY.phone } : {}),
   vatID: COMPANY.vat,
   address: { "@type": "PostalAddress", streetAddress: "132 avenue Jean Jaurès", postalCode: "92140", addressLocality: "Clamart", addressCountry: "FR" },
+  areaServed: ["FR", "GN"],
   sameAs: [COMPANY.linkedin],
-  subOrganization: { "@type": "Organization", legalName: GUINEA.legalName, address: { "@type": "PostalAddress", addressLocality: "Conakry", addressCountry: "GN" } },
+  subOrganization: { "@type": "Organization", legalName: GUINEA.legalName, address: { "@type": "PostalAddress", addressLocality: "Conakry", addressCountry: "GN" }, ...(COMPANY.phoneGuinea ? { telephone: COMPANY.phoneGuinea } : {}) },
 });
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
-    <html lang="fr" className={`${inter.variable} ${display.variable}`}>
+    <html lang="fr" className={`${body.variable} ${head.variable}`} suppressHydrationWarning>
+      <head>
+        {/* Active les animations d'apparition seulement si JavaScript tourne. */}
+        <script dangerouslySetInnerHTML={{ __html: "document.documentElement.classList.add('js')" }} />
+      </head>
       <body className="font-sans antialiased">
         <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: ORG_LD }} />
         {children}

@@ -1,5 +1,6 @@
 import Image from "next/image";
 
+/* eslint-disable @next/next/no-img-element */
 // Icônes des produits Wayzure, reprises des logos officiels (mêmes tracés que dans WayPulse).
 const MARKS: Record<string, (id: string) => React.ReactNode> = {
   waypulse: () => (
@@ -51,12 +52,25 @@ export function ProductMark({ slug, className = "size-10" }: { slug: string; cla
   return mark ? <svg viewBox="0 0 32 32" className={`${className} shrink-0`} aria-hidden>{mark(`pm-${slug}`)}</svg> : null;
 }
 
-/** Logo officiel Wayzure : le W en ruban (image) suivi du nom en texte, pour rester lisible en mode sombre. */
-export function Logo({ className = "" }: { className?: string }) {
+/**
+ * Logo officiel Wayzure en ligne : symbole couleur (W en ruban) + nom.
+ * tone "auto" : couleur sur fond clair, blanc en mode sombre. tone "white" : pour les fonds bleu profond.
+ */
+export function Logo({ tone = "auto", className = "" }: { tone?: "auto" | "white"; className?: string }) {
+  const white = (
+    <span className={`items-center gap-2.5 ${tone === "auto" ? "logo-dark" : "flex"}`}>
+      <img src="/brand/wayzure-mark-blanc.svg" alt="" width={42} height={28} className="h-7 w-auto" />
+      <img src="/brand/wayzure-wordmark-blanc.svg" alt="Wayzure" width={95} height={22} className="h-[1.3rem] w-auto" />
+    </span>
+  );
+  if (tone === "white") return <span className={`inline-flex ${className}`}>{white}</span>;
   return (
-    <span className={`inline-flex items-center gap-2 ${className}`}>
-      <Image src="/logo-mark.png" alt="" width={268} height={179} priority className="h-7 w-auto" />
-      <span className="font-display text-[1.15rem] font-semibold tracking-tight text-fg"><span className="text-accent">W</span>ayzure</span>
+    <span className={`inline-flex ${className}`}>
+      <span className="logo-light flex items-center gap-2.5">
+        <Image src="/brand/wayzure-symbole-couleur.png" alt="" width={268} height={179} priority className="h-7 w-auto" />
+        <img src="/brand/wayzure-wordmark-couleur.svg" alt="Wayzure" width={95} height={22} className="h-[1.3rem] w-auto" />
+      </span>
+      {white}
     </span>
   );
 }

@@ -1,82 +1,145 @@
 import Link from "next/link";
-import { Arrow, Page } from "@/components/chrome";
+import { Arrow, Check, CtaBand, GridGlow, Page, SectionTitle } from "@/components/chrome";
+import { HeroArt } from "@/components/hero-art";
+import { ExpertiseIcon } from "@/components/icons";
 import { ProductMark } from "@/components/marks";
-import { POLES, PRODUCTS } from "@/lib/content";
+import { COMPANY, GUINEA } from "@/lib/company";
+import { EXPERTISES, IT_SERVICES, SOLUTIONS, STEPS } from "@/lib/content";
 
-const STEPS = [
-  { t: "Un premier échange", d: "30 minutes, par visio ou par téléphone. Vous expliquez le problème, nous posons des questions. Pas de présentation commerciale." },
-  { t: "Une proposition écrite", d: "Ce qui sera fait, ce qui ne le sera pas, le délai et le prix. Si le projet ne nous paraît pas utile, nous vous le disons." },
-  { t: "Des livraisons courtes", d: "Le travail avance par étapes de quelques semaines. Vous voyez le résultat et vous validez avant la suite." },
-  { t: "Un suivi après la livraison", d: "Les outils que nous livrons sont maintenus. Vos équipes sont formées pour s'en servir sans nous." },
+// Situation de départ, puis ce qui change. Formulées à partir de cas fréquents, sans client nommé.
+const STORIES = [
+  { pole: EXPERTISES[0], before: "Les données sont partout, les décisions se prennent à l'instinct.", after: "Des indicateurs fiables, à jour, que les équipes consultent vraiment." },
+  { pole: EXPERTISES[1], before: "Les outils se sont empilés, plus personne n'a la vue d'ensemble.", after: "Une feuille de route chiffrée et un système d'information qui tient." },
+  { pole: EXPERTISES[2], before: "Le métier tourne sur des tableurs et des ressaisies.", after: "Une application faite pour vos processus, reliée à vos autres outils." },
+  { pole: EXPERTISES[3], before: "Les nouveaux outils sont là, les équipes ne s'en servent pas.", after: "Des équipes formées sur leurs cas réels, qui adoptent les outils." },
 ];
 
 export default function Home() {
   return (
     <Page>
-      <section className="border-b border-line">
-        <div className="mx-auto max-w-6xl px-4 pb-20 pt-16 sm:px-6 sm:pt-24">
-          <p className="text-sm font-medium text-accent">Data · Conseil · Développement numérique · Formation</p>
-          <h1 className="mt-4 max-w-3xl font-display text-[2.4rem] font-semibold leading-[1.05] tracking-tight sm:text-6xl">Des outils numériques qui servent votre métier.</h1>
-          <p className="mt-6 max-w-2xl text-lg leading-relaxed text-fg-2">Wayzure aide les PME et les organisations à mieux utiliser leurs données, à choisir les bons outils, à construire ceux qui manquent et à former les équipes qui s&apos;en servent.</p>
-          <div className="mt-9 flex flex-wrap items-center gap-3">
-            <Link href="/contact" className="inline-flex items-center gap-2 rounded-full bg-fg px-5 py-3 text-sm font-medium text-bg transition-opacity hover:opacity-85">Parler de votre projet <Arrow /></Link>
-            <Link href="/realisations" className="inline-flex items-center gap-2 rounded-full border border-line px-5 py-3 text-sm font-medium text-fg transition-colors hover:bg-surface">Voir nos réalisations</Link>
+      {/* Accroche */}
+      <section className="relative overflow-hidden bg-deep text-on-deep">
+        <GridGlow />
+        <div className="relative mx-auto grid max-w-7xl items-center gap-12 px-4 pb-20 pt-16 sm:px-6 sm:pt-24 lg:grid-cols-[1.25fr_1fr] lg:px-8 lg:pb-28">
+          <div>
+            <p className="inline-flex items-center gap-2 rounded-full border border-white/15 bg-white/[0.05] px-3 py-1 text-xs font-medium text-[#9fd3f1]">
+              <span className="size-1.5 rounded-full bg-[#3aa7e3]" />ESN et éditeur de solutions numériques · France · Guinée
+            </p>
+            <h1 className="mt-6 font-display text-[2.6rem] font-semibold leading-[1.04] tracking-tight text-white sm:text-6xl lg:text-[4.2rem]">
+              Le numérique qui fait <span className="text-[#3aa7e3]">avancer</span> votre entreprise.
+            </h1>
+            <p className="mt-6 max-w-xl text-lg leading-relaxed text-on-deep-2">
+              Wayzure conseille, développe et forme. Data et intelligence artificielle, conseil IT, applications métiers, formation et services IT : une seule équipe, du cadrage à la mise en service. Et nous éditons nos propres logiciels, en production chaque jour.
+            </p>
+            <div className="mt-9 flex flex-wrap gap-3">
+              <Link href="/contact" className="group inline-flex items-center gap-2 rounded-full bg-btn px-6 py-3.5 text-sm font-medium text-white transition-colors hover:bg-[#055e8f]">Parler de votre projet <Arrow /></Link>
+              <Link href="/expertises" className="inline-flex items-center gap-2 rounded-full border border-white/25 px-6 py-3.5 text-sm font-medium text-white transition-colors hover:bg-white/10">Découvrir nos expertises</Link>
+            </div>
           </div>
+          <HeroArt />
+        </div>
+        <div className="relative border-t border-white/10">
+          <ul className="mx-auto flex max-w-7xl flex-wrap gap-x-8 gap-y-2 px-4 py-5 text-sm text-on-deep-2 sm:px-6 lg:px-8">
+            {[...EXPERTISES, IT_SERVICES].map(e => (
+              <li key={e.slug}><Link href={`/expertises/${e.slug}`} className="hover:text-white">{e.name}</Link></li>
+            ))}
+          </ul>
         </div>
       </section>
 
-      <section id="expertises" className="scroll-mt-20 border-b border-line">
-        <div className="mx-auto max-w-6xl px-4 py-20 sm:px-6">
-          <h2 className="font-display text-3xl font-semibold tracking-tight sm:text-4xl">Quatre expertises</h2>
-          <p className="mt-3 max-w-2xl text-fg-2">Elles se complètent souvent sur un même projet : on cadre, on construit, on branche les données, on forme.</p>
-          <div className="mt-12 grid gap-px overflow-hidden rounded-2xl border border-line bg-line md:grid-cols-2">
-            {POLES.map((p, i) => (
-              <article key={p.id} id={p.id} className="scroll-mt-24 bg-bg p-7 sm:p-9">
-                <p className="font-mono text-xs text-muted">0{i + 1}</p>
-                <h3 className="mt-3 font-display text-2xl font-semibold tracking-tight">{p.name}</h3>
-                <p className="mt-1 font-medium text-accent">{p.lead}</p>
-                <p className="mt-4 leading-relaxed text-fg-2">{p.text}</p>
-                <ul className="mt-5 space-y-2 text-[0.95rem]">
-                  {p.items.map(it => (
-                    <li key={it} className="flex gap-3"><span aria-hidden className="mt-2 size-1.5 shrink-0 rounded-full bg-accent" /><span>{it}</span></li>
-                  ))}
+      {/* Problèmes et transformations */}
+      <section className="mx-auto max-w-7xl px-4 py-24 sm:px-6 lg:px-8">
+        <SectionTitle eyebrow="Ce qui nous amène chez vous" title="Un problème concret au départ. Un changement visible à l'arrivée.">
+          Nos clients ne viennent pas chercher une technologie. Ils viennent régler une situation qui coûte du temps, de l&apos;argent ou des clients.
+        </SectionTitle>
+        <div className="mt-14 grid gap-5 md:grid-cols-2">
+          {STORIES.map((s, i) => (
+            <Link key={s.pole.slug} href={`/expertises/${s.pole.slug}`} data-reveal style={{ "--d": `${i * 80}ms` } as React.CSSProperties} className="group relative flex flex-col overflow-hidden rounded-3xl border border-line bg-bg p-7 transition-shadow hover:shadow-xl hover:shadow-black/5 sm:p-8">
+              <p className="text-xs font-medium uppercase tracking-wider text-muted">Avant</p>
+              <p className="mt-2 text-lg leading-snug text-fg-2">{s.before}</p>
+              <div className="my-5 flex items-center gap-3 text-accent"><span className="h-px flex-1 bg-line" /><ExpertiseIcon slug={s.pole.slug} className="size-5" /><span className="h-px flex-1 bg-line" /></div>
+              <p className="text-xs font-medium uppercase tracking-wider text-accent">Après</p>
+              <p className="mt-2 font-display text-xl font-semibold leading-snug tracking-tight">{s.after}</p>
+              <p className="mt-6 inline-flex items-center gap-2 text-sm font-medium text-accent">{s.pole.name} <Arrow /></p>
+            </Link>
+          ))}
+        </div>
+      </section>
+
+      {/* Pôles */}
+      <section id="expertises" className="scroll-mt-20 border-y border-line bg-surface">
+        <div className="mx-auto max-w-7xl px-4 py-24 sm:px-6 lg:px-8">
+          <SectionTitle eyebrow="Nos expertises" title="Quatre pôles, une même équipe.">
+            Sur un même projet, ils se répondent : on cadre, on construit, on exploite les données, on forme les équipes.
+          </SectionTitle>
+          <div className="mt-14 grid gap-5 lg:grid-cols-2">
+            {EXPERTISES.map((e, i) => (
+              <article key={e.slug} data-reveal style={{ "--d": `${(i % 2) * 90}ms` } as React.CSSProperties} className="flex flex-col rounded-3xl border border-line bg-bg p-7 sm:p-9">
+                <div className="flex items-center gap-4">
+                  <span className="grid size-12 place-items-center rounded-2xl bg-accent-soft text-accent"><ExpertiseIcon slug={e.slug} /></span>
+                  <div>
+                    <p className="font-mono text-xs text-muted">0{i + 1}</p>
+                    <h3 className="font-display text-2xl font-semibold tracking-tight">{e.name}</h3>
+                  </div>
+                </div>
+                <p className="mt-5 text-fg-2">{e.lead}</p>
+                <ul className="mt-6 flex-1 space-y-2.5 text-[0.95rem]">
+                  {e.items.map(it => <li key={it.t} className="flex gap-3"><Check /><span>{it.t}</span></li>)}
                 </ul>
+                <Link href={`/expertises/${e.slug}`} className="group mt-8 inline-flex items-center gap-2 self-start text-sm font-medium text-accent hover:text-accent-hover">Découvrir le pôle <Arrow /></Link>
               </article>
             ))}
           </div>
-        </div>
-      </section>
 
-      <section className="border-b border-line bg-surface">
-        <div className="mx-auto max-w-6xl px-4 py-20 sm:px-6">
-          <div className="flex flex-wrap items-end justify-between gap-4">
+          {/* Services IT */}
+          <div data-reveal className="mt-5 grid gap-8 rounded-3xl bg-deep p-7 text-on-deep sm:p-9 lg:grid-cols-[1fr_1.6fr] lg:items-center">
             <div>
-              <h2 className="font-display text-3xl font-semibold tracking-tight sm:text-4xl">Ce que nous avons construit</h2>
-              <p className="mt-3 max-w-2xl text-fg-2">Nos propres produits, conçus, développés et exploités par Wayzure. Ils montrent ce que nous savons faire mieux qu&apos;une liste de compétences.</p>
+              <div className="flex items-center gap-3 text-[#7cc4ec]"><ExpertiseIcon slug="services-it" /><p className="text-sm font-medium">Au quotidien</p></div>
+              <h3 className="mt-3 font-display text-2xl font-semibold tracking-tight text-white">{IT_SERVICES.name}</h3>
+              <p className="mt-2 text-on-deep-2">{IT_SERVICES.lead}</p>
+              <Link href={`/expertises/${IT_SERVICES.slug}`} className="group mt-6 inline-flex items-center gap-2 text-sm font-medium text-white">En savoir plus <Arrow /></Link>
             </div>
-            <Link href="/realisations" className="inline-flex items-center gap-2 text-sm font-medium text-accent hover:text-accent-hover">Toutes les réalisations <Arrow /></Link>
-          </div>
-          <div className="mt-10 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
-            {PRODUCTS.map(p => (
-              <a key={p.slug} href={p.url} rel="noopener" className="group flex flex-col rounded-2xl border border-line bg-bg p-6 transition-shadow hover:shadow-md">
-                <ProductMark slug={p.slug} />
-                <p className="mt-4 font-semibold">{p.name}</p>
-                <p className="text-sm text-muted">{p.tagline}</p>
-                <p className="mt-3 flex-1 text-sm leading-relaxed text-fg-2">{p.text}</p>
-                <p className="mt-4 inline-flex items-center gap-1.5 text-sm font-medium text-accent">Voir le site <Arrow /></p>
-              </a>
-            ))}
+            <ul className="grid gap-3 sm:grid-cols-2">
+              {IT_SERVICES.items.map(it => (
+                <li key={it.t} className="rounded-2xl border border-white/10 bg-white/[0.04] p-5">
+                  <p className="font-medium text-white">{it.t}</p>
+                  <p className="mt-1 text-sm leading-relaxed text-on-deep-2">{it.d}</p>
+                </li>
+              ))}
+            </ul>
           </div>
         </div>
       </section>
 
-      <section className="border-b border-line">
-        <div className="mx-auto max-w-6xl px-4 py-20 sm:px-6">
-          <h2 className="font-display text-3xl font-semibold tracking-tight sm:text-4xl">Comment nous travaillons</h2>
-          <ol className="mt-10 grid gap-8 md:grid-cols-4">
+      {/* Solutions */}
+      <section className="mx-auto max-w-7xl px-4 py-24 sm:px-6 lg:px-8">
+        <div className="flex flex-wrap items-end justify-between gap-6">
+          <SectionTitle eyebrow="Nos solutions" title="Nous éditons aussi nos logiciels.">
+            Conçus, développés et exploités par Wayzure, ils sont en service en France et en Guinée. Les méthodes qui les font tourner sont celles que nous appliquons à vos projets.
+          </SectionTitle>
+          <Link href="/solutions" className="group inline-flex items-center gap-2 text-sm font-medium text-accent hover:text-accent-hover">Toutes nos solutions <Arrow /></Link>
+        </div>
+        <div className="mt-14 grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
+          {SOLUTIONS.map((s, i) => (
+            <Link key={s.slug} href={`/solutions/${s.slug}`} data-reveal style={{ "--d": `${i * 70}ms` } as React.CSSProperties} className="group flex flex-col rounded-3xl border border-line p-6 transition-all hover:-translate-y-0.5 hover:shadow-xl hover:shadow-black/5">
+              <ProductMark slug={s.slug} className="size-11" />
+              <p className="mt-5 font-display text-xl font-semibold tracking-tight">{s.name}</p>
+              <p className="text-sm font-medium text-accent">{s.category}</p>
+              <p className="mt-3 flex-1 text-sm leading-relaxed text-fg-2">{s.tagline}</p>
+              <p className="mt-5 flex items-center justify-between text-xs text-muted"><span>{s.market}</span><Arrow /></p>
+            </Link>
+          ))}
+        </div>
+      </section>
+
+      {/* Méthode */}
+      <section className="border-y border-line bg-surface">
+        <div className="mx-auto max-w-7xl px-4 py-24 sm:px-6 lg:px-8">
+          <SectionTitle eyebrow="Notre façon de travailler" title="Pas d'effet tunnel. Des résultats à chaque étape." />
+          <ol className="mt-14 grid gap-5 md:grid-cols-2 lg:grid-cols-4">
             {STEPS.map((s, i) => (
-              <li key={s.t}>
-                <p className="grid size-8 place-items-center rounded-full bg-accent-soft text-sm font-semibold text-accent">{i + 1}</p>
+              <li key={s.t} data-reveal style={{ "--d": `${i * 80}ms` } as React.CSSProperties} className="relative rounded-3xl border border-line bg-bg p-6">
+                <p className="font-display text-4xl font-semibold text-accent/25">0{i + 1}</p>
                 <p className="mt-4 font-semibold">{s.t}</p>
                 <p className="mt-2 text-sm leading-relaxed text-fg-2">{s.d}</p>
               </li>
@@ -85,15 +148,28 @@ export default function Home() {
         </div>
       </section>
 
-      <section>
-        <div className="mx-auto max-w-6xl px-4 py-20 sm:px-6">
-          <div className="rounded-3xl bg-night px-6 py-14 text-center sm:px-12">
-            <h2 className="font-display text-3xl font-semibold tracking-tight text-white sm:text-4xl">Un projet, une question ?</h2>
-            <p className="mx-auto mt-3 max-w-xl text-white/70">Décrivez la situation en quelques lignes. Nous vous répondons avec une première analyse, sans engagement.</p>
-            <Link href="/contact" className="mt-8 inline-flex items-center gap-2 rounded-full bg-white px-5 py-3 text-sm font-medium text-[#0d1b2a] transition-opacity hover:opacity-90">Nous écrire <Arrow /></Link>
+      {/* Présence */}
+      <section className="mx-auto max-w-7xl px-4 py-24 sm:px-6 lg:px-8">
+        <div className="grid gap-12 lg:grid-cols-[1fr_1.2fr] lg:items-center">
+          <SectionTitle eyebrow="Où nous intervenons" title="Entre la France et la Guinée.">
+            Deux sociétés, une même équipe. Nous intervenons sur site en Île-de-France et à Conakry, et à distance partout ailleurs.
+          </SectionTitle>
+          <div className="grid gap-5 sm:grid-cols-2">
+            <div data-reveal className="rounded-3xl border border-line p-7">
+              <p className="text-sm font-medium text-accent">France</p>
+              <p className="mt-2 font-display text-xl font-semibold">{COMPANY.legalName}</p>
+              <p className="mt-2 text-sm leading-relaxed text-fg-2">Siège à Clamart, aux portes de Paris. Entreprises, PME et organisations en France.</p>
+            </div>
+            <div data-reveal style={{ "--d": "90ms" } as React.CSSProperties} className="rounded-3xl border border-line p-7">
+              <p className="text-sm font-medium text-accent">Guinée</p>
+              <p className="mt-2 font-display text-xl font-semibold">{GUINEA.legalName}</p>
+              <p className="mt-2 text-sm leading-relaxed text-fg-2">Bureau à Conakry. Entreprises, institutions et organisations en Guinée.</p>
+            </div>
           </div>
         </div>
       </section>
+
+      <CtaBand />
     </Page>
   );
 }
