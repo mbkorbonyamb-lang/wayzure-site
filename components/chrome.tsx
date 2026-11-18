@@ -133,15 +133,15 @@ function Footer() {
   );
 }
 
-/** En-tête des pages intérieures, sur fond bleu profond. */
+/** En-tête des pages intérieures : fond clair bleuté, photo ou visuel facultatif à droite. */
 export function PageHero({ eyebrow, title, children, aside }: { eyebrow?: ReactNode; title: ReactNode; children?: ReactNode; aside?: ReactNode }) {
   return (
-    <section className="relative overflow-hidden bg-deep text-on-deep">
+    <section className="relative overflow-hidden bg-sky">
       <GridGlow />
-      <div className="relative mx-auto grid max-w-7xl gap-10 px-4 pb-16 pt-14 sm:px-6 sm:pb-20 sm:pt-20 lg:grid-cols-[1.4fr_1fr] lg:items-end lg:px-8">
+      <div className={`relative mx-auto grid max-w-7xl gap-10 px-4 pb-16 pt-14 sm:px-6 sm:pb-20 sm:pt-20 lg:px-8 ${aside ? "lg:grid-cols-[1.15fr_1fr] lg:items-center" : ""}`}>
         <div>
-          {eyebrow && <p className="text-sm font-medium text-[#7cc4ec]">{eyebrow}</p>}
-          <h1 className="mt-4 max-w-3xl font-display text-[2.2rem] font-semibold leading-[1.08] tracking-tight text-white sm:text-5xl lg:text-[3.4rem]">{title}</h1>
+          {eyebrow && <p className="text-sm font-medium text-accent">{eyebrow}</p>}
+          <h1 className="mt-4 max-w-3xl font-display text-[2.2rem] font-semibold leading-[1.08] tracking-tight text-fg sm:text-5xl lg:text-[3.4rem]">{title}</h1>
           {children}
         </div>
         {aside}
@@ -150,11 +150,13 @@ export function PageHero({ eyebrow, title, children, aside }: { eyebrow?: ReactN
   );
 }
 
+/** Halo bleu lumineux et trame légère, pour les fonds clairs. */
 export function GridGlow() {
   return (
     <div aria-hidden className="pointer-events-none absolute inset-0">
-      <div className="absolute -right-40 -top-40 size-[34rem] rounded-full bg-[#0782c6] opacity-25 blur-[120px]" />
-      <div className="absolute inset-0 opacity-[0.07] [background-image:linear-gradient(#fff_1px,transparent_1px),linear-gradient(90deg,#fff_1px,transparent_1px)] [background-size:56px_56px] [mask-image:radial-gradient(ellipse_at_top_right,black,transparent_70%)]" />
+      <div className="absolute -right-32 -top-48 size-[36rem] rounded-full bg-[#0782c6] opacity-[0.16] blur-[120px]" />
+      <div className="absolute -bottom-56 -left-40 size-[28rem] rounded-full bg-[#3aa7e3] opacity-[0.12] blur-[120px]" />
+      <div className="absolute inset-0 opacity-[0.5] [background-image:linear-gradient(var(--sky-2)_1px,transparent_1px),linear-gradient(90deg,var(--sky-2)_1px,transparent_1px)] [background-size:56px_56px] [mask-image:radial-gradient(ellipse_at_top_right,black,transparent_65%)]" />
     </div>
   );
 }
@@ -172,14 +174,17 @@ export function SectionTitle({ eyebrow, title, children, className = "" }: { eye
 export function CtaBand({ title = "Parlons de votre projet.", text = "Décrivez la situation en quelques lignes. Nous revenons vers vous avec des questions précises ou une première analyse, sans engagement." }: { title?: string; text?: string }) {
   return (
     <section className="px-4 py-20 sm:px-6 lg:px-8">
-      <div className="relative mx-auto max-w-7xl overflow-hidden rounded-[2rem] bg-deep px-6 py-16 text-center sm:px-12" data-reveal>
-        <GridGlow />
+      <div className="relative mx-auto max-w-7xl overflow-hidden rounded-[2rem] bg-[linear-gradient(120deg,#0670aa_0%,#0773b0_55%,#0a7ab9_100%)] px-6 py-16 text-center text-white sm:px-12" data-reveal>
+        <div aria-hidden className="pointer-events-none absolute inset-0">
+          <div className="absolute -right-24 -top-32 size-96 rounded-full bg-white opacity-[0.12] blur-3xl" />
+          <div className="absolute -bottom-40 -left-20 size-96 rounded-full bg-[#7cc4ec] opacity-25 blur-3xl" />
+        </div>
         <div className="relative">
-          <h2 className="font-display text-3xl font-semibold tracking-tight text-white sm:text-5xl">{title}</h2>
-          <p className="mx-auto mt-4 max-w-xl text-lg text-on-deep-2">{text}</p>
+          <h2 className="font-display text-3xl font-semibold tracking-tight sm:text-5xl">{title}</h2>
+          <p className="mx-auto mt-4 max-w-xl text-lg text-white">{text}</p>
           <div className="mt-9 flex flex-wrap justify-center gap-3">
-            <Link href="/contact" className="inline-flex items-center gap-2 rounded-full bg-btn px-6 py-3.5 text-sm font-medium text-white transition-colors hover:bg-[#055e8f]">Nous écrire <Arrow /></Link>
-            {COMPANY.phone && <a href={tel(COMPANY.phone)} className="inline-flex items-center gap-2 rounded-full border border-white/25 px-6 py-3.5 text-sm font-medium text-white transition-colors hover:bg-white/10">{COMPANY.phone}</a>}
+            <Link href="/contact" className="group inline-flex items-center gap-2 rounded-full bg-white px-6 py-3.5 text-sm font-medium text-[#0670aa] shadow-lg shadow-black/10 transition-colors hover:bg-[#eef7fd]">Nous écrire <Arrow /></Link>
+            {COMPANY.phone && <a href={tel(COMPANY.phone)} className="inline-flex items-center gap-2 rounded-full border border-white/60 px-6 py-3.5 text-sm font-medium text-white transition-colors hover:bg-white/10">{COMPANY.phone}</a>}
           </div>
         </div>
       </div>

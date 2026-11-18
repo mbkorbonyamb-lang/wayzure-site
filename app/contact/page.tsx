@@ -1,8 +1,10 @@
 import { Page, PageHero } from "@/components/chrome";
 import { ContactForm } from "@/components/contact-form";
+import { HeroPhoto } from "@/components/photo";
 import { COMPANY, GUINEA } from "@/lib/company";
 import { TOPICS } from "@/lib/contact";
 import { FORM_ENABLED } from "@/lib/contact-link";
+import { PHOTOS } from "@/lib/photos";
 import { meta } from "@/lib/seo";
 
 export const metadata = meta("/contact", "Contact", "Parlez de votre projet à Wayzure : data et IA, conseil, développement, formation ou services IT. Réponse par e-mail ou par téléphone.");
@@ -34,8 +36,8 @@ function EmailFirst() {
 export default function Contact() {
   return (
     <Page>
-      <PageHero eyebrow="Contact" title="Parlons de votre projet.">
-        <p className="mt-6 max-w-2xl text-lg leading-relaxed text-on-deep-2">Quelques lignes suffisent : qui vous êtes, ce qui bloque aujourd&apos;hui, et pour quand. Nous revenons vers vous avec des questions précises ou une première analyse, sans engagement.</p>
+      <PageHero eyebrow="Contact" title="Parlons de votre projet." aside={<HeroPhoto photo={PHOTOS.contact} className="hidden lg:block" />}>
+        <p className="mt-6 max-w-2xl text-lg leading-relaxed text-fg-2">Quelques lignes suffisent : qui vous êtes, ce qui bloque aujourd&apos;hui, et pour quand. Nous revenons vers vous avec des questions précises ou une première analyse, sans engagement.</p>
       </PageHero>
       <section className="mx-auto grid max-w-7xl gap-12 px-4 py-16 sm:px-6 lg:grid-cols-[1.5fr_1fr] lg:px-8">
         <div>

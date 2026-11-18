@@ -15,7 +15,7 @@ export default function Solutions() {
   return (
     <Page>
       <PageHero eyebrow="Solutions" title="Des logiciels que nous éditons et faisons tourner.">
-        <p className="mt-6 max-w-2xl text-lg leading-relaxed text-on-deep-2">Chacun répond à un problème précis, observé sur le terrain. Nous les avons conçus, développés et mis en ligne nous-mêmes, et nous les exploitons chaque jour.</p>
+        <p className="mt-6 max-w-2xl text-lg leading-relaxed text-fg-2">Chacun répond à un problème précis, observé sur le terrain. Nous les avons conçus, développés et mis en ligne nous-mêmes, et nous les exploitons chaque jour.</p>
       </PageHero>
       <section className="mx-auto max-w-7xl space-y-20 px-4 py-20 sm:px-6 sm:space-y-28 lg:px-8">
         {SOLUTIONS.map((s, i) => (
@@ -35,7 +35,7 @@ export default function Solutions() {
                 <div><dt className="text-muted">Marché</dt><dd className="mt-1">{s.market}</dd></div>
               </dl>
               <div className="mt-7 flex flex-wrap gap-3">
-                <Link href={`/solutions/${s.slug}`} className="group inline-flex items-center gap-2 rounded-full bg-fg px-5 py-2.5 text-sm font-medium text-bg transition-opacity hover:opacity-85">Découvrir {s.name} <Arrow /></Link>
+                <Link href={`/solutions/${s.slug}`} className="group inline-flex items-center gap-2 rounded-full bg-btn px-5 py-2.5 text-sm font-medium text-white transition-colors hover:bg-[#055e8f]">Découvrir {s.name} <Arrow /></Link>
                 <a href={s.url} rel="noopener" className="inline-flex items-center gap-2 rounded-full border border-line px-5 py-2.5 text-sm font-medium hover:bg-surface">{s.url.replace(/^https:\/\/(www\.)?/, "")}</a>
               </div>
             </div>

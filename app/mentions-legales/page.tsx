@@ -26,6 +26,9 @@ export default function MentionsLegales() {
         <h2>Propriété intellectuelle</h2>
         <p>Les textes, illustrations et logos de ce site appartiennent à {COMPANY.legalName}, sauf mention contraire. Les noms WayPulse, WayPilot, WayLog et Waycare désignent des produits de Wayzure. Toute reproduction sans accord écrit préalable est interdite.</p>
 
+        <h2>Photographies</h2>
+        <p>Les photographies de personnes sont des images d&apos;illustration issues de la banque d&apos;images Unsplash (licence Unsplash), notamment de la série WOCinTech Chat de Christina Morillo. Les personnes représentées ne sont ni des collaborateurs ni des clients de Wayzure. Les captures d&apos;écran, elles, montrent nos logiciels réels avec des données d&apos;exemple.</p>
+
         <h2>Données personnelles</h2>
         <p>Voir la <a href="/confidentialite">politique de confidentialité</a>.</p>
       </section>

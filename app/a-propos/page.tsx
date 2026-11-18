@@ -1,8 +1,10 @@
 import Link from "next/link";
-import { Arrow, CtaBand, Page, PageHero, SectionTitle } from "@/components/chrome";
+import { Arrow, CtaBand, GridGlow, Page, PageHero, SectionTitle } from "@/components/chrome";
+import { HeroPhoto } from "@/components/photo";
 import { VideoPlayer } from "@/components/video-player";
 import { COMPANY, GUINEA } from "@/lib/company";
 import { FILM } from "@/lib/media";
+import { PHOTOS } from "@/lib/photos";
 import { meta } from "@/lib/seo";
 
 export const metadata = meta(
@@ -21,8 +23,8 @@ const PRINCIPLES = [
 export default function APropos() {
   return (
     <Page>
-      <PageHero eyebrow="À propos" title="Une ESN qui édite aussi ses propres logiciels.">
-        <p className="mt-6 max-w-2xl text-lg leading-relaxed text-on-deep-2">Wayzure a été fondée en 2021 à Clamart, aux portes de Paris. Nous accompagnons entreprises et organisations sur leurs données, leurs systèmes, leurs applications et la formation de leurs équipes, en France et en Guinée.</p>
+      <PageHero eyebrow="À propos" title="Une ESN qui édite aussi ses propres logiciels." aside={<HeroPhoto photo={PHOTOS.equipe} />}>
+        <p className="mt-6 max-w-2xl text-lg leading-relaxed text-fg-2">Wayzure a été fondée en 2021 à Clamart, aux portes de Paris. Nous accompagnons entreprises et organisations sur leurs données, leurs systèmes, leurs applications et la formation de leurs équipes, en France et en Guinée.</p>
       </PageHero>
 
       <section className="mx-auto max-w-7xl px-4 py-20 sm:px-6 lg:px-8">
@@ -46,12 +48,13 @@ export default function APropos() {
         </div>
       </section>
 
-      <section className="relative overflow-hidden bg-deep text-on-deep">
-        <div className="mx-auto grid max-w-7xl items-center gap-10 px-4 py-20 sm:px-6 lg:grid-cols-[1fr_1.6fr] lg:px-8">
+      <section className="relative overflow-hidden border-y border-sky-2 bg-sky">
+        <GridGlow />
+        <div className="relative mx-auto grid max-w-7xl items-center gap-10 px-4 py-20 sm:px-6 lg:grid-cols-[1fr_1.6fr] lg:px-8">
           <div data-reveal>
-            <p className="text-sm font-medium text-[#9fd3f1]">Wayzure en 30 secondes</p>
-            <h2 className="mt-3 font-display text-3xl font-semibold tracking-tight text-white">Ce que nous faisons, en images.</h2>
-            <p className="mt-4 leading-relaxed text-on-deep-2">{FILM.caption}</p>
+            <p className="text-sm font-medium text-accent">Wayzure en 30 secondes</p>
+            <h2 className="mt-3 font-display text-3xl font-semibold tracking-tight">Ce que nous faisons, en images.</h2>
+            <p className="mt-4 leading-relaxed text-fg-2">{FILM.caption}</p>
           </div>
           <div data-reveal style={{ "--d": "120ms" } as React.CSSProperties}><VideoPlayer video={FILM} sizes="(min-width: 1024px) 760px, 100vw" /></div>
         </div>
@@ -74,7 +77,7 @@ export default function APropos() {
 
       <section className="mx-auto max-w-7xl px-4 pt-20 sm:px-6 lg:px-8">
         <div className="flex flex-wrap gap-3">
-          <Link href="/expertises" className="group inline-flex items-center gap-2 rounded-full bg-fg px-5 py-3 text-sm font-medium text-bg hover:opacity-85">Nos expertises <Arrow /></Link>
+          <Link href="/expertises" className="group inline-flex items-center gap-2 rounded-full bg-btn px-5 py-3 text-sm font-medium text-white transition-colors hover:bg-[#055e8f]">Nos expertises <Arrow /></Link>
           <Link href="/solutions" className="group inline-flex items-center gap-2 rounded-full border border-line px-5 py-3 text-sm font-medium hover:bg-surface">Nos solutions <Arrow /></Link>
         </div>
       </section>
