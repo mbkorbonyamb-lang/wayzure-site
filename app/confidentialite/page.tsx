@@ -21,6 +21,7 @@ export default function Confidentialite() {
         <ul>
           <li><strong>Vos messages</strong> : quand vous nous écrivez, par le formulaire ou par e-mail, nous recevons votre nom, votre adresse e-mail, et selon ce que vous renseignez votre organisation, votre téléphone et le contenu du message. Base légale : notre intérêt légitime à répondre aux demandes, puis les mesures précontractuelles si un projet se concrétise.</li>
           <li><strong>Journaux techniques</strong> : l&apos;hébergeur enregistre, pour la sécurité et le bon fonctionnement du site, des informations comme l&apos;adresse IP et la page demandée. Ces journaux sont conservés quelques jours par l&apos;hébergeur.</li>
+          <li><strong>Photographies</strong> : les photos d&apos;illustration sont chargées depuis le service d&apos;images d&apos;Unsplash, qui reçoit à cette occasion votre adresse IP et les informations techniques de votre navigateur, comme pour tout chargement d&apos;image depuis un serveur tiers.</li>
         </ul>
 
         <h2>Durée de conservation</h2>

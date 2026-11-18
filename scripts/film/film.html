@@ -12,36 +12,40 @@
 @font-face { font-family: Head; src: url(../../app/fonts/plus-jakarta-sans-latin-var.woff2) format("woff2"); font-weight: 200 800; }
 @font-face { font-family: Body; src: url(../../app/fonts/inter-latin-var.woff2) format("woff2"); font-weight: 100 900; }
 * { box-sizing: border-box; margin: 0; }
-html, body { width: 1920px; height: 1080px; overflow: hidden; background: #0f222b; }
-body { font-family: Body, sans-serif; color: #fff; -webkit-font-smoothing: antialiased; }
+html, body { width: 1920px; height: 1080px; overflow: hidden; background: #f6fbfe; }
+body { font-family: Body, sans-serif; color: #0c1418; -webkit-font-smoothing: antialiased; }
 #stage { position: relative; width: 1920px; height: 1080px; overflow: hidden;
-  background: radial-gradient(1200px 700px at 78% 18%, rgba(7,130,198,.38), transparent 60%), radial-gradient(900px 600px at 10% 100%, rgba(7,130,198,.18), transparent 60%), #19323e; }
-#grid { position: absolute; inset: -60px; background-image: linear-gradient(rgba(255,255,255,.05) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,.05) 1px, transparent 1px); background-size: 80px 80px; }
-.el { position: absolute; opacity: 0; will-change: transform, opacity; }
+  background: radial-gradient(1200px 700px at 80% 12%, rgba(7,130,198,.16), transparent 60%), radial-gradient(900px 600px at 8% 100%, rgba(58,167,227,.14), transparent 60%), linear-gradient(160deg, #ffffff 0%, #eef7fd 100%); }
+#grid { position: absolute; inset: -60px; background-image: linear-gradient(rgba(7,112,170,.06) 1px, transparent 1px), linear-gradient(90deg, rgba(7,112,170,.06) 1px, transparent 1px); background-size: 80px 80px; }
+#glow { position: absolute; width: 900px; height: 900px; border-radius: 50%; background: radial-gradient(closest-side, rgba(7,130,198,.18), transparent); }
+.el { position: absolute; opacity: 0; will-change: transform, opacity, filter; }
 .h { font-family: Head, sans-serif; font-weight: 650; letter-spacing: -0.025em; line-height: 1.05; }
-.eyebrow { font-size: 26px; font-weight: 500; color: #9fd3f1; letter-spacing: .02em; }
-.blue { color: #3aa7e3; }
-.card { border: 1px solid rgba(255,255,255,.14); background: rgba(255,255,255,.05); border-radius: 28px; padding: 36px 38px; }
-.card .n { font-family: ui-monospace, monospace; font-size: 22px; color: #7cc4ec; }
+.eyebrow { font-size: 26px; font-weight: 500; color: #0670aa; letter-spacing: .02em; }
+.blue { color: #0782c6; }
+.card { border: 1px solid #dceffa; background: #fff; border-radius: 28px; padding: 36px 38px; box-shadow: 0 24px 60px rgba(11,58,85,.08); }
+.card .n { font-family: ui-monospace, monospace; font-size: 22px; color: #0782c6; }
 .card .t { font-family: Head; font-weight: 650; font-size: 40px; letter-spacing: -0.02em; margin-top: 14px; line-height: 1.1; }
-.card .d { font-size: 22px; color: rgba(255,255,255,.72); margin-top: 14px; line-height: 1.4; }
-.shot { border-radius: 22px; overflow: hidden; box-shadow: 0 40px 120px rgba(0,0,0,.45), 0 0 0 1px rgba(255,255,255,.12); background: #fff; }
+.card .d { font-size: 22px; color: #44525a; margin-top: 14px; line-height: 1.4; }
+.shot { border-radius: 22px; overflow: hidden; box-shadow: 0 40px 110px rgba(11,58,85,.20), 0 0 0 1px rgba(11,58,85,.08); background: #fff; }
 .shot img { display: block; width: 100%; }
-.phone { border-radius: 54px; padding: 14px; background: #0b1820; box-shadow: 0 40px 120px rgba(0,0,0,.5), 0 0 0 2px rgba(255,255,255,.14); }
+.phone { border-radius: 54px; padding: 14px; background: #0b1820; box-shadow: 0 40px 110px rgba(11,58,85,.28); }
 .phone img { display: block; width: 100%; border-radius: 42px; }
-.tag { display: inline-flex; align-items: center; gap: 14px; font-size: 24px; color: rgba(255,255,255,.8); }
-.tag b { font-family: Head; font-size: 64px; font-weight: 650; color: #fff; letter-spacing: -0.02em; }
-.pill { display: inline-block; border: 1px solid rgba(255,255,255,.2); border-radius: 999px; padding: 12px 26px; font-size: 24px; color: rgba(255,255,255,.85); }
-.bar { height: 6px; border-radius: 3px; background: #3aa7e3; transform-origin: left; }
+.tag { display: inline-flex; align-items: center; gap: 14px; font-size: 24px; color: #44525a; }
+.tag b { font-family: Head; font-size: 64px; font-weight: 650; color: #0c1418; letter-spacing: -0.02em; }
+.pill { display: inline-block; border: 1px solid #b9def3; background: #fff; border-radius: 999px; padding: 12px 26px; font-size: 24px; color: #19323e; box-shadow: 0 10px 30px rgba(11,58,85,.06); }
+.bar { height: 6px; border-radius: 3px; background: linear-gradient(90deg, #0782c6, #7cc4ec); transform-origin: left; }
+#progress { position: absolute; left: 0; bottom: 0; height: 6px; width: 1920px; background: linear-gradient(90deg, #0670aa, #3aa7e3); transform-origin: left; }
 </style>
 </head>
 <body>
 <div id="stage">
   <div id="grid" class="el" data-in="0" data-out="30" data-fx="drift" style="opacity:1"></div>
+  <div id="glow" class="el" data-in="0" data-out="30" data-fx="orbit" style="opacity:1"></div>
+  <div id="progress"></div>
 
   <!-- 1. Marque (0-4,5 s) -->
-  <img class="el" src="../../public/brand/wayzure-mark-blanc.svg" data-in="0.3" data-out="4.4" data-fx="rise" style="left:810px; top:300px; width:300px">
-  <img class="el" src="../../public/brand/wayzure-wordmark-blanc.svg" data-in="1.0" data-out="4.4" data-fx="rise" style="left:660px; top:540px; width:600px">
+  <img class="el" src="../../public/brand/wayzure-symbole-couleur.png" data-in="0.3" data-out="4.4" data-fx="rise" style="left:810px; top:300px; width:300px">
+  <img class="el" src="../../public/brand/wayzure-wordmark-couleur.svg" data-in="1.0" data-out="4.4" data-fx="rise" style="left:660px; top:540px; width:600px">
   <p class="el eyebrow" data-in="1.8" data-out="4.4" data-fx="rise" style="left:0; width:1920px; top:700px; text-align:center">ESN et éditeur de solutions numériques · France · Guinée</p>
 
   <!-- 2. Signature (4,6-8,6 s) -->
@@ -56,8 +60,8 @@ body { font-family: Body, sans-serif; color: #fff; -webkit-font-smoothing: antia
   <div class="el card" data-in="9.85" data-out="15" data-fx="rise" style="left:555px; top:380px; width:390px; height:330px"><p class="n">02</p><p class="t">Conseil</p><p class="d">Stratégie numérique, SI, audit, cybersécurité, gestion de projet.</p></div>
   <div class="el card" data-in="10.1" data-out="15" data-fx="rise" style="left:970px; top:380px; width:390px; height:330px"><p class="n">03</p><p class="t">Développement numérique</p><p class="d">Logiciels métiers, web, mobile, SaaS, ERP et CRM.</p></div>
   <div class="el card" data-in="10.35" data-out="15" data-fx="rise" style="left:1385px; top:380px; width:390px; height:330px"><p class="n">04</p><p class="t">Formation</p><p class="d">Numérique, data et IA, cybersécurité, conduite du changement.</p></div>
-  <div class="el card" data-in="11.4" data-out="15" data-fx="rise" style="left:140px; top:740px; width:1635px; height:auto; padding:30px 38px; background:rgba(7,130,198,.18); border-color:rgba(124,196,236,.35)">
-    <p style="font-size:30px"><b style="font-family:Head">Services IT au quotidien</b><span style="color:rgba(255,255,255,.75)"> : support utilisateurs, helpdesk, systèmes et réseaux, maintenance, infogérance.</span></p>
+  <div class="el card" data-in="11.4" data-out="15" data-fx="rise" style="left:140px; top:740px; width:1635px; height:auto; padding:30px 38px; background:#e6f3fa; border-color:#b9def3; box-shadow:none">
+    <p style="font-size:30px"><b style="font-family:Head">Services IT au quotidien</b><span style="color:#44525a"> : support utilisateurs, helpdesk, systèmes et réseaux, maintenance, infogérance.</span></p>
   </div>
 
   <!-- 4. Solutions (15,2-25 s) -->
@@ -82,24 +86,32 @@ body { font-family: Body, sans-serif; color: #fff; -webkit-font-smoothing: antia
   <p class="el eyebrow" data-in="26.1" data-out="27.6" data-fx="rise" style="left:0; width:1920px; text-align:center; top:640px">Une seule équipe, du cadrage à la mise en service.</p>
 
   <!-- 6. Fin (27,8-30 s) -->
-  <img class="el" src="../../public/brand/wayzure-logo-horizontal-blanc.svg" data-in="27.8" data-out="30.5" data-fx="rise" style="left:610px; top:330px; width:700px">
+  <div class="el" data-in="27.8" data-out="30.5" data-fx="rise" style="left:0; width:1920px; top:330px; display:flex; justify-content:center; align-items:center; gap:34px"><img src="../../public/brand/wayzure-symbole-couleur.png" style="height:190px"><img src="../../public/brand/wayzure-wordmark-couleur.svg" style="width:470px"></div>
   <p class="el h" data-in="28.2" data-out="30.5" data-fx="rise" style="left:0; width:1920px; text-align:center; top:590px; font-size:56px">Parlons de votre projet.</p>
   <p class="el eyebrow" data-in="28.5" data-out="30.5" data-fx="rise" style="left:0; width:1920px; text-align:center; top:690px; font-size:30px">wayzure.com · contact@wayzure.com</p>
 </div>
 <script>
 const els = [...document.querySelectorAll('.el')].map(e => ({ e, a: +e.dataset.in, b: +e.dataset.out, fx: e.dataset.fx }));
-const ease = x => 1 - Math.pow(1 - Math.min(Math.max(x, 0), 1), 3);
-const D_IN = 0.7, D_OUT = 0.45;
+const clamp = x => Math.min(Math.max(x, 0), 1);
+const easeOut = x => 1 - Math.pow(1 - clamp(x), 4);          // entrée : rapide puis très douce
+const easeInOut = x => { x = clamp(x); return x < .5 ? 4 * x * x * x : 1 - Math.pow(-2 * x + 2, 3) / 2; };
+const D_IN = 0.9, D_OUT = 0.55;
+const progress = document.getElementById('progress');
 window.render = t => {
+  progress.style.transform = `scaleX(${clamp(t / 30)})`;
   for (const { e, a, b, fx } of els) {
     if (fx === 'drift') { e.style.transform = `translate(${-t * 4}px, ${-t * 2}px)`; continue; }
-    const i = ease((t - a) / D_IN), o = ease((t - (b - D_OUT)) / D_OUT);
+    if (fx === 'orbit') { e.style.transform = `translate(${1100 + Math.cos(t / 5) * 380}px, ${-120 + Math.sin(t / 4) * 260}px)`; continue; }
+    const i = easeOut((t - a) / D_IN), o = easeInOut((t - (b - D_OUT)) / D_OUT);
     const vis = t < a || t > b ? 0 : i * (1 - o);
+    const blur = (1 - i) * 10 + o * 8;
     e.style.opacity = vis;
-    if (fx === 'rise') e.style.transform = `translateY(${(1 - i) * 40 - o * 20}px)`;
-    if (fx === 'swap') e.style.transform = `translateY(${(1 - i) * 30 - o * 30}px)`;
-    if (fx === 'slide') e.style.transform = `translateX(${(1 - i) * 120 - o * 80}px) scale(${0.97 + 0.03 * i})`;
-    if (fx === 'grow') e.style.transform = `scaleX(${i})`;
+    e.style.filter = blur > 0.05 ? `blur(${blur.toFixed(2)}px)` : 'none';
+    if (fx === 'rise') e.style.transform = `translateY(${(1 - i) * 36 - o * 18}px)`;
+    if (fx === 'swap') e.style.transform = `translateY(${(1 - i) * 28 - o * 28}px)`;
+    // Captures : glissement d'entrée puis léger zoom continu (effet caméra) tant qu'elles sont à l'écran.
+    if (fx === 'slide') e.style.transform = `translateX(${(1 - i) * 110 - o * 70}px) scale(${0.965 + 0.035 * i + Math.max(0, t - a) * 0.006})`;
+    if (fx === 'grow') { e.style.filter = 'none'; e.style.transform = `scaleX(${i})`; }
   }
 };
 window.render(0);

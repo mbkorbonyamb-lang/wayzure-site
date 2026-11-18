@@ -1,14 +1,16 @@
 import Link from "next/link";
 import { Arrow, Check, CtaBand, GridGlow, Page, SectionTitle } from "@/components/chrome";
-import { HeroArt } from "@/components/hero-art";
 import { ExpertiseIcon } from "@/components/icons";
 import { ProductMark } from "@/components/marks";
+import { HeroPhoto, Photo } from "@/components/photo";
+import { Testimonial } from "@/components/testimonial";
 import { SolutionVisual } from "@/components/solution-visual";
 import { VideoPlayer } from "@/components/video-player";
 import { JsonLd } from "@/components/json-ld";
 import { COMPANY, GUINEA, SITE_URL } from "@/lib/company";
 import { EXPERTISES, IT_SERVICES, SOLUTIONS, STEPS } from "@/lib/content";
 import { FILM } from "@/lib/media";
+import { PHOTOS, POLE_PHOTOS } from "@/lib/photos";
 
 // Situation de départ, puis ce qui change. Formulées à partir de cas fréquents, sans client nommé.
 const STORIES = [
@@ -23,30 +25,38 @@ export default function Home() {
     <Page>
       <JsonLd data={{ "@context": "https://schema.org", "@type": "VideoObject", name: FILM.title, description: FILM.caption, thumbnailUrl: `${SITE_URL}${FILM.poster}`, contentUrl: `${SITE_URL}${FILM.mp4}`, uploadDate: "2026-11-18", duration: FILM.duration }} />
       {/* Accroche */}
-      <section className="relative overflow-hidden bg-deep text-on-deep">
+      <section className="relative overflow-hidden bg-sky">
         <GridGlow />
-        <div className="relative mx-auto grid max-w-7xl items-center gap-12 px-4 pb-20 pt-16 sm:px-6 sm:pt-24 lg:grid-cols-[1.25fr_1fr] lg:px-8 lg:pb-28">
+        <div className="relative mx-auto grid max-w-7xl items-center gap-12 px-4 pb-16 pt-12 sm:px-6 sm:pt-20 lg:grid-cols-[1.1fr_1fr] lg:gap-16 lg:px-8 lg:pb-24">
           <div>
-            <p className="inline-flex items-center gap-2 rounded-full border border-white/15 bg-white/[0.05] px-3 py-1 text-xs font-medium text-[#9fd3f1]">
-              <span className="size-1.5 rounded-full bg-[#3aa7e3]" />ESN et éditeur de solutions numériques · France · Guinée
+            <p className="inline-flex items-center gap-2 rounded-full border border-sky-2 bg-bg/70 px-3 py-1 text-xs font-medium text-accent">
+              <span className="size-1.5 rounded-full bg-brand" />ESN et éditeur de solutions numériques · France · Guinée
             </p>
-            <h1 className="mt-6 font-display text-[2.6rem] font-semibold leading-[1.04] tracking-tight text-white sm:text-6xl lg:text-[4.2rem]">
-              Le numérique qui fait <span className="text-[#3aa7e3]">avancer</span> votre entreprise.
+            <h1 className="mt-6 font-display text-[2.6rem] font-semibold leading-[1.04] tracking-tight text-fg sm:text-6xl lg:text-[4.1rem]">
+              Le numérique qui fait <span className="text-accent">avancer</span> votre entreprise.
             </h1>
-            <p className="mt-6 max-w-xl text-lg leading-relaxed text-on-deep-2">
-              Wayzure conseille, développe et forme. Data et intelligence artificielle, conseil IT, applications métiers, formation et services IT : une seule équipe, du cadrage à la mise en service. Et nous éditons nos propres logiciels, en production chaque jour.
+            <p className="mt-6 max-w-xl text-lg leading-relaxed text-fg-2">
+              Wayzure conseille, développe et forme. Data et intelligence artificielle, conseil IT, applications métiers, formation et services IT : une seule équipe, du cadrage à la mise en service. Et nous éditons nos propres logiciels, en production chaque jour.
             </p>
             <div className="mt-9 flex flex-wrap gap-3">
-              <Link href="/contact" className="group inline-flex items-center gap-2 rounded-full bg-btn px-6 py-3.5 text-sm font-medium text-white transition-colors hover:bg-[#055e8f]">Parler de votre projet <Arrow /></Link>
-              <Link href="/expertises" className="inline-flex items-center gap-2 rounded-full border border-white/25 px-6 py-3.5 text-sm font-medium text-white transition-colors hover:bg-white/10">Découvrir nos expertises</Link>
+              <Link href="/contact" className="group inline-flex items-center gap-2 rounded-full bg-btn px-6 py-3.5 text-sm font-medium text-white shadow-lg shadow-[#0670aa]/20 transition-colors hover:bg-[#055e8f]">Parler de votre projet <Arrow /></Link>
+              <Link href="/expertises" className="inline-flex items-center gap-2 rounded-full border border-line bg-bg px-6 py-3.5 text-sm font-medium text-fg transition-colors hover:border-accent hover:text-accent">Découvrir nos expertises</Link>
             </div>
           </div>
-          <HeroArt />
+          <HeroPhoto photo={PHOTOS.hero} sizes="(min-width: 1024px) 580px, 100vw" className="mb-6 lg:mb-0">
+            <div style={{ "--d": ".5s" } as React.CSSProperties} className="chip-in absolute -bottom-6 left-4 flex items-center gap-3 rounded-2xl bg-bg/95 p-3 pr-4 shadow-xl shadow-black/10 ring-1 ring-line backdrop-blur sm:left-6">
+              <span className="flex -space-x-2">{SOLUTIONS.map(x => <ProductMark key={x.slug} slug={x.slug} className="size-8 rounded-lg ring-2 ring-bg" />)}</span>
+              <span className="text-xs leading-tight"><span className="block font-semibold">4 logiciels Wayzure</span><span className="text-muted">en service en France et en Guinée</span></span>
+            </div>
+            <div style={{ "--d": ".8s" } as React.CSSProperties} className="chip-in absolute -top-4 right-4 hidden items-center gap-2 rounded-full bg-bg/95 px-3.5 py-2 text-xs font-medium shadow-lg shadow-black/10 ring-1 ring-line backdrop-blur sm:flex">
+              <span className="size-2 rounded-full bg-[#28c840]" />Du cadrage à la mise en service
+            </div>
+          </HeroPhoto>
         </div>
-        <div className="relative border-t border-white/10">
-          <ul className="mx-auto flex max-w-7xl flex-wrap gap-x-8 gap-y-2 px-4 py-5 text-sm text-on-deep-2 sm:px-6 lg:px-8">
+        <div className="relative border-t border-sky-2">
+          <ul className="mx-auto flex max-w-7xl flex-wrap gap-x-8 gap-y-2 px-4 py-5 text-sm text-fg-2 sm:px-6 lg:px-8">
             {[...EXPERTISES, IT_SERVICES].map(e => (
-              <li key={e.slug}><Link href={`/expertises/${e.slug}`} className="hover:text-white">{e.name}</Link></li>
+              <li key={e.slug}><Link href={`/expertises/${e.slug}`} className="inline-flex items-center gap-2 hover:text-accent"><ExpertiseIcon slug={e.slug} className="size-4 text-accent" />{e.name}</Link></li>
             ))}
           </ul>
         </div>
@@ -79,7 +89,11 @@ export default function Home() {
           </SectionTitle>
           <div className="mt-14 grid gap-5 lg:grid-cols-2">
             {EXPERTISES.map((e, i) => (
-              <article key={e.slug} data-reveal style={{ "--d": `${(i % 2) * 90}ms` } as React.CSSProperties} className="flex flex-col rounded-3xl border border-line bg-bg p-7 sm:p-9">
+              <article key={e.slug} data-reveal style={{ "--d": `${(i % 2) * 90}ms` } as React.CSSProperties} className="group flex flex-col overflow-hidden rounded-3xl border border-line bg-bg">
+                <div className="relative aspect-[16/7] overflow-hidden">
+                  <Photo photo={POLE_PHOTOS[e.slug]} sizes="(min-width: 1024px) 600px, 100vw" className="size-full transition-transform duration-700 group-hover:scale-[1.03]" />
+                </div>
+                <div className="flex flex-1 flex-col p-7 sm:p-9">
                 <div className="flex items-center gap-4">
                   <span className="grid size-12 place-items-center rounded-2xl bg-accent-soft text-accent"><ExpertiseIcon slug={e.slug} /></span>
                   <div>
@@ -92,23 +106,24 @@ export default function Home() {
                   {e.items.map(it => <li key={it.t} className="flex gap-3"><Check /><span>{it.t}</span></li>)}
                 </ul>
                 <Link href={`/expertises/${e.slug}`} className="group mt-8 inline-flex items-center gap-2 self-start text-sm font-medium text-accent hover:text-accent-hover">Découvrir le pôle <Arrow /></Link>
+                </div>
               </article>
             ))}
           </div>
 
           {/* Services IT */}
-          <div data-reveal className="mt-5 grid gap-8 rounded-3xl bg-deep p-7 text-on-deep sm:p-9 lg:grid-cols-[1fr_1.6fr] lg:items-center">
+          <div data-reveal className="mt-5 grid gap-8 rounded-3xl border border-sky-2 bg-sky p-7 sm:p-9 lg:grid-cols-[1fr_1.6fr] lg:items-center">
             <div>
-              <div className="flex items-center gap-3 text-[#7cc4ec]"><ExpertiseIcon slug="services-it" /><p className="text-sm font-medium">Au quotidien</p></div>
-              <h3 className="mt-3 font-display text-2xl font-semibold tracking-tight text-white">{IT_SERVICES.name}</h3>
-              <p className="mt-2 text-on-deep-2">{IT_SERVICES.lead}</p>
-              <Link href={`/expertises/${IT_SERVICES.slug}`} className="group mt-6 inline-flex items-center gap-2 text-sm font-medium text-white">En savoir plus <Arrow /></Link>
+              <div className="flex items-center gap-3 text-accent"><ExpertiseIcon slug="services-it" /><p className="text-sm font-medium">Au quotidien</p></div>
+              <h3 className="mt-3 font-display text-2xl font-semibold tracking-tight">{IT_SERVICES.name}</h3>
+              <p className="mt-2 text-fg-2">{IT_SERVICES.lead}</p>
+              <Link href={`/expertises/${IT_SERVICES.slug}`} className="group mt-6 inline-flex items-center gap-2 text-sm font-medium text-accent">En savoir plus <Arrow /></Link>
             </div>
             <ul className="grid gap-3 sm:grid-cols-2">
               {IT_SERVICES.items.map(it => (
-                <li key={it.t} className="rounded-2xl border border-white/10 bg-white/[0.04] p-5">
-                  <p className="font-medium text-white">{it.t}</p>
-                  <p className="mt-1 text-sm leading-relaxed text-on-deep-2">{it.d}</p>
+                <li key={it.t} className="rounded-2xl border border-line bg-bg p-5">
+                  <p className="font-medium">{it.t}</p>
+                  <p className="mt-1 text-sm leading-relaxed text-fg-2">{it.d}</p>
                 </li>
               ))}
             </ul>
@@ -117,13 +132,13 @@ export default function Home() {
       </section>
 
       {/* Film */}
-      <section className="relative overflow-hidden bg-deep text-on-deep">
-        <GridGlow />
+      <section className="relative overflow-hidden">
+        <div aria-hidden className="pointer-events-none absolute inset-0 bg-[radial-gradient(60%_80%_at_75%_50%,var(--sky-2),transparent_70%)]" />
         <div className="relative mx-auto grid max-w-7xl items-center gap-12 px-4 py-20 sm:px-6 sm:py-24 lg:grid-cols-[1fr_1.6fr] lg:px-8">
           <div data-reveal>
-            <p className="text-sm font-medium text-[#9fd3f1]">Wayzure en 30 secondes</p>
-            <h2 className="mt-3 font-display text-3xl font-semibold tracking-tight text-white sm:text-4xl">Une ESN qui fait tourner ses propres logiciels.</h2>
-            <p className="mt-4 leading-relaxed text-on-deep-2">{FILM.caption} Les écrans montrés sont ceux de nos applications, avec leurs données d&apos;exemple.</p>
+            <p className="text-sm font-medium text-accent">Wayzure en 30 secondes</p>
+            <h2 className="mt-3 font-display text-3xl font-semibold tracking-tight sm:text-4xl">Une ESN qui fait tourner ses propres logiciels.</h2>
+            <p className="mt-4 leading-relaxed text-fg-2">{FILM.caption} Les écrans montrés sont ceux de nos applications, avec leurs données d&apos;exemple.</p>
           </div>
           <figure data-reveal style={{ "--d": "120ms" } as React.CSSProperties}>
             <VideoPlayer video={FILM} sizes="(min-width: 1024px) 760px, 100vw" />
@@ -156,6 +171,12 @@ export default function Home() {
             </Link>
           ))}
         </div>
+      </section>
+
+      {/* Avis client */}
+      <section className="mx-auto max-w-7xl px-4 pb-24 sm:px-6 lg:px-8">
+        <p data-reveal className="mb-6 text-sm font-medium text-accent">Ils utilisent nos logiciels</p>
+        <Testimonial />
       </section>
 
       {/* Méthode */}

@@ -2,12 +2,14 @@ import Link from "next/link";
 import { notFound } from "next/navigation";
 import { Arrow, Check, CtaBand, Page, PageHero, SectionTitle } from "@/components/chrome";
 import { ExpertiseIcon } from "@/components/icons";
+import { HeroPhoto } from "@/components/photo";
 import { JsonLd, breadcrumb } from "@/components/json-ld";
 import { ProductMark } from "@/components/marks";
 import { SolutionVisual } from "@/components/solution-visual";
 import { SITE_URL } from "@/lib/company";
 import { contactHref } from "@/lib/contact-link";
 import { ALL_EXPERTISES, SOLUTIONS } from "@/lib/content";
+import { POLE_PHOTOS } from "@/lib/photos";
 import { meta } from "@/lib/seo";
 
 type Props = { params: Promise<{ slug: string }> };
@@ -28,6 +30,7 @@ export default async function ExpertisePage({ params }: Props) {
   const e = ALL_EXPERTISES.find(x => x.slug === slug);
   if (!e) notFound();
   const related = SOLUTIONS.filter(s => e.solutions.includes(s.slug));
+  const photo = POLE_PHOTOS[e.slug];
   const others = ALL_EXPERTISES.filter(x => x.slug !== e.slug);
 
   return (
@@ -41,12 +44,12 @@ export default async function ExpertisePage({ params }: Props) {
         },
       ]} />
       <PageHero
-        eyebrow={<Link href="/expertises" className="hover:text-white">Expertises</Link>}
+        eyebrow={<Link href="/expertises" className="hover:text-accent-hover">Expertises</Link>}
         title={e.name}
-        aside={<span className="hidden size-28 place-items-center justify-self-end rounded-[2rem] border border-white/10 bg-white/[0.05] text-[#7cc4ec] lg:grid"><ExpertiseIcon slug={e.slug} className="size-12" /></span>}
+        aside={photo && <HeroPhoto photo={photo} className="lg:ml-6"><span className="chip-in absolute -bottom-5 left-5 grid size-16 place-items-center rounded-2xl bg-bg text-accent shadow-xl shadow-black/10 ring-1 ring-line"><ExpertiseIcon slug={e.slug} className="size-8" /></span></HeroPhoto>}
       >
-        <p className="mt-5 max-w-2xl text-xl leading-relaxed text-white/90">{e.lead}</p>
-        <p className="mt-4 max-w-2xl leading-relaxed text-on-deep-2">{e.intro}</p>
+        <p className="mt-5 max-w-2xl text-xl leading-relaxed text-fg">{e.lead}</p>
+        <p className="mt-4 max-w-2xl leading-relaxed text-fg-2">{e.intro}</p>
         <a href={contactHref(`Projet : ${e.name}`, e.name)} className="group mt-8 inline-flex items-center gap-2 rounded-full bg-btn px-6 py-3.5 text-sm font-medium text-white transition-colors hover:bg-[#055e8f]">Parler de votre projet <Arrow /></a>
       </PageHero>
 
@@ -80,10 +83,10 @@ export default async function ExpertisePage({ params }: Props) {
 
       <section className="mx-auto max-w-7xl px-4 py-20 sm:px-6 lg:px-8">
         <div className="grid gap-10 lg:grid-cols-2">
-          <div data-reveal className="rounded-3xl bg-deep p-8 text-on-deep sm:p-10">
-            <p className="text-sm font-medium text-[#7cc4ec]">Ce qui change</p>
+          <div data-reveal className="rounded-3xl border border-sky-2 bg-sky p-8 sm:p-10">
+            <p className="text-sm font-medium text-accent">Ce qui change</p>
             <ul className="mt-6 space-y-4">
-              {e.outcomes.map(o => <li key={o} className="flex gap-3 text-lg text-white"><Check />{o}</li>)}
+              {e.outcomes.map(o => <li key={o} className="flex gap-3 text-lg text-fg"><Check />{o}</li>)}
             </ul>
           </div>
           {related.length > 0 ? (
