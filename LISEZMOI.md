@@ -26,7 +26,7 @@ Le formulaire envoie un e-mail via l'API Resend. À renseigner dans Vercel, Sett
 - `CONTACT_TO` (facultatif) : destinataire, par défaut contact@wayzure.com.
 - `CONTACT_FROM` (facultatif) : expéditeur, par défaut `Site Wayzure <site@wayzure.com>`.
 
-Sans clé, le formulaire affiche un message d'erreur qui renvoie vers l'adresse e-mail.
+Sans clé, la page Contact n'affiche pas le formulaire : elle propose l'e-mail direct, avec l'objet prérempli selon le sujet. La clé est lue au build : après l'avoir ajoutée, redéployer pour faire apparaître le formulaire.
 
 Autres variables facultatives : `GOOGLE_SITE_VERIFICATION`, `BING_SITE_VERIFICATION`.
 
