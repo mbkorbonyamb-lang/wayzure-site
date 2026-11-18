@@ -52,7 +52,8 @@ function Footer() {
           <Logo />
           <p className="mt-4 max-w-xs text-sm leading-relaxed text-fg-2">Data, conseil, développement numérique et formation pour les PME et les organisations.</p>
           <p className="mt-4 text-sm text-fg-2"><a href={`mailto:${COMPANY.email}`} className="hover:text-accent">{COMPANY.email}</a></p>
-          {COMPANY.phone && <p className="mt-1 text-sm text-fg-2"><a href={`tel:${COMPANY.phone.replace(/\s/g, "")}`} className="hover:text-accent">{COMPANY.phone}</a></p>}
+          {COMPANY.phone && <p className="mt-1 text-sm text-fg-2">France : <a href={`tel:${COMPANY.phone.replace(/\s/g, "")}`} className="hover:text-accent">{COMPANY.phone}</a></p>}
+          {COMPANY.phoneGuinea && <p className="mt-1 text-sm text-fg-2">Guinée : <a href={`tel:${COMPANY.phoneGuinea.replace(/\s/g, "")}`} className="hover:text-accent">{COMPANY.phoneGuinea}</a></p>}
           <p className="mt-1 text-sm text-muted">{COMPANY.address}</p>
         </div>
         <div>

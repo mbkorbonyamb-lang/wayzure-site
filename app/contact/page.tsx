@@ -23,7 +23,8 @@ export default function Contact() {
           <p className="text-sm text-muted">Adresse</p>
           <p className="mt-2 text-xl font-semibold">{COMPANY.legalName}</p>
           <p className="mt-1 text-fg-2">{COMPANY.address}</p>
-          {COMPANY.phone && <p className="mt-3 text-fg-2">Téléphone : <a href={`tel:${COMPANY.phone.replace(/\s/g, "")}`} className="text-accent">{COMPANY.phone}</a></p>}
+          {COMPANY.phone && <p className="mt-3 text-fg-2">France : <a href={`tel:${COMPANY.phone.replace(/\s/g, "")}`} className="text-accent">{COMPANY.phone}</a></p>}
+          {COMPANY.phoneGuinea && <p className="mt-1 text-fg-2">Guinée : <a href={`tel:${COMPANY.phoneGuinea.replace(/\s/g, "")}`} className="text-accent">{COMPANY.phoneGuinea}</a></p>}
         </div>
       </section>
     </Page>
