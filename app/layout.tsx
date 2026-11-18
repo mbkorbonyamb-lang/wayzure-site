@@ -1,7 +1,7 @@
 import type { Metadata, Viewport } from "next";
 import localFont from "next/font/local";
 import "./globals.css";
-import { COMPANY, GUINEA, SITE_URL } from "@/lib/company";
+import { COMPANY, GUINEA, SITE_URL, SOCIAL_LINKS } from "@/lib/company";
 
 const DESCRIPTION =
   "Wayzure, ESN et éditeur de solutions numériques : data et intelligence artificielle, conseil IT, développement d'applications, formation et services IT, en France et en Guinée.";
@@ -40,7 +40,7 @@ const ORG_LD = JSON.stringify({
   vatID: COMPANY.vat,
   address: { "@type": "PostalAddress", streetAddress: "132 avenue Jean Jaurès", postalCode: "92140", addressLocality: "Clamart", addressCountry: "FR" },
   areaServed: ["FR", "GN"],
-  sameAs: [COMPANY.linkedin],
+  sameAs: SOCIAL_LINKS.map(s => s.url),
   subOrganization: { "@type": "Organization", legalName: GUINEA.legalName, address: { "@type": "PostalAddress", addressLocality: "Conakry", addressCountry: "GN" }, ...(COMPANY.phoneGuinea ? { telephone: COMPANY.phoneGuinea } : {}) },
 });
 

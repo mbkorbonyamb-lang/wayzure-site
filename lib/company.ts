@@ -18,6 +18,15 @@ export const COMPANY = {
   linkedin: "https://www.linkedin.com/company/wayzure1",
 };
 
+// Réseaux sociaux affichés dans le pied de page et déclarés à Google (sameAs).
+// Un réseau sans adresse (null) n'apparaît nulle part.
+export const SOCIALS: { name: "LinkedIn" | "Facebook" | "X"; url: string | null }[] = [
+  { name: "LinkedIn", url: COMPANY.linkedin },
+  { name: "Facebook", url: null },
+  { name: "X", url: null },
+];
+export const SOCIAL_LINKS = SOCIALS.filter((s): s is { name: typeof s.name; url: string } => Boolean(s.url));
+
 export const GUINEA = {
   legalName: "Wayzure SASU",
   address: "Conakry, République de Guinée",
