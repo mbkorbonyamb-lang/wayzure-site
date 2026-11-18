@@ -22,7 +22,7 @@ export const COMPANY = {
 // Un réseau sans adresse (null) n'apparaît nulle part.
 export const SOCIALS: { name: "LinkedIn" | "Facebook" | "X"; url: string | null }[] = [
   { name: "LinkedIn", url: COMPANY.linkedin },
-  { name: "Facebook", url: null },
+  { name: "Facebook", url: "https://www.facebook.com/Wayzure" },
   { name: "X", url: null },
 ];
 export const SOCIAL_LINKS = SOCIALS.filter((s): s is { name: typeof s.name; url: string } => Boolean(s.url));
