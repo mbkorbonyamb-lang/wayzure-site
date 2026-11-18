@@ -1,6 +1,8 @@
 import Link from "next/link";
 import { Arrow, CtaBand, Page, PageHero, SectionTitle } from "@/components/chrome";
+import { VideoPlayer } from "@/components/video-player";
 import { COMPANY, GUINEA } from "@/lib/company";
+import { FILM } from "@/lib/media";
 import { meta } from "@/lib/seo";
 
 export const metadata = meta(
@@ -41,6 +43,17 @@ export default function APropos() {
               </div>
             ))}
           </div>
+        </div>
+      </section>
+
+      <section className="relative overflow-hidden bg-deep text-on-deep">
+        <div className="mx-auto grid max-w-7xl items-center gap-10 px-4 py-20 sm:px-6 lg:grid-cols-[1fr_1.6fr] lg:px-8">
+          <div data-reveal>
+            <p className="text-sm font-medium text-[#9fd3f1]">Wayzure en 30 secondes</p>
+            <h2 className="mt-3 font-display text-3xl font-semibold tracking-tight text-white">Ce que nous faisons, en images.</h2>
+            <p className="mt-4 leading-relaxed text-on-deep-2">{FILM.caption}</p>
+          </div>
+          <div data-reveal style={{ "--d": "120ms" } as React.CSSProperties}><VideoPlayer video={FILM} sizes="(min-width: 1024px) 760px, 100vw" /></div>
         </div>
       </section>
 

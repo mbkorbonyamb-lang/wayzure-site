@@ -9,12 +9,16 @@ const field = "mt-1.5 block w-full rounded-xl border border-line bg-bg px-4 py-3
 
 export function ContactForm({ email }: { email: string }) {
   const [state, setState] = useState<State>({ kind: "idle" });
+  const [topic, setTopic] = useState<string>(TOPICS[0]);
 
   // Retour de l'envoi sans JavaScript (formulaire classique) : /contact?envoi=ok ou ?envoi=erreur.
   useEffect(() => {
     const envoi = new URLSearchParams(window.location.search).get("envoi");
     if (envoi === "ok") setState({ kind: "sent" });
     if (envoi === "erreur") setState({ kind: "error" });
+    // Sujet présélectionné depuis une page (ex. /contact?sujet=Formation).
+    const sujet = new URLSearchParams(window.location.search).get("sujet");
+    if (sujet && (TOPICS as readonly string[]).includes(sujet)) setTopic(sujet);
   }, []);
 
   async function onSubmit(ev: React.FormEvent<HTMLFormElement>) {
@@ -56,7 +60,7 @@ export function ContactForm({ email }: { email: string }) {
         <input name="phone" type="tel" maxLength={40} autoComplete="tel" className={field} />
       </label>
       <label className="block text-sm font-medium sm:col-span-2">Sujet
-        <select name="topic" className={field} defaultValue={TOPICS[0]}>
+        <select name="topic" className={field} value={topic} onChange={e => setTopic(e.target.value)}>
           {TOPICS.map(t => <option key={t}>{t}</option>)}
         </select>
       </label>

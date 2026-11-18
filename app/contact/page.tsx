@@ -2,6 +2,7 @@ import { Page, PageHero } from "@/components/chrome";
 import { ContactForm } from "@/components/contact-form";
 import { COMPANY, GUINEA } from "@/lib/company";
 import { TOPICS } from "@/lib/contact";
+import { FORM_ENABLED } from "@/lib/contact-link";
 import { meta } from "@/lib/seo";
 
 export const metadata = meta("/contact", "Contact", "Parlez de votre projet à Wayzure : data et IA, conseil, développement, formation ou services IT. Réponse par e-mail ou par téléphone.");
@@ -10,7 +11,7 @@ const tel = (n: string) => `tel:${n.replace(/\s/g, "")}`;
 
 // Le formulaire n'apparaît que si la clé Resend est définie dans Vercel (lue au build).
 // Sans clé, la page propose l'e-mail direct. Après ajout de la clé, redéployer.
-const formEnabled = Boolean(process.env.RESEND_API_KEY);
+const formEnabled = FORM_ENABLED;
 
 const mailto = (subject: string) => `mailto:${COMPANY.email}?subject=${encodeURIComponent(subject)}`;
 

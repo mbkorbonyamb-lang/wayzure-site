@@ -89,3 +89,8 @@ p { text-wrap: pretty; }
   .hero-line { animation: none; stroke-dashoffset: 0; }
   .hero-dot { animation: none; }
 }
+
+/* Capture principale des pages produit : léger flottement. */
+@keyframes hero-float { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-8px); } }
+.hero-float { animation: hero-float 7s ease-in-out infinite; }
+@media (prefers-reduced-motion: reduce) { .hero-float { animation: none; } }

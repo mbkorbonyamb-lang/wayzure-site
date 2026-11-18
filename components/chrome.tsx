@@ -1,7 +1,8 @@
-// Cadre commun : en-tête, pied de page, blocs de mise en page. Le menu mobile est un <details>, sans JavaScript.
+// Cadre commun : en-tête, pied de page, blocs de mise en page. Le menu mobile est un <details> : il fonctionne sans JavaScript, MenuCloser le referme après navigation.
 import Link from "next/link";
 import type { ReactNode } from "react";
 import { Logo } from "./marks";
+import { MenuCloser } from "./menu-closer";
 import { RevealOnScroll } from "./reveal";
 import { COMPANY, GUINEA } from "@/lib/company";
 import { ALL_EXPERTISES, SOLUTIONS } from "@/lib/content";
@@ -20,6 +21,7 @@ export function Page({ children }: { children: ReactNode }) {
       <main id="contenu" className="flex-1">{children}</main>
       <Footer />
       <RevealOnScroll />
+      <MenuCloser />
     </div>
   );
 }
@@ -49,18 +51,26 @@ function Header() {
           {NAV.slice(1).map(n => <Link key={n.href} href={n.href} className="rounded-md px-3 py-2 text-sm text-fg-2 transition-colors hover:text-fg">{n.label}</Link>)}
           <Link href="/contact" className="ml-3 inline-flex items-center gap-2 rounded-full bg-btn px-4 py-2 text-sm font-medium text-white transition-colors hover:bg-[#055e8f]">Parler de votre projet</Link>
         </nav>
-        <details className="group/m relative md:hidden">
-          <summary className="flex size-10 cursor-pointer list-none items-center justify-center rounded-lg border border-line [&::-webkit-details-marker]:hidden" aria-label="Menu">
-            <svg viewBox="0 0 20 20" className="size-5" fill="none" stroke="currentColor" strokeWidth={1.6} strokeLinecap="round" aria-hidden><path d="M3 6h14M3 10h14M3 14h14" /></svg>
-          </summary>
-          <div className="absolute right-0 top-12 w-[min(20rem,calc(100vw-2rem))] rounded-2xl border border-line bg-bg p-2 shadow-xl">
-            <p className="px-3 pb-1 pt-2 text-xs font-medium uppercase tracking-wider text-muted">Expertises</p>
-            {ALL_EXPERTISES.map(e => <Link key={e.slug} href={`/expertises/${e.slug}`} className="block rounded-lg px-3 py-2 text-[0.95rem] hover:bg-surface">{e.name}</Link>)}
-            <div className="my-2 border-t border-line" />
-            {NAV.slice(1).map(n => <Link key={n.href} href={n.href} className="block rounded-lg px-3 py-2 text-[0.95rem] hover:bg-surface">{n.label}</Link>)}
-            <Link href="/contact" className="mt-2 block rounded-xl bg-btn px-3 py-2.5 text-center text-[0.95rem] font-medium text-white">Parler de votre projet</Link>
-          </div>
-        </details>
+        <div className="flex items-center gap-2 md:hidden">
+          <Link href="/contact" className="rounded-full bg-btn px-4 py-2 text-sm font-medium text-white">Contact</Link>
+          <details data-menu className="group/m">
+            <summary className="flex size-10 cursor-pointer list-none items-center justify-center rounded-lg border border-line [&::-webkit-details-marker]:hidden" aria-label="Menu">
+              <svg viewBox="0 0 20 20" className="size-5 group-open/m:hidden" fill="none" stroke="currentColor" strokeWidth={1.6} strokeLinecap="round" aria-hidden><path d="M3 6h14M3 10h14M3 14h14" /></svg>
+              <svg viewBox="0 0 20 20" className="hidden size-5 group-open/m:block" fill="none" stroke="currentColor" strokeWidth={1.6} strokeLinecap="round" aria-hidden><path d="m5 5 10 10M15 5 5 15" /></svg>
+            </summary>
+            <div className="fixed inset-x-0 top-16 max-h-[calc(100dvh-4rem)] overflow-y-auto border-b border-line bg-bg px-4 pb-6 pt-3 shadow-xl">
+              <p className="px-3 pb-1 pt-2 text-xs font-medium uppercase tracking-wider text-muted">Expertises</p>
+              {ALL_EXPERTISES.map(e => <Link key={e.slug} href={`/expertises/${e.slug}`} className="block rounded-lg px-3 py-3 text-base hover:bg-surface">{e.name}</Link>)}
+              <p className="px-3 pb-1 pt-4 text-xs font-medium uppercase tracking-wider text-muted">Solutions</p>
+              <div className="grid grid-cols-2 gap-1">
+                {SOLUTIONS.map(s => <Link key={s.slug} href={`/solutions/${s.slug}`} className="block rounded-lg px-3 py-3 text-base hover:bg-surface">{s.name}</Link>)}
+              </div>
+              <div className="my-3 border-t border-line" />
+              {NAV.slice(1).map(n => <Link key={n.href} href={n.href} className="block rounded-lg px-3 py-3 text-base hover:bg-surface">{n.label}</Link>)}
+              <Link href="/contact" className="mt-3 block rounded-full bg-btn px-3 py-3.5 text-center text-base font-medium text-white">Parler de votre projet</Link>
+            </div>
+          </details>
+        </div>
       </div>
     </header>
   );

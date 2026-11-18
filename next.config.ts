@@ -36,6 +36,27 @@ const OLD: Record<string, string> = {
   "/emplois": "/a-propos",
   "/offres-demplois": "/a-propos",
   "/realisations": "/solutions",
+  // Adresses courtes, faciles à donner à l'oral ou sur un support imprimé.
+  "/waypulse": "/solutions/waypulse",
+  "/waypilot": "/solutions/waypilot",
+  "/waylog": "/solutions/waylog",
+  "/waycare": "/solutions/waycare",
+  "/data": "/expertises/data-intelligence-artificielle",
+  "/ia": "/expertises/data-intelligence-artificielle",
+  "/developpement": "/expertises/developpement-numerique",
+  "/formation": "/expertises/formation",
+  "/services-it": "/expertises/services-it",
+  "/infogerance": "/expertises/services-it",
+  // Structure WordPress : archives, flux et administration.
+  "/category/:path*": "/",
+  "/tag/:path*": "/",
+  "/author/:path*": "/a-propos",
+  "/page/:n": "/",
+  "/feed": "/",
+  "/comments/feed": "/",
+  "/:slug/feed": "/",
+  "/wp-admin/:path*": "/",
+  "/wp-login.php": "/",
 };
 
 const CSP = [
@@ -43,8 +64,12 @@ const CSP = [
   "script-src 'self' 'unsafe-inline'",
   "style-src 'self' 'unsafe-inline'",
   "img-src 'self' data: blob:",
+  "media-src 'self'",
   "font-src 'self'",
   "connect-src 'self'",
+  "frame-src 'none'",
+  "worker-src 'self'",
+  "manifest-src 'self'",
   "frame-ancestors 'none'",
   "base-uri 'self'",
   "form-action 'self'",
@@ -68,8 +93,13 @@ const nextConfig: NextConfig = {
         { key: "X-Content-Type-Options", value: "nosniff" },
         { key: "Referrer-Policy", value: "strict-origin-when-cross-origin" },
         { key: "X-Frame-Options", value: "DENY" },
-        { key: "Permissions-Policy", value: "camera=(), microphone=(), geolocation=(), interest-cohort=()" },
+        { key: "Permissions-Policy", value: "camera=(), microphone=(), geolocation=(), payment=(), usb=(), interest-cohort=()" },
+        { key: "Cross-Origin-Opener-Policy", value: "same-origin" },
       ],
+    }, {
+      // Captures, vidéos et logos : fichiers lourds, rarement modifiés (changer le nom du fichier en cas de mise à jour).
+      source: "/:dir(captures|video|brand)/:path*",
+      headers: [{ key: "Cache-Control", value: "public, max-age=2592000, stale-while-revalidate=86400" }],
     }];
   },
 };

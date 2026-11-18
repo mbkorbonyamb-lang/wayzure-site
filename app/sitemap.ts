@@ -1,6 +1,7 @@
 import type { MetadataRoute } from "next";
 import { SITE_URL } from "@/lib/company";
 import { ALL_EXPERTISES, SOLUTIONS } from "@/lib/content";
+import { FILM, SHOTS } from "@/lib/media";
 
 export default function sitemap(): MetadataRoute.Sitemap {
   const pages: [string, number][] = [
@@ -14,5 +15,15 @@ export default function sitemap(): MetadataRoute.Sitemap {
     ["/mentions-legales", 0.2],
     ["/confidentialite", 0.2],
   ];
-  return pages.map(([path, priority]) => ({ url: `${SITE_URL}${path}`, priority, changeFrequency: "monthly", lastModified: new Date("2026-11-18") }));
+  // Images de chaque page (captures des logiciels, affiche du film) pour la recherche d'images.
+  const images: Record<string, string[]> = {
+    "": [FILM.poster],
+    "/a-propos": [FILM.poster],
+    "/solutions": SOLUTIONS.map(s => SHOTS[s.slug]?.[0]?.src).filter((x): x is string => Boolean(x)),
+    ...Object.fromEntries(SOLUTIONS.map(s => [`/solutions/${s.slug}`, (SHOTS[s.slug] ?? []).map(x => x.src)])),
+  };
+  return pages.map(([path, priority]) => ({
+    url: `${SITE_URL}${path}`, priority, changeFrequency: "monthly", lastModified: new Date("2026-11-18"),
+    ...(images[path]?.length ? { images: images[path].map(src => `${SITE_URL}${src}`) } : {}),
+  }));
 }

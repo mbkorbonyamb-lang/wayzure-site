@@ -15,8 +15,14 @@ Site vitrine de Wayzure en Next.js, hébergé sur Vercel. Remplace l'ancien site
 
 - Coordonnées et informations légales : `lib/company.ts` (une seule source pour tout le site).
 - Pôles, services IT, solutions, méthode : `lib/content.ts`.
-- Anciennes adresses redirigées : `next.config.ts`.
+- Anciennes adresses redirigées et adresses courtes (/waylog, /formation…) : `next.config.ts`.
 - Logos : `public/brand/` (symbole couleur, versions noire et blanche vectorisées). Originaux fournis par Moussa dans les fichiers du projet, dossier `logo/`.
+
+## Captures, vidéos
+
+- Captures des logiciels : `public/captures/<produit>/`, décrites dans `lib/media.ts` (texte alternatif, légende, cadre navigateur, téléphone ou document). Elles viennent des applications elles-mêmes, avec leurs données d'exemple : WayPulse et WayPilot depuis leurs dépôts, WayLog (page `/exemple` et bon PDF) et Waycare (accueil, pharmacies) capturés sur l'application lancée en local. Ne pas utiliser les images de `www-waycare/public/screenshots` ni les photos de WayLog : elles sont générées, pas réelles.
+- Vidéo WayPulse : reprise du dépôt WayPulse (`public/site/video`).
+- Film institutionnel de 30 s : `public/video/`. Source modifiable `scripts/film/film.html`, rendu avec `scripts/film/render.mjs` (Playwright et ffmpeg). Le film n'est téléchargé qu'au clic sur l'affiche.
 
 ## Formulaire de contact
 
