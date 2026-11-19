@@ -1,7 +1,7 @@
-import { Page, PageHero } from "@/components/chrome";
+import { Page, PageHero, SocialIcon } from "@/components/chrome";
 import { ContactForm } from "@/components/contact-form";
 import { HeroPhoto } from "@/components/photo";
-import { COMPANY, GUINEA } from "@/lib/company";
+import { COMPANY, GUINEA, whatsappHref } from "@/lib/company";
 import { TOPICS } from "@/lib/contact";
 import { FORM_ENABLED } from "@/lib/contact-link";
 import { PHOTOS } from "@/lib/photos";
@@ -59,6 +59,7 @@ export default function Contact() {
             <p className="mt-2 font-semibold">{GUINEA.legalName}</p>
             <p className="mt-1 text-fg-2">{GUINEA.office}</p>
             {COMPANY.phoneGuinea && <a href={tel(COMPANY.phoneGuinea)} className="mt-2 block font-medium hover:text-accent">{COMPANY.phoneGuinea}</a>}
+            {COMPANY.whatsappGuinea && <a href={whatsappHref(COMPANY.whatsappGuinea, "Bonjour Wayzure,")} rel="noopener" className="mt-4 inline-flex items-center gap-2 rounded-full bg-[#1a8d4a] px-4 py-2.5 text-sm font-medium text-white transition-colors hover:bg-[#157a3f]"><SocialIcon name="WhatsApp" />Écrire sur WhatsApp</a>}
           </div>
         </aside>
       </section>
