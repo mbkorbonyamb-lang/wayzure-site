@@ -1,9 +1,10 @@
 // Cadres d'affichage des captures (navigateur, téléphone, document) et lecteur vidéo léger.
 import Image from "next/image";
+import type { Locale } from "@/lib/i18n";
 import type { Shot } from "@/lib/media";
 
-export function ShotFrame({ shot, sizes, priority = false, className = "" }: { shot: Shot; sizes: string; priority?: boolean; className?: string }) {
-  const img = <Image src={shot.src} width={shot.w} height={shot.h} alt={shot.alt} sizes={sizes} priority={priority} className="block h-auto w-full" />;
+export function ShotFrame({ shot, sizes, priority = false, className = "", locale = "fr" }: { shot: Shot; sizes: string; priority?: boolean; className?: string; locale?: Locale }) {
+  const img = <Image src={shot.src} width={shot.w} height={shot.h} alt={locale === "en" ? shot.altEn : shot.alt} sizes={sizes} priority={priority} className="block h-auto w-full" />;
   if (shot.frame === "phone") {
     return (
       <div className={`mx-auto w-full max-w-[17rem] rounded-[2.4rem] bg-[#0b1820] p-2.5 shadow-2xl shadow-[#0b3a55]/25 ring-1 ring-black/10 ${className}`}>
@@ -25,11 +26,11 @@ export function ShotFrame({ shot, sizes, priority = false, className = "" }: { s
   );
 }
 
-export function ShotFigure({ shot, sizes, className = "" }: { shot: Shot; sizes: string; className?: string }) {
+export function ShotFigure({ shot, sizes, className = "", locale = "fr" }: { shot: Shot; sizes: string; className?: string; locale?: Locale }) {
   return (
     <figure data-reveal className={className}>
-      <ShotFrame shot={shot} sizes={sizes} />
-      <figcaption className="mt-4 text-sm leading-relaxed text-muted">{shot.caption}</figcaption>
+      <ShotFrame shot={shot} sizes={sizes} locale={locale} />
+      <figcaption className="mt-4 text-sm leading-relaxed text-muted">{locale === "en" ? shot.captionEn : shot.caption}</figcaption>
     </figure>
   );
 }

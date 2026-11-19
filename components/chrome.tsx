@@ -6,42 +6,54 @@ import { MenuCloser } from "./menu-closer";
 import { RevealOnScroll } from "./reveal";
 import { ThemeToggle } from "./theme-toggle";
 import { COMPANY, GUINEA, SOCIAL_LINKS, type SocialName, whatsappHref } from "@/lib/company";
-import { ALL_EXPERTISES, SOLUTIONS } from "@/lib/content";
+import { getContent } from "@/lib/content";
+import { href, type Locale, other, UI } from "@/lib/i18n";
 
-const NAV = [
-  { href: "/expertises", label: "Expertises" },
-  { href: "/solutions", label: "Solutions" },
-  { href: "/a-propos", label: "À propos" },
+const nav = (l: Locale) => [
+  { href: href(l, "/solutions"), label: UI[l].solutions },
+  { href: href(l, "/a-propos"), label: UI[l].about },
 ];
 
-export function Page({ children }: { children: ReactNode }) {
+/** Cadre d'une page. path : chemin français de la page, pour le lien vers l'autre langue. */
+export function Page({ children, locale = "fr", path = "/" }: { children: ReactNode; locale?: Locale; path?: string }) {
   return (
     <div className="flex min-h-screen flex-col">
-      <a href="#contenu" className="sr-only focus:not-sr-only focus:fixed focus:left-4 focus:top-4 focus:z-[60] focus:rounded-md focus:bg-bg focus:px-3 focus:py-2">Aller au contenu</a>
-      <Header />
+      <a href="#contenu" className="sr-only focus:not-sr-only focus:fixed focus:left-4 focus:top-4 focus:z-[60] focus:rounded-md focus:bg-bg focus:px-3 focus:py-2">{UI[locale].skip}</a>
+      <Header locale={locale} path={path} />
       <main id="contenu" className="flex-1">{children}</main>
-      <Footer />
+      <Footer locale={locale} />
       <RevealOnScroll />
       <MenuCloser />
     </div>
   );
 }
 
-function Header() {
+function LangSwitch({ locale, path, className = "" }: { locale: Locale; path: string; className?: string }) {
+  const o = other(locale);
+  return (
+    <Link href={href(o, path)} hrefLang={o} lang={o} aria-label={UI[locale].switchAria} className={`inline-flex h-10 items-center justify-center rounded-lg border border-line px-2.5 text-xs font-semibold tracking-wide text-fg-2 transition-colors hover:border-accent hover:text-accent ${className}`}>
+      {o.toUpperCase()}
+    </Link>
+  );
+}
+
+function Header({ locale, path }: { locale: Locale; path: string }) {
+  const { ALL_EXPERTISES, SOLUTIONS } = getContent(locale);
+  const u = UI[locale];
   return (
     <header className="sticky top-0 z-50 border-b border-line/80 bg-bg/85 backdrop-blur-md">
       <div className="mx-auto flex h-16 max-w-7xl items-center justify-between gap-4 px-4 sm:px-6 lg:px-8">
-        <Link href="/" aria-label="Wayzure, accueil" className="shrink-0"><Logo /></Link>
-        <nav aria-label="Navigation principale" className="hidden items-center gap-1 md:flex">
+        <Link href={href(locale, "/")} aria-label={u.homeAria} className="shrink-0"><Logo /></Link>
+        <nav aria-label={u.nav} className="hidden items-center gap-1 md:flex">
           <div className="group relative">
-            <Link href="/expertises" className="inline-flex items-center gap-1 rounded-md px-3 py-2 text-sm text-fg-2 transition-colors hover:text-fg">
-              Expertises
+            <Link href={href(locale, "/expertises")} className="inline-flex items-center gap-1 rounded-md px-3 py-2 text-sm text-fg-2 transition-colors hover:text-fg">
+              {u.expertises}
               <svg viewBox="0 0 12 12" className="size-3 opacity-60" fill="none" stroke="currentColor" strokeWidth={1.6} aria-hidden><path d="m3 4.5 3 3 3-3" /></svg>
             </Link>
             <div className="invisible absolute left-0 top-full w-80 translate-y-1 pt-2 opacity-0 transition-all duration-200 group-focus-within:visible group-focus-within:translate-y-0 group-focus-within:opacity-100 group-hover:visible group-hover:translate-y-0 group-hover:opacity-100">
               <div className="rounded-2xl border border-line bg-bg p-2 shadow-xl shadow-black/5">
                 {ALL_EXPERTISES.map(e => (
-                  <Link key={e.slug} href={`/expertises/${e.slug}`} className="block rounded-xl px-3 py-2.5 hover:bg-surface">
+                  <Link key={e.slug} href={href(locale, `/expertises/${e.slug}`)} className="block rounded-xl px-3 py-2.5 hover:bg-surface">
                     <span className="block text-sm font-medium text-fg">{e.name}</span>
                     <span className="block text-xs leading-snug text-muted">{e.lead}</span>
                   </Link>
@@ -49,28 +61,31 @@ function Header() {
               </div>
             </div>
           </div>
-          {NAV.slice(1).map(n => <Link key={n.href} href={n.href} className="rounded-md px-3 py-2 text-sm text-fg-2 transition-colors hover:text-fg">{n.label}</Link>)}
-          <ThemeToggle className="ml-2" />
-          <Link href="/contact" className="ml-2 inline-flex items-center gap-2 rounded-full bg-btn px-4 py-2 text-sm font-medium text-white transition-colors hover:bg-[#055e8f]">Parler de votre projet</Link>
+          {nav(locale).map(n => <Link key={n.href} href={n.href} className="rounded-md px-3 py-2 text-sm text-fg-2 transition-colors hover:text-fg">{n.label}</Link>)}
+          <LangSwitch locale={locale} path={path} className="ml-2" />
+          <ThemeToggle locale={locale} className="ml-2" />
+          <Link href={href(locale, "/contact")} className="ml-2 inline-flex items-center gap-2 rounded-full bg-btn px-4 py-2 text-sm font-medium text-white transition-colors hover:bg-[#055e8f]">{u.cta}</Link>
         </nav>
         <div className="flex items-center gap-2 md:hidden">
-          <ThemeToggle />
-          <Link href="/contact" className="rounded-full bg-btn px-4 py-2 text-sm font-medium text-white">Contact</Link>
+          <LangSwitch locale={locale} path={path} />
+          <ThemeToggle locale={locale} />
+          <Link href={href(locale, "/contact")} className="rounded-full bg-btn px-4 py-2 text-sm font-medium text-white">{u.contact}</Link>
           <details data-menu className="group/m">
-            <summary className="flex size-10 cursor-pointer list-none items-center justify-center rounded-lg border border-line [&::-webkit-details-marker]:hidden" aria-label="Menu">
+            <summary className="flex size-10 cursor-pointer list-none items-center justify-center rounded-lg border border-line [&::-webkit-details-marker]:hidden" aria-label={u.menu}>
               <svg viewBox="0 0 20 20" className="size-5 group-open/m:hidden" fill="none" stroke="currentColor" strokeWidth={1.6} strokeLinecap="round" aria-hidden><path d="M3 6h14M3 10h14M3 14h14" /></svg>
               <svg viewBox="0 0 20 20" className="hidden size-5 group-open/m:block" fill="none" stroke="currentColor" strokeWidth={1.6} strokeLinecap="round" aria-hidden><path d="m5 5 10 10M15 5 5 15" /></svg>
             </summary>
             <div className="fixed inset-x-0 top-16 max-h-[calc(100dvh-4rem)] overflow-y-auto border-b border-line bg-bg px-4 pb-6 pt-3 shadow-xl">
-              <p className="px-3 pb-1 pt-2 text-xs font-medium uppercase tracking-wider text-muted">Expertises</p>
-              {ALL_EXPERTISES.map(e => <Link key={e.slug} href={`/expertises/${e.slug}`} className="block rounded-lg px-3 py-3 text-base hover:bg-surface">{e.name}</Link>)}
-              <p className="px-3 pb-1 pt-4 text-xs font-medium uppercase tracking-wider text-muted">Solutions</p>
+              <p className="px-3 pb-1 pt-2 text-xs font-medium uppercase tracking-wider text-muted">{u.expertises}</p>
+              {ALL_EXPERTISES.map(e => <Link key={e.slug} href={href(locale, `/expertises/${e.slug}`)} className="block rounded-lg px-3 py-3 text-base hover:bg-surface">{e.name}</Link>)}
+              <p className="px-3 pb-1 pt-4 text-xs font-medium uppercase tracking-wider text-muted">{u.solutions}</p>
               <div className="grid grid-cols-2 gap-1">
-                {SOLUTIONS.map(s => <Link key={s.slug} href={`/solutions/${s.slug}`} className="block rounded-lg px-3 py-3 text-base hover:bg-surface">{s.name}</Link>)}
+                {SOLUTIONS.map(s => <Link key={s.slug} href={href(locale, `/solutions/${s.slug}`)} className="block rounded-lg px-3 py-3 text-base hover:bg-surface">{s.name}</Link>)}
               </div>
               <div className="my-3 border-t border-line" />
-              {NAV.slice(1).map(n => <Link key={n.href} href={n.href} className="block rounded-lg px-3 py-3 text-base hover:bg-surface">{n.label}</Link>)}
-              <Link href="/contact" className="mt-3 block rounded-full bg-btn px-3 py-3.5 text-center text-base font-medium text-white">Parler de votre projet</Link>
+              {nav(locale).map(n => <Link key={n.href} href={n.href} className="block rounded-lg px-3 py-3 text-base hover:bg-surface">{n.label}</Link>)}
+              <Link href={href(other(locale), path)} hrefLang={other(locale)} lang={other(locale)} className="block rounded-lg px-3 py-3 text-base hover:bg-surface">{u.switchTo}</Link>
+              <Link href={href(locale, "/contact")} className="mt-3 block rounded-full bg-btn px-3 py-3.5 text-center text-base font-medium text-white">{u.cta}</Link>
             </div>
           </details>
         </div>
@@ -81,13 +96,16 @@ function Header() {
 
 const tel = (n: string) => `tel:${n.replace(/\s/g, "")}`;
 
-function Footer() {
+function Footer({ locale }: { locale: Locale }) {
+  const { ALL_EXPERTISES, SOLUTIONS } = getContent(locale);
+  const u = UI[locale];
+  const h = (p: string) => href(locale, p);
   return (
     <footer className="bg-deep-2 text-on-deep">
       <div className="mx-auto grid max-w-7xl gap-12 px-4 py-16 sm:px-6 md:grid-cols-2 lg:grid-cols-[1.5fr_1fr_1fr_1.2fr] lg:px-8">
         <div>
           <Logo tone="white" />
-          <p className="mt-5 max-w-xs text-sm leading-relaxed text-on-deep-2">ESN et éditeur de solutions numériques, Wayzure accompagne les entreprises en Data &amp; IA, conseil, développement, formation et services IT, en France et en Guinée.</p>
+          <p className="mt-5 max-w-xs text-sm leading-relaxed text-on-deep-2">{u.footerLine}</p>
           <ul className="mt-5 flex flex-wrap gap-x-5 gap-y-2">
             {SOCIAL_LINKS.map(n => (
               <li key={n.name}>
@@ -99,39 +117,39 @@ function Footer() {
           </ul>
         </div>
         <div>
-          <p className="text-sm font-semibold text-white">Expertises</p>
+          <p className="text-sm font-semibold text-white">{u.expertises}</p>
           <ul className="mt-4 space-y-2.5 text-sm text-on-deep-2">
-            {ALL_EXPERTISES.map(e => <li key={e.slug}><Link href={`/expertises/${e.slug}`} className="hover:text-white">{e.name}</Link></li>)}
+            {ALL_EXPERTISES.map(e => <li key={e.slug}><Link href={h(`/expertises/${e.slug}`)} className="hover:text-white">{e.name}</Link></li>)}
           </ul>
         </div>
         <div>
-          <p className="text-sm font-semibold text-white">Solutions</p>
+          <p className="text-sm font-semibold text-white">{u.solutions}</p>
           <ul className="mt-4 space-y-2.5 text-sm text-on-deep-2">
-            {SOLUTIONS.map(s => <li key={s.slug}><Link href={`/solutions/${s.slug}`} className="hover:text-white">{s.name}</Link></li>)}
+            {SOLUTIONS.map(s => <li key={s.slug}><Link href={h(`/solutions/${s.slug}`)} className="hover:text-white">{s.name}</Link></li>)}
           </ul>
           <p className="mt-7 text-sm font-semibold text-white">Wayzure</p>
           <ul className="mt-4 space-y-2.5 text-sm text-on-deep-2">
-            <li><Link href="/a-propos" className="hover:text-white">À propos</Link></li>
-            <li><Link href="/carrieres" className="hover:text-white">Carrières</Link></li>
-            <li><Link href="/contact" className="hover:text-white">Contact</Link></li>
+            <li><Link href={h("/a-propos")} className="hover:text-white">{u.about}</Link></li>
+            <li><Link href={h("/carrieres")} className="hover:text-white">{u.careers}</Link></li>
+            <li><Link href={h("/contact")} className="hover:text-white">{u.contact}</Link></li>
           </ul>
         </div>
         <div className="text-sm text-on-deep-2">
-          <p className="font-semibold text-white">Nous joindre</p>
+          <p className="font-semibold text-white">{u.reach}</p>
           <p className="mt-4"><a href={`mailto:${COMPANY.email}`} className="text-white hover:text-[#7cc4ec]">{COMPANY.email}</a></p>
-          <p className="mt-4 text-xs uppercase tracking-wider text-on-deep-2/80">France</p>
+          <p className="mt-4 text-xs uppercase tracking-wider text-on-deep-2/80">{u.france}</p>
           <p className="mt-1">{COMPANY.address}</p>
           {COMPANY.phone && <p className="mt-1"><a href={tel(COMPANY.phone)} className="hover:text-white">{COMPANY.phone}</a></p>}
-          <p className="mt-4 text-xs uppercase tracking-wider text-on-deep-2/80">Guinée</p>
+          <p className="mt-4 text-xs uppercase tracking-wider text-on-deep-2/80">{u.guinea}</p>
           <p className="mt-1">{GUINEA.office}</p>
           {COMPANY.phoneGuinea && <p className="mt-1"><a href={tel(COMPANY.phoneGuinea)} className="hover:text-white">{COMPANY.phoneGuinea}</a></p>}
-          {COMPANY.whatsappGuinea && <p className="mt-2"><a href={whatsappHref(COMPANY.whatsappGuinea, "Bonjour Wayzure,")} rel="noopener" className="inline-flex items-center gap-2 text-white hover:text-[#7cc4ec]"><SocialIcon name="WhatsApp" />WhatsApp Guinée</a></p>}
+          {COMPANY.whatsappGuinea && <p className="mt-2"><a href={whatsappHref(COMPANY.whatsappGuinea, u.whatsappHello)} rel="noopener" className="inline-flex items-center gap-2 text-white hover:text-[#7cc4ec]"><SocialIcon name="WhatsApp" />{u.whatsapp}</a></p>}
         </div>
       </div>
       <div className="border-t border-white/10">
         <div className="mx-auto flex max-w-7xl flex-col gap-2 px-4 py-5 text-xs text-on-deep-2 sm:flex-row sm:items-center sm:justify-between sm:px-6 lg:px-8">
           <p>© {new Date().getFullYear()} {COMPANY.legalName} · {GUINEA.legalName}</p>
-          <p className="flex gap-5"><Link href="/mentions-legales" className="hover:text-white">Mentions légales</Link><Link href="/confidentialite" className="hover:text-white">Confidentialité</Link></p>
+          <p className="flex gap-5"><Link href="/mentions-legales" className="hover:text-white">{u.legal}</Link><Link href="/confidentialite" className="hover:text-white">{u.privacy}</Link></p>
         </div>
       </div>
     </footer>
@@ -176,7 +194,8 @@ export function SectionTitle({ eyebrow, title, children, className = "" }: { eye
   );
 }
 
-export function CtaBand({ title = "Parlons de votre projet.", text = "Décrivez la situation en quelques lignes. Nous revenons vers vous avec des questions précises ou une première analyse, sans engagement." }: { title?: string; text?: string }) {
+export function CtaBand({ title, text, locale = "fr" }: { title?: string; text?: string; locale?: Locale }) {
+  const u = UI[locale];
   return (
     <section className="px-4 py-20 sm:px-6 lg:px-8">
       <div className="relative mx-auto max-w-7xl overflow-hidden rounded-[2rem] bg-[linear-gradient(120deg,#0670aa_0%,#0773b0_55%,#0a7ab9_100%)] px-6 py-16 text-center text-white sm:px-12" data-reveal>
@@ -185,10 +204,10 @@ export function CtaBand({ title = "Parlons de votre projet.", text = "Décrivez 
           <div className="absolute -bottom-40 -left-20 size-96 rounded-full bg-[#7cc4ec] opacity-25 blur-3xl" />
         </div>
         <div className="relative">
-          <h2 className="font-display text-3xl font-semibold tracking-tight sm:text-5xl">{title}</h2>
-          <p className="mx-auto mt-4 max-w-xl text-lg text-white">{text}</p>
+          <h2 className="font-display text-3xl font-semibold tracking-tight sm:text-5xl">{title ?? u.ctaTitle}</h2>
+          <p className="mx-auto mt-4 max-w-xl text-lg text-white">{text ?? u.ctaText}</p>
           <div className="mt-9 flex flex-wrap justify-center gap-3">
-            <Link href="/contact" className="group inline-flex items-center gap-2 rounded-full bg-white px-6 py-3.5 text-sm font-medium text-[#0670aa] shadow-lg shadow-black/10 transition-colors hover:bg-[#eef7fd]">Nous écrire <Arrow /></Link>
+            <Link href={href(locale, "/contact")} className="group inline-flex items-center gap-2 rounded-full bg-white px-6 py-3.5 text-sm font-medium text-[#0670aa] shadow-lg shadow-black/10 transition-colors hover:bg-[#eef7fd]">{u.write} <Arrow /></Link>
             {COMPANY.phone && <a href={tel(COMPANY.phone)} className="inline-flex items-center gap-2 rounded-full border border-white/60 px-6 py-3.5 text-sm font-medium text-white transition-colors hover:bg-white/10">{COMPANY.phone}</a>}
           </div>
         </div>

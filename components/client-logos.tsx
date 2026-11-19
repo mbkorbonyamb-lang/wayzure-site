@@ -3,10 +3,11 @@
 // Liste dans lib/clients.ts ; rien ne s'affiche tant qu'elle est vide, et pas de défilement sous 4 logos.
 import Image from "next/image";
 import { CLIENT_LOGOS } from "@/lib/clients";
+import { type Locale, UI } from "@/lib/i18n";
 
 const MIN_SCROLL = 4;
 
-export function ClientLogos() {
+export function ClientLogos({ locale = "fr" }: { locale?: Locale }) {
   if (CLIENT_LOGOS.length === 0) return null;
   const scroll = CLIENT_LOGOS.length >= MIN_SCROLL;
   const row = (dup: boolean) => CLIENT_LOGOS.map(c => (
@@ -23,8 +24,8 @@ export function ClientLogos() {
     </li>
   ));
   return (
-    <section aria-label="Ils nous font confiance" className="mx-auto max-w-7xl px-4 pt-16 sm:px-6 lg:px-8">
-      <p className="text-center text-sm font-medium text-muted">Ils nous font confiance</p>
+    <section aria-label={UI[locale].trusted} className="mx-auto max-w-7xl px-4 pt-16 sm:px-6 lg:px-8">
+      <p className="text-center text-sm font-medium text-muted">{UI[locale].trusted}</p>
       {scroll ? (
         <div className="marquee-wrap mt-6 overflow-hidden [mask-image:linear-gradient(90deg,transparent,black_10%,black_90%,transparent)]">
           <ul className="marquee flex w-max" style={{ "--speed": `${Math.max(20, CLIENT_LOGOS.length * 6)}s` } as React.CSSProperties}>
