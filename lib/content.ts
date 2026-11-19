@@ -46,7 +46,7 @@ export const EXPERTISES: Expertise[] = [
       "Des usages de l'IA cadrés : données protégées, résultats vérifiables.",
     ],
     solutions: ["waypulse", "waypilot"],
-    seo: "Data analytics, business intelligence, IA générative et automatisation intelligente pour les entreprises et les organisations, en France et en Guinée.",
+    seo: "Data analytics, business intelligence, IA générative et automatisation intelligente pour les administrations, les institutions et les entreprises, en France et en Guinée.",
   },
   {
     slug: "conseil",
@@ -320,7 +320,7 @@ export const STEPS: Item[] = [
 
 /** « Wayzure en chiffres » (valeurs données par la direction, novembre 2026). À mettre à jour ici. */
 export const KEY_FIGURES = [
-  { value: 2021, prefix: "depuis", label: "Au service des entreprises", detail: "Wayzure a été fondée en 2021 à Clamart, aux portes de Paris." },
+  { value: 2021, prefix: "depuis", label: "Au service des organisations publiques et privées", detail: "Wayzure a été fondée en 2021 à Clamart, aux portes de Paris." },
   { value: 2, label: "Marchés", detail: "La France et la Guinée, avec une société dans chaque pays." },
   { value: 4, label: "Solutions éditées", detail: "WayPulse, WayPilot, WayLog et Waycare, en service." },
   { value: 20, suffix: "+", label: "Projets d'envergure réalisés", detail: "Pour des entreprises, des institutions et des associations." },
