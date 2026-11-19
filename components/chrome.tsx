@@ -8,9 +8,9 @@ import { ThemeToggle } from "./theme-toggle";
 import { COMPANY, GUINEA, SOCIAL_LINKS, type SocialName, whatsappHref } from "@/lib/company";
 import { getContent } from "@/lib/content";
 import { href, type Locale, other, UI } from "@/lib/i18n";
+import { sectorNav } from "@/views/sectors";
 
 const nav = (l: Locale) => [
-  { href: href(l, "/secteurs-dactivite"), label: UI[l].sectors },
   { href: href(l, "/solutions"), label: UI[l].solutions },
   { href: href(l, "/a-propos"), label: UI[l].about },
 ];
@@ -40,6 +40,7 @@ function LangSwitch({ locale, path, className = "" }: { locale: Locale; path: st
 
 function Header({ locale, path }: { locale: Locale; path: string }) {
   const { EXPERTISES, IT_SERVICES, SOLUTIONS } = getContent(locale);
+  const SECTORS = sectorNav(locale);
   const u = UI[locale];
   return (
     <header className="sticky top-0 z-50 border-b border-line/80 bg-bg/85 backdrop-blur-md">
@@ -68,6 +69,23 @@ function Header({ locale, path }: { locale: Locale; path: string }) {
               </div>
             </div>
           </div>
+          <div className="group relative">
+            <Link href={href(locale, "/secteurs-dactivite")} className="inline-flex items-center gap-1 whitespace-nowrap rounded-md px-3 py-2 text-sm text-fg-2 transition-colors hover:text-fg">
+              {u.sectors}
+              <svg viewBox="0 0 12 12" className="size-3 opacity-60" fill="none" stroke="currentColor" strokeWidth={1.6} aria-hidden><path d="m3 4.5 3 3 3-3" /></svg>
+            </Link>
+            <div className="invisible absolute left-1/2 top-full w-[34rem] -translate-x-1/2 translate-y-1 pt-2 opacity-0 transition-all duration-200 group-focus-within:visible group-focus-within:translate-y-0 group-focus-within:opacity-100 group-hover:visible group-hover:translate-y-0 group-hover:opacity-100">
+              <div className="rounded-2xl border border-line bg-bg p-2 shadow-xl shadow-black/5">
+                <p className="px-3 pb-1 pt-1.5 text-[0.7rem] font-medium uppercase tracking-wider text-muted">{u.sectorsLead}</p>
+                <div className="grid grid-cols-2 gap-x-1">
+                  {SECTORS.map(s => (
+                    <Link key={s.id} href={`${href(locale, "/secteurs-dactivite")}#${s.id}`} className="block rounded-xl px-3 py-2.5 text-sm font-medium text-fg hover:bg-surface hover:text-accent">{s.title}</Link>
+                  ))}
+                </div>
+                <Link href={href(locale, "/secteurs-dactivite")} className="group/all mx-1 mt-1.5 flex items-center gap-2 border-t border-line px-2 pb-1.5 pt-3 text-sm font-medium text-accent">{u.sectorsAll} <Arrow /></Link>
+              </div>
+            </div>
+          </div>
           {nav(locale).map(n => <Link key={n.href} href={n.href} className="whitespace-nowrap rounded-md px-3 py-2 text-sm text-fg-2 transition-colors hover:text-fg">{n.label}</Link>)}
           <LangSwitch locale={locale} path={path} className="ml-2" />
           <ThemeToggle locale={locale} className="ml-2" />
@@ -88,7 +106,16 @@ function Header({ locale, path }: { locale: Locale; path: string }) {
               {EXPERTISES.map(e => <Link key={e.slug} href={href(locale, `/expertises/${e.slug}`)} className="block rounded-lg px-3 py-3 text-base hover:bg-surface">{e.name}</Link>)}
               <p className="px-3 pb-1 pt-3 text-xs text-muted">{u.transversal}</p>
               <Link href={href(locale, `/expertises/${IT_SERVICES.slug}`)} className="block rounded-lg px-3 py-3 text-base hover:bg-surface">{IT_SERVICES.name}</Link>
-              <Link href={href(locale, "/secteurs-dactivite")} className="mt-2 block rounded-lg px-3 py-3 text-base font-medium hover:bg-surface">{u.sectors}</Link>
+              <details className="group/s mt-2">
+                <summary className="flex cursor-pointer list-none items-center justify-between rounded-lg px-3 py-3 text-base font-medium hover:bg-surface [&::-webkit-details-marker]:hidden">
+                  {u.sectors}
+                  <svg viewBox="0 0 12 12" className="size-3.5 opacity-60 transition-transform group-open/s:rotate-180" fill="none" stroke="currentColor" strokeWidth={1.6} aria-hidden><path d="m3 4.5 3 3 3-3" /></svg>
+                </summary>
+                <div className="ml-3 border-l border-line pl-2">
+                  <Link href={href(locale, "/secteurs-dactivite")} className="block rounded-lg px-3 py-2.5 text-base font-medium text-accent hover:bg-surface">{u.sectorsAll}</Link>
+                  {SECTORS.map(s => <Link key={s.id} href={`${href(locale, "/secteurs-dactivite")}#${s.id}`} className="block rounded-lg px-3 py-2.5 text-base hover:bg-surface">{s.title}</Link>)}
+                </div>
+              </details>
               <Link href={href(locale, "/solutions")} className="block px-3 pb-1 pt-4 text-xs font-medium uppercase tracking-wider text-muted hover:text-accent">{u.solutions}</Link>
               <div className="grid grid-cols-2 gap-1">
                 {SOLUTIONS.map(s => <Link key={s.slug} href={href(locale, `/solutions/${s.slug}`)} className="block rounded-lg px-3 py-3 text-base hover:bg-surface">{s.name}</Link>)}

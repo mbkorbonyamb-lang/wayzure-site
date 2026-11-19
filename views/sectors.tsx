@@ -10,6 +10,7 @@ import { href, type Locale } from "@/lib/i18n";
 import { PHOTOS, SECTOR_PHOTOS } from "@/lib/photos";
 import { meta } from "@/lib/seo";
 
+// Ancres identiques en français et en anglais (demande de Moussa) : /en/secteurs-dactivite#secteur-public.
 type Sector = { id: string; title: string; issues: string; items: string[]; links: [string, string][] };
 
 const EXP = {
@@ -65,28 +66,28 @@ const TX = {
 function sectors(locale: Locale): Sector[] {
   const l = L(locale);
   if (locale === "en") return [
-    { id: "public-sector", title: "Public sector and institutions", links: [l.conseil, l.dev, l.formation],
+    { id: "secteur-public", title: "Public sector and institutions", links: [l.conseil, l.dev, l.formation],
       issues: "Paper-based procedures, slow processing times, data scattered across departments, and projects that are hard to monitor once they are launched. Users expect simpler services, and decision-makers need reliable figures.",
       items: ["Digitising administrative procedures", "Administrative platforms and online services", "Paperless processes and document management", "Monitoring and evaluation of projects and programmes", "Dashboards for management", "Training staff on new tools"] },
-    { id: "banking-finance-insurance", title: "Banking, finance and insurance", links: [l.data, l.dev],
+    { id: "banque-finance-assurance", title: "Banking, finance and insurance", links: [l.data, l.dev],
       issues: "High volumes of transactions, repetitive tasks, strict regulatory requirements and the need to see performance clearly. Data exists, but it is often under-used.",
       items: ["Process automation", "Business applications", "Making use of data", "Dashboards", "Performance monitoring", "Training teams"] },
-    { id: "mining-energy-industry", title: "Mining, energy and industry", links: [l.data, l.dev, l.conseil],
+    { id: "mines-energie-industrie", title: "Mining, energy and industry", links: [l.data, l.dev, l.conseil],
       issues: "Remote sites, critical equipment, complex logistics and growing expectations on social and environmental commitments. Information from the field often arrives late or incomplete.",
       items: ["Equipment monitoring", "Maintenance management", "Logistics", "Field data collection", "Performance management", "Digital monitoring of CSR commitments"] },
-    { id: "agriculture-agribusiness", title: "Agriculture, agribusiness and rural development", links: [l.data, l.dev],
+    { id: "agriculture-agro-industrie", title: "Agriculture, agribusiness and rural development", links: [l.data, l.dev],
       issues: "Scattered producers, harvests that are hard to estimate, stocks tracked on paper and traceability requirements from buyers. Rural development projects also need to report on their results.",
       items: ["Farm and cooperative management", "Production and stock tracking", "Traceability", "Supply management", "Dashboards", "Digitising rural development projects"] },
-    { id: "transport-logistics", title: "Transport and logistics", links: [l.waylog, l.dev],
+    { id: "transport-logistique", title: "Transport and logistics", links: [l.waylog, l.dev],
       issues: "Vehicles on the road, drivers to coordinate, deliveries to prove and fuel costs to control. Without reliable data, losses and disputes are hard to explain.",
       items: ["Fleet management", "Driver and delivery tracking", "Stock management", "Digital delivery notes", "Fuel and maintenance tracking", "Reporting"] },
-    { id: "telecoms-digital-services", title: "Telecoms and digital services", links: [l.dev, l.it],
+    { id: "telecommunications-services-numeriques", title: "Telecoms and digital services", links: [l.dev, l.it],
       issues: "Services that must stay available, many internal processes and users who expect quick answers. Teams need tools that keep pace with the business.",
       items: ["Application development", "Process digitisation", "Data and reporting", "IT service management", "User support", "IT maintenance"] },
-    { id: "retail-distribution", title: "Retail and distribution", links: [l.waypilot, l.waypulse, l.dev],
+    { id: "commerce-distribution", title: "Retail and distribution", links: [l.waypilot, l.waypulse, l.dev],
       issues: "Online and in-store sales, large catalogues, customers to keep and margins to protect. A wrong price or a missing product page costs sales without anyone noticing.",
       items: ["E-commerce platforms", "Catalogue management and checks", "Customer relationship management (CRM)", "Sales automation", "Sales analysis", "Distribution"] },
-    { id: "health-education", title: "Health and education", links: [l.waycare, l.formation],
+    { id: "sante-education", title: "Health and education", links: [l.waycare, l.formation],
       issues: "Facilities to organise, records to keep, patients or learners to follow over time, often with limited resources and an unreliable internet connection.",
       items: ["Digital health platforms", "Appointments and teleconsultation", "Facility management", "Online learning", "Activity monitoring", "Dashboards"] },
   ];
@@ -117,6 +118,9 @@ function sectors(locale: Locale): Sector[] {
       items: ["Plateformes de santé numériques", "Prise de rendez-vous et téléconsultation", "Gestion des établissements", "Formation en ligne", "Suivi des activités", "Tableaux de bord"] },
   ];
 }
+
+/** Ancres et titres des huit secteurs, pour les menus. */
+export const sectorNav = (locale: Locale) => sectors(locale).map(({ id, title }) => ({ id, title }));
 
 export const sectorsMeta = (locale: Locale) => meta("/secteurs-dactivite", TX[locale].title, TX[locale].desc, locale);
 
