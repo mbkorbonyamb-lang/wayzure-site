@@ -136,7 +136,3 @@ p { text-wrap: pretty; }
 @media (prefers-reduced-motion: reduce) { ::view-transition-old(root), ::view-transition-new(root) { animation: none; } }
 
 /* Bande défilante des logos clients : boucle continue, pause au survol, statique si animations réduites. */
-@keyframes marquee { to { transform: translateX(-50%); } }
-.marquee { animation: marquee var(--speed, 40s) linear infinite; }
-.marquee-wrap:hover .marquee { animation-play-state: paused; }
-@media (prefers-reduced-motion: reduce) { .marquee { animation: none; flex-wrap: wrap; justify-content: center; } .marquee [data-dup] { display: none; } }
