@@ -21,11 +21,12 @@ export const COMPANY = {
 
 // Réseaux sociaux affichés dans le pied de page et déclarés à Google (sameAs).
 // Un réseau sans adresse (null) n'apparaît nulle part.
-export type SocialName = "LinkedIn" | "Facebook" | "Instagram" | "X";
+export type SocialName = "LinkedIn" | "Facebook" | "Instagram" | "YouTube" | "X";
 export const SOCIALS: { name: SocialName; url: string | null }[] = [
   { name: "LinkedIn", url: COMPANY.linkedin },
   { name: "Facebook", url: "https://www.facebook.com/Wayzure" },
   { name: "Instagram", url: "https://www.instagram.com/wayzure" },
+  { name: "YouTube", url: "https://www.youtube.com/@wayzure3150" },
   { name: "X", url: null },
 ];
 export const SOCIAL_LINKS = SOCIALS.filter((s): s is { name: typeof s.name; url: string } => Boolean(s.url));
