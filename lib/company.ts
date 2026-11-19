@@ -1,7 +1,7 @@
 // Informations légales et coordonnées : une seule source pour tout le site (accueil, contact, mentions légales).
 // Une valeur à null n'est pas affichée.
 
-export const SITE_URL = (process.env.NEXT_PUBLIC_SITE_URL || "https://wayzure.com").replace(/\/$/, "");
+export const SITE_URL = (process.env.NEXT_PUBLIC_SITE_URL || "https://www.wayzure.com").replace(/\/$/, "");
 
 export const COMPANY = {
   name: "Wayzure",

@@ -90,7 +90,10 @@ const nextConfig: NextConfig = {
   },
   async redirects() {
     // Une barre finale (/nous-contacter/) est d'abord retirée par Next.js, puis la règle s'applique.
-    return Object.entries(OLD).map(([source, destination]) => ({ source, destination, permanent: true }));
+    // L'adresse technique de Vercel (wayzure-site.vercel.app) renvoie vers le domaine officiel, pour qu'il n'existe
+    // qu'une version publique du site. Les aperçus de branche (wayzure-site-git-…) ne sont pas concernés.
+    const vercelHost = { source: "/:path*", has: [{ type: "host" as const, value: "wayzure-site.vercel.app" }], destination: "https://www.wayzure.com/:path*", permanent: true };
+    return [vercelHost, ...Object.entries(OLD).map(([source, destination]) => ({ source, destination, permanent: true }))];
   },
   async headers() {
     return [{
