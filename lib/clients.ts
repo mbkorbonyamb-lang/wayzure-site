@@ -5,11 +5,11 @@
 // meta / metaEn : secteur et pays, uniquement quand ils sont confirmés (rien d'inventé ; laisser vide sinon).
 export type ClientLogo = { name: string; src: string; w: number; h: number; tile?: boolean; meta?: string; metaEn?: string };
 export const CLIENT_LOGOS: ClientLogo[] = [
-  { name: "JAARAY", src: "/clients/jaaray.webp", w: 704, h: 320, tile: true, meta: "E-commerce", metaEn: "E-commerce" },
+  { name: "JAARAY", src: "/clients/jaaray.webp", w: 704, h: 320, tile: true, meta: "E-commerce · Maroc", metaEn: "E-commerce · Morocco" },
   { name: "Africa Fight League", src: "/clients/afl.webp", w: 640, h: 304, meta: "Sport de combat · France", metaEn: "Combat sports · France" },
   { name: "Direction générale du Fonds de l'hydraulique", src: "/clients/dgfh.webp", w: 261, h: 211, meta: "Administration publique · Guinée", metaEn: "Public administration · Guinea" },
   { name: "ASKALIA Logistique", src: "/clients/askalia.webp", w: 720, h: 354, meta: "Logistique et transport · Guinée", metaEn: "Logistics and transport · Guinea" },
-  { name: "Savané Industrie International", src: "/clients/savane.webp", w: 360, h: 353, meta: "Industrie", metaEn: "Industry" },
+  { name: "Savané Industrie International", src: "/clients/savane.webp", w: 360, h: 353, meta: "Industrie · Guinée", metaEn: "Industry · Guinea" },
   { name: "CECL", src: "/clients/cecl.webp", w: 704, h: 320, tile: true, meta: "Formation en ligne · Égypte", metaEn: "Online training · Egypt" },
   { name: "Modpresco", src: "/clients/modpresco.webp", w: 720, h: 157, meta: "Construction et services · Guinée", metaEn: "Construction and services · Guinea" },
   { name: "Villa Kijani", src: "/clients/villa-kijani.webp", w: 652, h: 244, meta: "Tastout Group · Guinée", metaEn: "Tastout Group · Guinea" },
