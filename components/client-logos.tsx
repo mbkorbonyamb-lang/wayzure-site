@@ -17,7 +17,7 @@ export function ClientLogos() {
         </span>
       ) : (
         <span className="grid h-20 w-44 place-items-center rounded-2xl bg-white px-6 ring-1 ring-black/5">
-          <Image src={c.src} alt={dup ? "" : c.name} width={c.w} height={c.h} className="h-12 w-auto max-w-[9.5rem] object-contain" />
+          <Image src={c.src} alt={dup ? "" : c.name} width={c.w} height={c.h} className={`${c.w / c.h < 1.8 ? "h-16" : "h-12"} w-auto max-w-[9.5rem] object-contain`} />
         </span>
       )}
     </li>
