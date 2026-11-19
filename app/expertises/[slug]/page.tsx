@@ -1,3 +1,4 @@
+import Image from "next/image";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import { Arrow, Check, CtaBand, Page, PageHero, SectionTitle } from "@/components/chrome";
@@ -122,6 +123,28 @@ export default async function ExpertisePage({ params }: Props) {
           )}
         </div>
       </section>
+
+      {e.cases && e.cases.length > 0 && (
+        <section className="border-t border-line bg-surface">
+          <div className="mx-auto max-w-7xl px-4 py-20 sm:px-6 lg:px-8">
+            <SectionTitle eyebrow="Références" title="Ils nous ont confié leur projet." />
+            <div className="mt-10 grid gap-5 md:grid-cols-2">
+              {e.cases.map((c, i) => (
+                <article key={c.client} data-reveal style={{ "--d": `${(i % 2) * 70}ms` } as React.CSSProperties} className="flex flex-col rounded-3xl border border-line bg-bg p-7 sm:p-8">
+                  {c.logo && (
+                    <span className="mb-6 grid h-24 w-full max-w-[16rem] place-items-center overflow-hidden rounded-2xl bg-white px-5 ring-1 ring-black/5">
+                      <Image src={c.logo} alt={c.client} width={720} height={360} className="h-[4.5rem] w-auto max-w-full object-contain" />
+                    </span>
+                  )}
+                  <h3 className="font-display text-xl font-semibold tracking-tight">{c.client}</h3>
+                  {c.context && <p className="mt-1 text-sm text-muted">{c.context}</p>}
+                  <p className="mt-4 leading-relaxed text-fg-2">{c.text}</p>
+                </article>
+              ))}
+            </div>
+          </div>
+        </section>
+      )}
 
       <CtaBand />
     </Page>

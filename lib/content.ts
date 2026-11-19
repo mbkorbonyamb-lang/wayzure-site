@@ -3,6 +3,9 @@
 
 export type Item = { t: string; d: string };
 
+// Référence client réelle, donnée par Moussa : ne rien ajouter qui n'ait été confirmé.
+export type Case = { client: string; logo?: string; context?: string; text: string };
+
 export type Expertise = {
   slug: string;
   name: string;
@@ -13,6 +16,7 @@ export type Expertise = {
   items: Item[]; // ce que nous faisons
   outcomes: string[]; // ce qui change concrètement
   solutions: Solution["slug"][]; // produits Wayzure liés, servent de preuve
+  cases?: Case[]; // références clients du pôle
   seo: string;
 };
 
@@ -71,6 +75,25 @@ export const EXPERTISES: Expertise[] = [
       "Des risques connus, classés et traités.",
     ],
     solutions: ["waypulse"],
+    cases: [
+      {
+        client: "Africa Fight League (AFL)",
+        logo: "/clients/afl.webp",
+        context: "Ligue de combat française · 2024",
+        text: "Conseil en stratégie et en organisation, de la conception du projet jusqu'à la première soirée de combat internationale de la ligue, organisée à Conakry. Nous avons aussi créé son logo.",
+      },
+      {
+        client: "ASKALIA Logistique",
+        logo: "/clients/askalia.webp",
+        context: "Logistique et transport, Guinée · 2024",
+        text: "Accompagnement à la rédaction de ses documents stratégiques et création de son logo.",
+      },
+      {
+        client: "Tastout Group SARL",
+        context: "Guinée · 2021",
+        text: "Conseil et accompagnement du groupe. Nous avons aussi conçu les logos de trois de ses marques : Villa Kijani, Écarlate et Khuru.",
+      },
+    ],
     seo: "Conseil en stratégie digitale, systèmes d'information, audit informatique, cybersécurité, cloud, AMOA et organisation des processus.",
   },
   {
@@ -99,6 +122,22 @@ export const EXPERTISES: Expertise[] = [
       "Un code documenté et des accès remis : vous restez propriétaire.",
     ],
     solutions: ["waylog", "waycare", "waypilot", "waypulse"],
+    cases: [
+      {
+        client: "Direction générale du Fonds de l'hydraulique (DGFH)",
+        logo: "/clients/dgfh.webp",
+        context: "Administration publique, Guinée · 2023",
+        text: "Accompagnement dans la digitalisation : conception du site web, puis passage des adresses Gmail personnelles à une messagerie professionnelle pour plus d'une trentaine de personnes.",
+      },
+      {
+        client: "Modpresco",
+        logo: "/clients/modpresco.webp",
+        context: "Construction et services",
+        text: "Création du logo, développement du site web et accompagnement dans la digitalisation de ses services et de son marketing.",
+      },
+      { client: "JAARAY", logo: "/clients/jaaray.webp", text: "Conception et développement du site jaaray.site." },
+      { client: "Larando Bio", text: "Conception et développement du site web." },
+    ],
     seo: "Développement de logiciels métiers, applications web et mobiles, plateformes SaaS, API, intégration ERP et CRM, modernisation applicative.",
   },
   {
