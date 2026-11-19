@@ -10,6 +10,7 @@ import { getContent } from "@/lib/content";
 import { href, type Locale, other, UI } from "@/lib/i18n";
 
 const nav = (l: Locale) => [
+  { href: href(l, "/secteurs-dactivite"), label: UI[l].sectors },
   { href: href(l, "/solutions"), label: UI[l].solutions },
   { href: href(l, "/a-propos"), label: UI[l].about },
 ];
@@ -44,7 +45,7 @@ function Header({ locale, path }: { locale: Locale; path: string }) {
     <header className="sticky top-0 z-50 border-b border-line/80 bg-bg/85 backdrop-blur-md">
       <div className="mx-auto flex h-16 max-w-7xl items-center justify-between gap-4 px-4 sm:px-6 lg:px-8">
         <Link href={href(locale, "/")} aria-label={u.homeAria} className="shrink-0"><Logo /></Link>
-        <nav aria-label={u.nav} className="hidden items-center gap-1 md:flex">
+        <nav aria-label={u.nav} className="hidden items-center gap-1 lg:flex">
           <div className="group relative">
             <Link href={href(locale, "/expertises")} className="inline-flex items-center gap-1 rounded-md px-3 py-2 text-sm text-fg-2 transition-colors hover:text-fg">
               {u.expertises}
@@ -67,12 +68,12 @@ function Header({ locale, path }: { locale: Locale; path: string }) {
               </div>
             </div>
           </div>
-          {nav(locale).map(n => <Link key={n.href} href={n.href} className="rounded-md px-3 py-2 text-sm text-fg-2 transition-colors hover:text-fg">{n.label}</Link>)}
+          {nav(locale).map(n => <Link key={n.href} href={n.href} className="whitespace-nowrap rounded-md px-3 py-2 text-sm text-fg-2 transition-colors hover:text-fg">{n.label}</Link>)}
           <LangSwitch locale={locale} path={path} className="ml-2" />
           <ThemeToggle locale={locale} className="ml-2" />
           <Link href={href(locale, "/contact")} className="ml-2 inline-flex items-center gap-2 rounded-full bg-btn px-4 py-2 text-sm font-medium text-white transition-colors hover:bg-[#055e8f]">{u.cta}</Link>
         </nav>
-        <div className="flex items-center gap-2 md:hidden">
+        <div className="flex items-center gap-2 lg:hidden">
           <LangSwitch locale={locale} path={path} />
           <ThemeToggle locale={locale} />
           <Link href={href(locale, "/contact")} className="rounded-full bg-btn px-4 py-2 text-sm font-medium text-white">{u.contact}</Link>
@@ -87,6 +88,7 @@ function Header({ locale, path }: { locale: Locale; path: string }) {
               {EXPERTISES.map(e => <Link key={e.slug} href={href(locale, `/expertises/${e.slug}`)} className="block rounded-lg px-3 py-3 text-base hover:bg-surface">{e.name}</Link>)}
               <p className="px-3 pb-1 pt-3 text-xs text-muted">{u.transversal}</p>
               <Link href={href(locale, `/expertises/${IT_SERVICES.slug}`)} className="block rounded-lg px-3 py-3 text-base hover:bg-surface">{IT_SERVICES.name}</Link>
+              <Link href={href(locale, "/secteurs-dactivite")} className="mt-2 block rounded-lg px-3 py-3 text-base font-medium hover:bg-surface">{u.sectors}</Link>
               <Link href={href(locale, "/solutions")} className="block px-3 pb-1 pt-4 text-xs font-medium uppercase tracking-wider text-muted hover:text-accent">{u.solutions}</Link>
               <div className="grid grid-cols-2 gap-1">
                 {SOLUTIONS.map(s => <Link key={s.slug} href={href(locale, `/solutions/${s.slug}`)} className="block rounded-lg px-3 py-3 text-base hover:bg-surface">{s.name}</Link>)}
@@ -138,6 +140,7 @@ function Footer({ locale }: { locale: Locale }) {
           </ul>
           <p className="mt-7 text-sm font-semibold text-white">Wayzure</p>
           <ul className="mt-4 space-y-2.5 text-sm text-on-deep-2">
+            <li><Link href={h("/secteurs-dactivite")} className="hover:text-white">{u.sectors}</Link></li>
             <li><Link href={h("/a-propos")} className="hover:text-white">{u.about}</Link></li>
             <li><Link href={h("/carrieres")} className="hover:text-white">{u.careers}</Link></li>
             <li><Link href={h("/contact")} className="hover:text-white">{u.contact}</Link></li>

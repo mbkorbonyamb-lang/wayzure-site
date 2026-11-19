@@ -30,5 +30,17 @@ export const POLE_PHOTOS: Record<string, Photo> = {
 /** Photo d'illustration de certaines pages produit. */
 export const SOLUTION_PHOTOS: Record<string, Photo> = { waycare: PHOTOS.sante };
 
+/** Photo de chaque secteur, dans l'ordre de la page « Secteurs d'activité ». Vérifiées visuellement le 2026-11-19. */
+export const SECTOR_PHOTOS: Photo[] = [
+  P("1642929264315-ada2f8c9ecb9", "Une femme en hijab consulte une tablette dans un bureau.", "A woman in a hijab looks at a tablet in an office.", "Francis Odeyemi", 1200, 1600),
+  P("1758691737543-09a1b2b715fa", "Une équipe échange en réunion dans un bureau moderne.", "A team talks in a meeting in a modern office.", "Vitaly Gariev"),
+  P("1688841747582-41097036109d", "Un technicien souriant, casque de chantier et gilet orange.", "A smiling technician wearing a hard hat and an orange vest.", "Joseph Okon"),
+  P("1741874299706-2b8e16839aaa", "Un agriculteur examine ses cultures dans un champ verdoyant.", "A farmer checks his crops in a green field.", "Richard Nyoni"),
+  P("1759272548449-7b689a81c8fb", "Deux agents en casque et gilet de sécurité consultent une tablette près de conteneurs.", "Two workers in hard hats and safety vests check a tablet near shipping containers.", "Haris Illahi"),
+  P("1586980702112-04d8d47734b5", "Un technicien répare du matériel électronique dans un atelier.", "A technician repairs electronic equipment in a workshop.", "uBreakiFix"),
+  P("1687422808384-c896d0efd4ab", "Une commerçante encaisse un client devant sa boutique.", "A shopkeeper takes a payment from a customer in front of her shop.", "Ali Mkumbwa"),
+  P("1632215861513-130b66fe97f4", "Une élève lit sur une tablette dans une salle de classe.", "A student reads on a tablet in a classroom.", "Emmanuel Ikwuegbu"),
+];
+
 // Source en 2400 px : l'optimiseur de Next.js en tire ensuite chaque taille utile (AVIF ou WebP).
 export const photoSrc = (p: Photo) => `https://images.unsplash.com/photo-${p.id}?w=2400&q=85&fm=jpg&fit=max`;

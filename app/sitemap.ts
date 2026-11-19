@@ -9,6 +9,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     ["", 1],
     ["/expertises", 0.9],
     ...ALL_EXPERTISES.map(e => [`/expertises/${e.slug}`, 0.8] as [string, number]),
+    ["/secteurs-dactivite", 0.8],
     ["/solutions", 0.9],
     ...SOLUTIONS.map(s => [`/solutions/${s.slug}`, 0.7] as [string, number]),
     ["/a-propos", 0.6],
