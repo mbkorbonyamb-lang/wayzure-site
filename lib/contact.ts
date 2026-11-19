@@ -8,3 +8,14 @@ export const TOPICS = [
   "WayPulse, WayPilot, WayLog ou Waycare",
   "Autre demande",
 ] as const;
+
+/** Libellés anglais des sujets (la valeur envoyée reste le sujet français). */
+export const TOPICS_EN: Record<(typeof TOPICS)[number], string> = {
+  "Data & Intelligence artificielle": "Data & artificial intelligence",
+  "Conseil": "Consulting",
+  "Développement numérique": "Software development",
+  "Formation": "Training",
+  "Services IT": "IT services",
+  "WayPulse, WayPilot, WayLog ou Waycare": "WayPulse, WayPilot, WayLog or Waycare",
+  "Autre demande": "Other request",
+};

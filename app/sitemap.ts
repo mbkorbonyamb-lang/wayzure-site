@@ -1,6 +1,7 @@
 import type { MetadataRoute } from "next";
 import { SITE_URL } from "@/lib/company";
 import { ALL_EXPERTISES, SOLUTIONS } from "@/lib/content";
+import { href } from "@/lib/i18n";
 import { FILM, SHOTS } from "@/lib/media";
 
 export default function sitemap(): MetadataRoute.Sitemap {
@@ -23,8 +24,16 @@ export default function sitemap(): MetadataRoute.Sitemap {
     "/solutions": SOLUTIONS.map(s => SHOTS[s.slug]?.[0]?.src).filter((x): x is string => Boolean(x)),
     ...Object.fromEntries(SOLUTIONS.map(s => [`/solutions/${s.slug}`, (SHOTS[s.slug] ?? []).map(x => x.src)])),
   };
-  return pages.map(([path, priority]) => ({
-    url: `${SITE_URL}${path}`, priority, changeFrequency: "monthly", lastModified: new Date("2026-11-18"),
-    ...(images[path]?.length ? { images: images[path].map(src => `${SITE_URL}${src}`) } : {}),
-  }));
+  // Chaque page existe en français et en anglais, sauf les pages légales (en français seulement).
+  const frOnly = new Set(["/mentions-legales", "/confidentialite"]);
+  const url = (locale: "fr" | "en", path: string) => `${SITE_URL}${href(locale, path || "/").replace(/^\/$/, "")}`;
+  return pages.flatMap(([path, priority]) => {
+    const common = {
+      priority, changeFrequency: "monthly" as const, lastModified: new Date("2026-11-19"),
+      ...(images[path]?.length ? { images: images[path].map(src => `${SITE_URL}${src}`) } : {}),
+    };
+    if (frOnly.has(path)) return [{ url: url("fr", path), ...common }];
+    const alternates = { languages: { fr: url("fr", path), en: url("en", path) } };
+    return [{ url: url("fr", path), ...common, alternates }, { url: url("en", path), ...common, alternates }];
+  });
 }

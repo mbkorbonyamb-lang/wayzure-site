@@ -3,13 +3,14 @@
 // (aucune requête ni cookie tiers).
 import Image from "next/image";
 import type { ReactNode } from "react";
+import type { Locale } from "@/lib/i18n";
 import { type Photo as PhotoT, photoSrc } from "@/lib/photos";
 
-export function Photo({ photo, sizes, priority = false, className = "" }: { photo: PhotoT; sizes: string; priority?: boolean; className?: string }) {
+export function Photo({ photo, sizes, priority = false, className = "", locale = "fr" }: { photo: PhotoT; sizes: string; priority?: boolean; className?: string; locale?: Locale }) {
   return (
     <Image
       src={photoSrc(photo)}
-      alt={photo.alt}
+      alt={locale === "en" ? photo.altEn : photo.alt}
       width={photo.w}
       height={photo.h}
       sizes={sizes}
@@ -21,12 +22,12 @@ export function Photo({ photo, sizes, priority = false, className = "" }: { phot
 }
 
 /** Photo d'en-tête : coins arrondis, ombre douce, fondu à l'arrivée. */
-export function HeroPhoto({ photo, sizes = "(min-width: 1024px) 560px, 100vw", priority = true, className = "", children }: { photo: PhotoT; sizes?: string; priority?: boolean; className?: string; children?: ReactNode }) {
+export function HeroPhoto({ photo, sizes = "(min-width: 1024px) 560px, 100vw", priority = true, className = "", children, locale = "fr" }: { photo: PhotoT; sizes?: string; priority?: boolean; className?: string; children?: ReactNode; locale?: Locale }) {
   return (
     <div className={`relative ${className}`}>
       <div aria-hidden className="absolute -inset-3 rounded-[2.4rem] bg-[linear-gradient(135deg,#0782c6,#7cc4ec)] opacity-20 blur-xl" />
       <div className="photo-in relative overflow-hidden rounded-[2rem] shadow-2xl shadow-[#0670aa]/15 ring-1 ring-black/5">
-        <Photo photo={photo} sizes={sizes} priority={priority} className="aspect-[4/3] w-full" />
+        <Photo photo={photo} sizes={sizes} priority={priority} locale={locale} className="aspect-[4/3] w-full" />
       </div>
       {children}
     </div>

@@ -325,3 +325,15 @@ export const KEY_FIGURES = [
   { value: 4, label: "Solutions éditées", detail: "WayPulse, WayPilot, WayLog et Waycare, en service." },
   { value: 20, suffix: "+", label: "Projets d'envergure réalisés", detail: "Pour des entreprises, des institutions et des associations." },
 ];
+
+// Version anglaise : lib/content-en.ts (mêmes slugs, mêmes faits).
+import { EXPERTISES_EN, IT_SERVICES_EN, KEY_FIGURES_EN, SOLUTIONS_EN, STEPS_EN } from "./content-en";
+import type { Locale } from "./i18n";
+
+/** Contenus du site dans une langue. */
+export function getContent(locale: Locale) {
+  if (locale === "en") {
+    return { EXPERTISES: EXPERTISES_EN, IT_SERVICES: IT_SERVICES_EN, ALL_EXPERTISES: [...EXPERTISES_EN, IT_SERVICES_EN], SOLUTIONS: SOLUTIONS_EN, STEPS: STEPS_EN, KEY_FIGURES: KEY_FIGURES_EN };
+  }
+  return { EXPERTISES, IT_SERVICES, ALL_EXPERTISES, SOLUTIONS, STEPS, KEY_FIGURES };
+}

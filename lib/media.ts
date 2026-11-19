@@ -7,45 +7,49 @@ export type Shot = {
   w: number;
   h: number;
   alt: string;
+  altEn: string;
   /** desktop : fenêtre de navigateur ; phone : téléphone ; document : feuille (rapport, bon). */
   frame: "desktop" | "phone" | "document";
   caption: string;
+  captionEn: string;
   url?: string;
 };
 
-export type Video = { mp4: string; webm: string; poster: string; w: number; h: number; title: string; duration: string; caption: string };
+export type Video = { mp4: string; webm: string; poster: string; w: number; h: number; title: string; titleEn: string; duration: string; caption: string; captionEn: string };
 
 export const SHOTS: Record<string, Shot[]> = {
   waypulse: [
-    { src: "/captures/waypulse/pipeline.webp", w: 1600, h: 1000, frame: "desktop", url: "waypulse.wayzure.com", alt: "WayPulse, tableau des opportunités et devis : chiffre pondéré, devis signés, revenu mensuel récurrent et colonnes Découverte, Proposition, Négociation, Gagnée.", caption: "Opportunités et devis, de la découverte à la signature." },
-    { src: "/captures/waypulse/veille.webp", w: 1600, h: 1000, frame: "desktop", url: "waypulse.wayzure.com", alt: "WayPulse, veille : entreprises qui ont montré un besoin dans les 30 derniers jours, avec la preuve, sa date et la personne à qui écrire.", caption: "La veille repère les entreprises qui ont une raison d'acheter." },
-    { src: "/captures/waypulse/fiche.webp", w: 1600, h: 1000, frame: "desktop", url: "waypulse.wayzure.com", alt: "WayPulse, fiche prospect : priorité, signaux datés et sourcés, interlocuteur à contacter.", caption: "Chaque prospect arrive avec ses signaux, datés et sourcés." },
-    { src: "/captures/waypulse/validation.webp", w: 1600, h: 1000, frame: "desktop", url: "waypulse.wayzure.com", alt: "WayPulse, validation : approche préparée par l'outil, à relire et valider avant tout envoi.", caption: "Rien ne part sans votre validation." },
+    { src: "/captures/waypulse/pipeline.webp", w: 1600, h: 1000, frame: "desktop", url: "waypulse.wayzure.com", alt: "WayPulse, tableau des opportunités et devis : chiffre pondéré, devis signés, revenu mensuel récurrent et colonnes Découverte, Proposition, Négociation, Gagnée.", altEn: "WayPulse, opportunities and quotes board: weighted value, signed quotes, monthly recurring revenue and Discovery, Proposal, Negotiation, Won columns.", caption: "Opportunités et devis, de la découverte à la signature.", captionEn: "Opportunities and quotes, from discovery to signature." },
+    { src: "/captures/waypulse/veille.webp", w: 1600, h: 1000, frame: "desktop", url: "waypulse.wayzure.com", alt: "WayPulse, veille : entreprises qui ont montré un besoin dans les 30 derniers jours, avec la preuve, sa date et la personne à qui écrire.", altEn: "WayPulse, monitoring: companies that showed a need in the last 30 days, with the evidence, its date and the person to write to.", caption: "La veille repère les entreprises qui ont une raison d'acheter.", captionEn: "Monitoring spots the companies that have a reason to buy." },
+    { src: "/captures/waypulse/fiche.webp", w: 1600, h: 1000, frame: "desktop", url: "waypulse.wayzure.com", alt: "WayPulse, fiche prospect : priorité, signaux datés et sourcés, interlocuteur à contacter.", altEn: "WayPulse, prospect record: priority, dated and sourced signals, contact person.", caption: "Chaque prospect arrive avec ses signaux, datés et sourcés.", captionEn: "Every prospect comes with its signals, dated and sourced." },
+    { src: "/captures/waypulse/validation.webp", w: 1600, h: 1000, frame: "desktop", url: "waypulse.wayzure.com", alt: "WayPulse, validation : approche préparée par l'outil, à relire et valider avant tout envoi.", altEn: "WayPulse, approval: approach prepared by the tool, to review and approve before anything is sent.", caption: "Rien ne part sans votre validation.", captionEn: "Nothing goes out without your approval." },
   ],
   waypilot: [
-    { src: "/captures/waypilot/rapport.webp", w: 1600, h: 1138, frame: "document", alt: "Rapport d'audit WayPilot : score qualité 86 %, 218 € de ventes en jeu, problèmes classés par effet sur les ventes.", caption: "Le rapport d'audit : score, ventes en jeu, problèmes classés par effet." },
+    { src: "/captures/waypilot/rapport.webp", w: 1600, h: 1138, frame: "document", alt: "Rapport d'audit WayPilot : score qualité 86 %, 218 € de ventes en jeu, problèmes classés par effet sur les ventes.", altEn: "WayPilot audit report: 86% quality score, €218 of sales at stake, issues ranked by their effect on sales.", caption: "Le rapport d'audit : score, ventes en jeu, problèmes classés par effet.", captionEn: "The audit report: score, sales at stake, issues ranked by effect." },
   ],
   waylog: [
-    { src: "/captures/waylog/suivi-mobile.webp", w: 780, h: 1688, frame: "phone", alt: "WayLog sur téléphone : bon de livraison WL-2026-00128, étapes horodatées créé, en transit, livré, et marchandises reçues.", caption: "Ce que reçoit le destinataire : étapes horodatées et marchandises." },
-    { src: "/captures/waylog/bon-signe.webp", w: 1323, h: 1234, frame: "document", alt: "Bon de livraison signé généré par WayLog : marchandises commandées et reçues, réserve du destinataire, signature, position GPS et QR code de vérification.", caption: "Le bon signé en PDF, avec réserve, GPS et QR de vérification." },
+    { src: "/captures/waylog/suivi-mobile.webp", w: 780, h: 1688, frame: "phone", alt: "WayLog sur téléphone : bon de livraison WL-2026-00128, étapes horodatées créé, en transit, livré, et marchandises reçues.", altEn: "WayLog on a phone: delivery note WL-2026-00128, time-stamped steps created, in transit, delivered, and goods received.", caption: "Ce que reçoit le destinataire : étapes horodatées et marchandises.", captionEn: "What the recipient sees: time-stamped steps and goods." },
+    { src: "/captures/waylog/bon-signe.webp", w: 1323, h: 1234, frame: "document", alt: "Bon de livraison signé généré par WayLog : marchandises commandées et reçues, réserve du destinataire, signature, position GPS et QR code de vérification.", altEn: "Signed delivery note generated by WayLog: goods ordered and received, recipient's reservation, signature, GPS position and verification QR code.", caption: "Le bon signé en PDF, avec réserve, GPS et QR de vérification.", captionEn: "The signed note as a PDF, with reservation, GPS and verification QR." },
   ],
   waycare: [
-    { src: "/captures/waycare/accueil-mobile.webp", w: 780, h: 1688, frame: "phone", alt: "Waycare sur téléphone : recherche d'un médecin vérifié en Guinée par spécialité et commune.", caption: "Trouver un médecin vérifié en Guinée." },
-    { src: "/captures/waycare/parcours-desktop.webp", w: 1600, h: 1314, frame: "desktop", url: "waycare.care", alt: "Waycare : prise de rendez-vous, dossier médical sécurisé et option diaspora pour gérer et régler les soins d'un proche en Guinée.", caption: "Rendez-vous, dossier médical et soins d'un proche à distance." },
-    { src: "/captures/waycare/pharmacies-mobile.webp", w: 780, h: 1688, frame: "phone", alt: "Waycare sur téléphone : réseau de pharmacies partenaires en Guinée et à l'international.", caption: "Le réseau de pharmacies partenaires." },
+    { src: "/captures/waycare/accueil-mobile.webp", w: 780, h: 1688, frame: "phone", alt: "Waycare sur téléphone : recherche d'un médecin vérifié en Guinée par spécialité et commune.", altEn: "Waycare on a phone: search for a verified doctor in Guinea by specialty and district.", caption: "Trouver un médecin vérifié en Guinée.", captionEn: "Find a verified doctor in Guinea." },
+    { src: "/captures/waycare/parcours-desktop.webp", w: 1600, h: 1314, frame: "desktop", url: "waycare.care", alt: "Waycare : prise de rendez-vous, dossier médical sécurisé et option diaspora pour gérer et régler les soins d'un proche en Guinée.", altEn: "Waycare: appointment booking, secure medical records and the diaspora option to manage and pay for a relative's care in Guinea.", caption: "Rendez-vous, dossier médical et soins d'un proche à distance.", captionEn: "Appointments, medical records and a relative's care from abroad." },
+    { src: "/captures/waycare/pharmacies-mobile.webp", w: 780, h: 1688, frame: "phone", alt: "Waycare sur téléphone : réseau de pharmacies partenaires en Guinée et à l'international.", altEn: "Waycare on a phone: network of partner pharmacies in Guinea and abroad.", caption: "Le réseau de pharmacies partenaires.", captionEn: "The partner pharmacy network." },
   ],
 };
 
 export const PRODUCT_VIDEOS: Record<string, Video> = {
   waypulse: {
     mp4: "/captures/waypulse/parcours.mp4", webm: "/captures/waypulse/parcours.webm", poster: "/captures/waypulse/parcours.webp", w: 1920, h: 1080,
-    title: "WayPulse, le parcours complet", duration: "PT42S",
+    title: "WayPulse, le parcours complet", titleEn: "WayPulse, the full journey", duration: "PT42S",
     caption: "Le parcours WayPulse en 42 secondes : identifier, détecter, trouver le décideur, qualifier, convertir.",
+    captionEn: "The WayPulse journey in 42 seconds: identify, detect, find the decision-maker, qualify, convert.",
   },
 };
 
 export const FILM: Video = {
   mp4: "/video/wayzure-film.mp4", webm: "/video/wayzure-film.webm", poster: "/video/wayzure-film.webp", w: 1920, h: 1080,
-  title: "Wayzure en 30 secondes", duration: "PT30S",
+  title: "Wayzure en 30 secondes", titleEn: "Wayzure in 30 seconds", duration: "PT30S",
   caption: "Nos quatre pôles, nos services IT et nos quatre logiciels, en 30 secondes.",
+  captionEn: "Our four practices, our IT services and our four software products, in 30 seconds.",
 };

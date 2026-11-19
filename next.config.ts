@@ -80,6 +80,8 @@ const CSP = [
 
 const nextConfig: NextConfig = {
   poweredByHeader: false,
+  // Deux mises en page racines (français et anglais) : la page 404 des adresses inconnues est définie à part.
+  experimental: { globalNotFound: true },
   trailingSlash: false,
   // Photos Unsplash récupérées côté serveur et servies depuis wayzure.com (aucune requête du visiteur vers Unsplash).
   images: {
