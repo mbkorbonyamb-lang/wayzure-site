@@ -5,4 +5,5 @@
 export type ClientLogo = { name: string; src: string; w: number; h: number; tile?: boolean };
 export const CLIENT_LOGOS: ClientLogo[] = [
   { name: "JAARAY", src: "/clients/jaaray.webp", w: 704, h: 320, tile: true },
+  { name: "Africa Fight League", src: "/clients/afl.webp", w: 640, h: 304 },
 ];

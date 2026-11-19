@@ -1,5 +1,5 @@
-// Bande des logos clients : CSS seul (aucun JavaScript), pause au survol. Logos transparents en niveaux de gris sur
-// cartouche blanc (lisibles en mode sombre), en couleur au survol ; logos sur fond de couleur (tile) affichés tels quels.
+// Bande des logos clients : CSS seul (aucun JavaScript), pause au survol. Logos transparents en couleur sur
+// cartouche blanc (lisibles en mode sombre) ; logos sur fond de couleur (tile) affichés tels quels.
 // Liste dans lib/clients.ts ; rien ne s'affiche tant qu'elle est vide, et pas de défilement sous 4 logos.
 import Image from "next/image";
 import { CLIENT_LOGOS } from "@/lib/clients";
@@ -17,7 +17,7 @@ export function ClientLogos() {
         </span>
       ) : (
         <span className="grid h-20 w-44 place-items-center rounded-2xl bg-white px-6 ring-1 ring-black/5">
-          <Image src={c.src} alt={dup ? "" : c.name} width={c.w} height={c.h} className="h-10 w-auto max-w-[9rem] object-contain opacity-70 grayscale transition duration-300 hover:opacity-100 hover:grayscale-0" />
+          <Image src={c.src} alt={dup ? "" : c.name} width={c.w} height={c.h} className="h-12 w-auto max-w-[9.5rem] object-contain" />
         </span>
       )}
     </li>

@@ -3,6 +3,9 @@
 
 export type Item = { t: string; d: string };
 
+// Référence client réelle, donnée par Moussa : ne rien ajouter qui n'ait été confirmé.
+export type Case = { client: string; logo?: string; context: string; text: string };
+
 export type Expertise = {
   slug: string;
   name: string;
@@ -13,6 +16,7 @@ export type Expertise = {
   items: Item[]; // ce que nous faisons
   outcomes: string[]; // ce qui change concrètement
   solutions: Solution["slug"][]; // produits Wayzure liés, servent de preuve
+  cases?: Case[]; // références clients du pôle
   seo: string;
 };
 
@@ -71,6 +75,14 @@ export const EXPERTISES: Expertise[] = [
       "Des risques connus, classés et traités.",
     ],
     solutions: ["waypulse"],
+    cases: [
+      {
+        client: "Africa Fight League (AFL)",
+        logo: "/clients/afl.webp",
+        context: "Ligue de combat française · 2024",
+        text: "Conseil en stratégie et en organisation, de la conception du projet jusqu'à la première soirée de combat internationale de la ligue, organisée à Conakry. Nous avons aussi créé son logo.",
+      },
+    ],
     seo: "Conseil en stratégie digitale, systèmes d'information, audit informatique, cybersécurité, cloud, AMOA et organisation des processus.",
   },
   {
