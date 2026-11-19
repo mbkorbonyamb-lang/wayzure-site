@@ -87,7 +87,7 @@ function Footer() {
       <div className="mx-auto grid max-w-7xl gap-12 px-4 py-16 sm:px-6 md:grid-cols-2 lg:grid-cols-[1.5fr_1fr_1fr_1.2fr] lg:px-8">
         <div>
           <Logo tone="white" />
-          <p className="mt-5 max-w-xs text-sm leading-relaxed text-on-deep-2">ESN et éditeur de solutions numériques. Data et IA, conseil, développement, formation et services IT, en France et en Guinée.</p>
+          <p className="mt-5 max-w-xs text-sm leading-relaxed text-on-deep-2">ESN et éditeur de solutions numériques, Wayzure accompagne les entreprises en Data &amp; IA, conseil, développement, formation et services IT, en France et en Guinée.</p>
           <ul className="mt-5 flex flex-wrap gap-x-5 gap-y-2">
             {SOCIAL_LINKS.map(n => (
               <li key={n.name}>
