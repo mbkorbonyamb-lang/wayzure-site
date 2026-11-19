@@ -8,6 +8,8 @@ export const CLIENT_LOGOS: ClientLogo[] = [
   { name: "Africa Fight League", src: "/clients/afl.webp", w: 640, h: 304 },
   { name: "Direction générale du Fonds de l'hydraulique", src: "/clients/dgfh.webp", w: 261, h: 211 },
   { name: "ASKALIA Logistique", src: "/clients/askalia.webp", w: 720, h: 354 },
+  { name: "Savané Industrie International", src: "/clients/savane.webp", w: 360, h: 353 },
+  { name: "CECL", src: "/clients/cecl.webp", w: 704, h: 320, tile: true },
   { name: "Modpresco", src: "/clients/modpresco.webp", w: 720, h: 157 },
   { name: "Villa Kijani", src: "/clients/villa-kijani.webp", w: 652, h: 244 },
   { name: "Écarlate", src: "/clients/ecarlate.webp", w: 720, h: 335 },
