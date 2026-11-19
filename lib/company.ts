@@ -27,7 +27,7 @@ export const SOCIALS: { name: SocialName; url: string | null }[] = [
   { name: "Facebook", url: "https://www.facebook.com/Wayzure" },
   { name: "Instagram", url: "https://www.instagram.com/wayzure" },
   { name: "YouTube", url: "https://www.youtube.com/@wayzure3150" },
-  { name: "X", url: null },
+  { name: "X", url: "https://x.com/wayzure1" },
 ];
 export const SOCIAL_LINKS = SOCIALS.filter((s): s is { name: typeof s.name; url: string } => Boolean(s.url));
 

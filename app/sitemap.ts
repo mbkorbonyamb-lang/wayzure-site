@@ -11,6 +11,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     ["/solutions", 0.9],
     ...SOLUTIONS.map(s => [`/solutions/${s.slug}`, 0.7] as [string, number]),
     ["/a-propos", 0.6],
+    ["/carrieres", 0.6],
     ["/contact", 0.8],
     ["/mentions-legales", 0.2],
     ["/confidentialite", 0.2],

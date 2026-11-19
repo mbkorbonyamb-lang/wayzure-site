@@ -1,5 +1,6 @@
 import Link from "next/link";
 import { Arrow, CtaBand, GridGlow, Page, PageHero, SectionTitle } from "@/components/chrome";
+import { JoinBand } from "@/components/join-band";
 import { HeroPhoto } from "@/components/photo";
 import { VideoPlayer } from "@/components/video-player";
 import { COMPANY, GUINEA } from "@/lib/company";
@@ -81,6 +82,8 @@ export default function APropos() {
           <Link href="/solutions" className="group inline-flex items-center gap-2 rounded-full border border-line px-5 py-3 text-sm font-medium hover:bg-surface">Nos solutions <Arrow /></Link>
         </div>
       </section>
+      <JoinBand />
+
       <CtaBand />
     </Page>
   );
