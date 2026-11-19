@@ -93,6 +93,12 @@ export const EXPERTISES: Expertise[] = [
         context: "Guinée · 2021",
         text: "Conseil et accompagnement du groupe. Nous avons aussi conçu les logos de trois de ses marques : Villa Kijani, Écarlate et Khuru.",
       },
+      {
+        client: "CECL",
+        logo: "/clients/cecl.webp",
+        context: "Formation en ligne, Le Caire · depuis 2022",
+        text: "Accompagnement de la réflexion jusqu'à la conception de son centre de formation en ligne.",
+      },
     ],
     seo: "Conseil en stratégie digitale, systèmes d'information, audit informatique, cybersécurité, cloud, AMOA et organisation des processus.",
   },
@@ -192,6 +198,14 @@ export const IT_SERVICES: Expertise = {
     "Des accès et des sauvegardes sous contrôle.",
   ],
   solutions: [],
+  cases: [
+    {
+      client: "Savané Industrie International",
+      logo: "/clients/savane.webp",
+      context: "Industrie",
+      text: "Maintenance du système informatique, du parc informatique et des caméras de surveillance.",
+    },
+  ],
   seo: "Support utilisateurs, helpdesk, administration systèmes et réseaux, maintenance et infogérance.",
 };
 
