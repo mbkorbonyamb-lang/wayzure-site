@@ -203,7 +203,7 @@ export const IT_SERVICES: Expertise = {
       client: "Savané Industrie International",
       logo: "/clients/savane.webp",
       context: "Industrie",
-      text: "Maintenance du système informatique, du parc informatique et des caméras de surveillance.",
+      text: "Maintenance du système informatique, du parc informatique et des systèmes de surveillance et de contrôle d'accès.",
     },
   ],
   seo: "Support utilisateurs, helpdesk, administration systèmes et réseaux, maintenance et infogérance.",

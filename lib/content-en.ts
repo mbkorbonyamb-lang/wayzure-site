@@ -184,7 +184,7 @@ export const IT_SERVICES_EN: Expertise = {
       client: "Savané Industrie International",
       logo: "/clients/savane.webp",
       context: "Industry",
-      text: "Maintenance of the IT system, the computer equipment and the CCTV cameras.",
+      text: "Maintenance of the IT system, the computer equipment, and the surveillance and access control systems.",
     },
   ],
   seo: "User support, helpdesk, systems and network administration, maintenance and managed IT services.",
