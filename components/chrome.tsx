@@ -91,10 +91,10 @@ function Header({ locale, path }: { locale: Locale; path: string }) {
           <ThemeToggle locale={locale} className="ml-2" />
           <Link href={href(locale, "/contact")} className="ml-2 inline-flex items-center gap-2 rounded-full bg-btn px-4 py-2 text-sm font-medium text-white transition-colors hover:bg-[#055e8f]">{u.cta}</Link>
         </nav>
-        <div className="flex items-center gap-2 lg:hidden">
+        <div className="flex items-center gap-1.5 lg:hidden">
           <LangSwitch locale={locale} path={path} />
           <ThemeToggle locale={locale} />
-          <Link href={href(locale, "/contact")} className="rounded-full bg-btn px-4 py-2 text-sm font-medium text-white">{u.contact}</Link>
+          <Link href={href(locale, "/contact")} className="hidden rounded-full bg-btn px-3 py-2 text-sm font-medium text-white min-[390px]:inline-flex">{u.contact}</Link>
           <details data-menu className="group/m">
             <summary className="flex size-10 cursor-pointer list-none items-center justify-center rounded-lg border border-line [&::-webkit-details-marker]:hidden" aria-label={u.menu}>
               <svg viewBox="0 0 20 20" className="size-5 group-open/m:hidden" fill="none" stroke="currentColor" strokeWidth={1.6} strokeLinecap="round" aria-hidden><path d="M3 6h14M3 10h14M3 14h14" /></svg>
