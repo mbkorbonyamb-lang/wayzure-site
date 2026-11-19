@@ -26,7 +26,7 @@ export const UI = {
     contact: "Contact",
     cta: "Parler de votre projet",
     menu: "Menu",
-    footerLine: "ESN et éditeur de solutions numériques, Wayzure accompagne les entreprises en Data & IA, conseil, développement, formation et services IT, en France et en Guinée.",
+    footerLine: "L'ingénierie numérique au service des transformations majeures. ESN et éditeur, Wayzure accompagne administrations, institutions et entreprises en France et en Guinée.",
     reach: "Nous joindre",
     france: "France",
     guinea: "Guinée",
@@ -40,6 +40,8 @@ export const UI = {
     switchTo: "English",
     switchAria: "View this page in English",
     trusted: "Ils nous font confiance",
+    poles: "Quatre pôles",
+    transversal: "Services IT transversaux",
   },
   en: {
     skip: "Skip to content",
@@ -53,7 +55,7 @@ export const UI = {
     contact: "Contact",
     cta: "Discuss your project",
     menu: "Menu",
-    footerLine: "An IT services company and software publisher, Wayzure supports organisations in data & AI, consulting, software development, training and IT services, in France and Guinea.",
+    footerLine: "Digital engineering for major transformations. An IT services company and software publisher, Wayzure supports administrations, institutions and companies in France and Guinea.",
     reach: "Get in touch",
     france: "France",
     guinea: "Guinea",
@@ -67,6 +69,8 @@ export const UI = {
     switchTo: "Français",
     switchAria: "Voir cette page en français",
     trusted: "They trust us",
+    poles: "Four practices",
+    transversal: "Cross-cutting IT services",
   },
 } as const;
 

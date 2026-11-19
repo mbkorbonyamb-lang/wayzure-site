@@ -27,7 +27,7 @@ export const EXPERTISES_EN: Expertise[] = [
       "AI used within clear limits: protected data, verifiable results.",
     ],
     solutions: ["waypulse", "waypilot"],
-    seo: "Data analytics, business intelligence, generative AI and intelligent automation for companies and organisations in France and Guinea.",
+    seo: "Data analytics, business intelligence, generative AI and intelligent automation for administrations, institutions and companies in France and Guinea.",
   },
   {
     slug: "conseil",
@@ -283,7 +283,7 @@ export const STEPS_EN: Item[] = [
 ];
 
 export const KEY_FIGURES_EN = [
-  { value: 2021, prefix: "since", label: "Serving businesses", detail: "Wayzure was founded in 2021 in Clamart, just outside Paris." },
+  { value: 2021, prefix: "since", label: "Serving public and private organisations", detail: "Wayzure was founded in 2021 in Clamart, just outside Paris." },
   { value: 2, label: "Markets", detail: "France and Guinea, with a company in each country." },
   { value: 4, label: "Software products", detail: "WayPulse, WayPilot, WayLog and Waycare, in service." },
   { value: 20, suffix: "+", label: "Major projects delivered", detail: "For companies, institutions and non-profits." },

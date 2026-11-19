@@ -38,7 +38,7 @@ function LangSwitch({ locale, path, className = "" }: { locale: Locale; path: st
 }
 
 function Header({ locale, path }: { locale: Locale; path: string }) {
-  const { ALL_EXPERTISES, SOLUTIONS } = getContent(locale);
+  const { EXPERTISES, IT_SERVICES, SOLUTIONS } = getContent(locale);
   const u = UI[locale];
   return (
     <header className="sticky top-0 z-50 border-b border-line/80 bg-bg/85 backdrop-blur-md">
@@ -52,12 +52,18 @@ function Header({ locale, path }: { locale: Locale; path: string }) {
             </Link>
             <div className="invisible absolute left-0 top-full w-80 translate-y-1 pt-2 opacity-0 transition-all duration-200 group-focus-within:visible group-focus-within:translate-y-0 group-focus-within:opacity-100 group-hover:visible group-hover:translate-y-0 group-hover:opacity-100">
               <div className="rounded-2xl border border-line bg-bg p-2 shadow-xl shadow-black/5">
-                {ALL_EXPERTISES.map(e => (
+                <p className="px-3 pb-1 pt-1.5 text-[0.7rem] font-medium uppercase tracking-wider text-muted">{u.poles}</p>
+                {EXPERTISES.map(e => (
                   <Link key={e.slug} href={href(locale, `/expertises/${e.slug}`)} className="block rounded-xl px-3 py-2.5 hover:bg-surface">
                     <span className="block text-sm font-medium text-fg">{e.name}</span>
                     <span className="block text-xs leading-snug text-muted">{e.lead}</span>
                   </Link>
                 ))}
+                <p className="mx-3 mt-1.5 border-t border-line px-0 pb-1 pt-3 text-[0.7rem] font-medium uppercase tracking-wider text-muted">{u.transversal}</p>
+                <Link href={href(locale, `/expertises/${IT_SERVICES.slug}`)} className="block rounded-xl px-3 py-2.5 hover:bg-surface">
+                  <span className="block text-sm font-medium text-fg">{IT_SERVICES.name}</span>
+                  <span className="block text-xs leading-snug text-muted">{IT_SERVICES.lead}</span>
+                </Link>
               </div>
             </div>
           </div>
@@ -76,15 +82,18 @@ function Header({ locale, path }: { locale: Locale; path: string }) {
               <svg viewBox="0 0 20 20" className="hidden size-5 group-open/m:block" fill="none" stroke="currentColor" strokeWidth={1.6} strokeLinecap="round" aria-hidden><path d="m5 5 10 10M15 5 5 15" /></svg>
             </summary>
             <div className="fixed inset-x-0 top-16 max-h-[calc(100dvh-4rem)] overflow-y-auto border-b border-line bg-bg px-4 pb-6 pt-3 shadow-xl">
-              <p className="px-3 pb-1 pt-2 text-xs font-medium uppercase tracking-wider text-muted">{u.expertises}</p>
-              {ALL_EXPERTISES.map(e => <Link key={e.slug} href={href(locale, `/expertises/${e.slug}`)} className="block rounded-lg px-3 py-3 text-base hover:bg-surface">{e.name}</Link>)}
-              <p className="px-3 pb-1 pt-4 text-xs font-medium uppercase tracking-wider text-muted">{u.solutions}</p>
+              {/* Menu mobile : chaque page n'y figure qu'une fois ; la langue et l'apparence restent dans la barre du haut. */}
+              <Link href={href(locale, "/expertises")} className="block px-3 pb-1 pt-2 text-xs font-medium uppercase tracking-wider text-muted hover:text-accent">{u.expertises}</Link>
+              {EXPERTISES.map(e => <Link key={e.slug} href={href(locale, `/expertises/${e.slug}`)} className="block rounded-lg px-3 py-3 text-base hover:bg-surface">{e.name}</Link>)}
+              <p className="px-3 pb-1 pt-3 text-xs text-muted">{u.transversal}</p>
+              <Link href={href(locale, `/expertises/${IT_SERVICES.slug}`)} className="block rounded-lg px-3 py-3 text-base hover:bg-surface">{IT_SERVICES.name}</Link>
+              <Link href={href(locale, "/solutions")} className="block px-3 pb-1 pt-4 text-xs font-medium uppercase tracking-wider text-muted hover:text-accent">{u.solutions}</Link>
               <div className="grid grid-cols-2 gap-1">
                 {SOLUTIONS.map(s => <Link key={s.slug} href={href(locale, `/solutions/${s.slug}`)} className="block rounded-lg px-3 py-3 text-base hover:bg-surface">{s.name}</Link>)}
               </div>
               <div className="my-3 border-t border-line" />
-              {nav(locale).map(n => <Link key={n.href} href={n.href} className="block rounded-lg px-3 py-3 text-base hover:bg-surface">{n.label}</Link>)}
-              <Link href={href(other(locale), path)} hrefLang={other(locale)} lang={other(locale)} className="block rounded-lg px-3 py-3 text-base hover:bg-surface">{u.switchTo}</Link>
+              <Link href={href(locale, "/a-propos")} className="block rounded-lg px-3 py-3 text-base hover:bg-surface">{u.about}</Link>
+              <Link href={href(locale, "/carrieres")} className="block rounded-lg px-3 py-3 text-base hover:bg-surface">{u.careers}</Link>
               <Link href={href(locale, "/contact")} className="mt-3 block rounded-full bg-btn px-3 py-3.5 text-center text-base font-medium text-white">{u.cta}</Link>
             </div>
           </details>

@@ -1,7 +1,7 @@
 import { ImageResponse } from "next/og";
 import { MARK_D, WORD_REST_D, WORD_W_D } from "@/lib/logo-paths";
 
-export const alt = "Wayzure : le numérique qui fait avancer votre entreprise";
+export const alt = "Wayzure : l'ingénierie numérique au service des transformations majeures";
 export const size = { width: 1200, height: 630 };
 export const contentType = "image/png";
 
@@ -18,7 +18,7 @@ export default function Image() {
           <img src={word} width={172} height={40} alt="" />
         </div>
         <div style={{ display: "flex", flexDirection: "column" }}>
-          <span style={{ fontSize: 72, fontWeight: 700, lineHeight: 1.08, letterSpacing: -1.5 }}>Le numérique qui fait avancer votre entreprise.</span>
+          <span style={{ fontSize: 64, fontWeight: 700, lineHeight: 1.08, letterSpacing: -1.5 }}>L’ingénierie numérique au service des transformations majeures.</span>
           <span style={{ fontSize: 30, marginTop: 30, color: "#7cc4ec" }}>Data & IA · Conseil · Développement numérique · Formation</span>
         </div>
       </div>

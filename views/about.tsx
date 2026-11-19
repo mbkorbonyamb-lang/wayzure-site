@@ -12,18 +12,22 @@ import { meta } from "@/lib/seo";
 const TX = {
   fr: {
     title: "À propos",
-    desc: "Wayzure est une ESN et un éditeur de solutions numériques fondé en 2021 à Clamart, présent en France et en Guinée.",
+    desc: "Wayzure, ESN et éditeur de solutions numériques fondé en 2021 à Clamart : mission, valeurs et implantations en France et en Guinée.",
     h1: "Une ESN qui édite aussi ses propres logiciels.",
-    intro: "Wayzure a été fondée en 2021 à Clamart, aux portes de Paris. Nous accompagnons entreprises et organisations sur leurs données, leurs systèmes, leurs applications et la formation de leurs équipes, en France et en Guinée.",
+    intro: "Wayzure a été fondée en 2021 à Clamart, aux portes de Paris. Nous accompagnons administrations publiques, institutions et entreprises sur leurs données, leurs systèmes, leurs applications et la formation de leurs équipes, en France et en Guinée.",
+    signature: "L'ingénierie numérique au service des transformations majeures.",
+    missionEyebrow: "Notre mission",
+    mission: "Accompagner la modernisation des administrations publiques, des institutions et des entreprises par la conception et le déploiement de systèmes numériques fiables, sécurisés et adaptés aux réalités du terrain, avec un impact opérationnel mesurable et un transfert de compétences garantissant l'autonomie des équipes.",
+    valuesEyebrow: "Nos valeurs",
     approach: "Notre approche", approachTitle: "Le métier d'abord, l'outil ensuite.",
     p1: "Beaucoup de projets numériques déçoivent parce que l'outil a été choisi avant que le problème soit posé. Nous commençons donc par comprendre le métier, et nous restons jusqu'à ce que l'outil soit adopté.",
     p2: "Nous éditons aussi nos propres logiciels : WayPulse pour la prospection commerciale, WayPilot pour l'e-commerce, WayLog pour la logistique et Waycare pour la santé.",
     p3: (n: string) => `Wayzure est dirigée par son fondateur, ${n}.`,
-    principles: [
-      { t: "Dire ce qu'on livre, livrer ce qu'on dit", d: "Nous n'affichons que ce que nous savons faire. Quand un besoin sort de notre champ, nous le disons et nous orientons vers quelqu'un de mieux placé." },
-      { t: "Un interlocuteur qui connaît le dossier", d: "La personne qui cadre votre projet est celle qui le suit. Vous n'avez pas à tout réexpliquer à chaque étape." },
-      { t: "Des outils que vous pouvez reprendre", d: "Code documenté, accès remis, équipes formées. Vous devez pouvoir continuer sans nous si vous le souhaitez." },
-      { t: "Éditeur autant que prestataire", d: "Nous exploitons nos propres logiciels. Nous savons ce que coûtent un incident, une mise à jour ratée ou un utilisateur perdu." },
+    values: [
+      { t: "Souveraineté & rigueur", d: "Maîtrise des données, sécurité, traçabilité et respect des cadres réglementaires." },
+      { t: "Pragmatisme opérationnel", d: "Résoudre des problèmes concrets, avec des résultats mesurables." },
+      { t: "Résilience terrain", d: "Concevoir des solutions robustes, adaptées aux contraintes d'infrastructure et aux usages réels." },
+      { t: "Transparence & autonomie", d: "Avancer sans effet tunnel, et rendre les équipes autonomes après le déploiement." },
     ],
     film: "Wayzure en 30 secondes", filmTitle: "Ce que nous faisons, en images.",
     france: "France", guinea: "Guinée",
@@ -33,18 +37,22 @@ const TX = {
   },
   en: {
     title: "About",
-    desc: "Wayzure is an IT services company and software publisher founded in 2021 in Clamart, near Paris, operating in France and Guinea.",
+    desc: "Wayzure, IT services company and software publisher founded in 2021 in Clamart, near Paris: mission, values and offices in France and Guinea.",
     h1: "An IT services company that also publishes its own software.",
-    intro: "Wayzure was founded in 2021 in Clamart, on the edge of Paris. We support companies and organisations with their data, systems, applications and staff training, in France and Guinea.",
+    intro: "Wayzure was founded in 2021 in Clamart, on the edge of Paris. We support public administrations, institutions and companies with their data, systems, applications and staff training, in France and Guinea.",
+    signature: "Digital engineering for major transformations.",
+    missionEyebrow: "Our mission",
+    mission: "To support the modernisation of public administrations, institutions and companies by designing and deploying digital systems that are reliable, secure and suited to conditions on the ground, with measurable operational impact and a transfer of skills that leaves teams self-sufficient.",
+    valuesEyebrow: "Our values",
     approach: "Our approach", approachTitle: "The business first, the tool second.",
     p1: "Many digital projects disappoint because the tool was chosen before the problem was understood. So we start by understanding the business, and we stay until the tool is adopted.",
     p2: "We also publish our own software: WayPulse for sales prospecting, WayPilot for e-commerce, WayLog for logistics and Waycare for healthcare.",
     p3: (n: string) => `Wayzure is run by its founder, ${n}.`,
-    principles: [
-      { t: "Say what we deliver, deliver what we say", d: "We only claim what we know how to do. When a need falls outside our scope, we say so and point you to someone better placed." },
-      { t: "One contact who knows your project", d: "The person who scopes your project is the one who follows it through. You don't have to explain everything again at each stage." },
-      { t: "Tools you can take over", d: "Documented code, handed-over access, trained teams. You should be able to carry on without us if you choose to." },
-      { t: "A publisher as much as a service provider", d: "We run our own software. We know the cost of an incident, a failed update or a lost user." },
+    values: [
+      { t: "Sovereignty & rigour", d: "Control over data, security, traceability and compliance with regulatory frameworks." },
+      { t: "Operational pragmatism", d: "Solving concrete problems, with measurable results." },
+      { t: "Field resilience", d: "Designing robust solutions suited to infrastructure constraints and real-world use." },
+      { t: "Transparency & autonomy", d: "No black box, and teams that run on their own after deployment." },
     ],
     film: "Wayzure in 30 seconds", filmTitle: "What we do, in pictures.",
     france: "France", guinea: "Guinea",
@@ -64,6 +72,14 @@ export function About({ locale = "fr" }: { locale?: Locale }) {
         <p className="mt-6 max-w-2xl text-lg leading-relaxed text-fg-2">{T.intro}</p>
       </PageHero>
 
+      <section className="mx-auto max-w-7xl px-4 pt-20 sm:px-6 lg:px-8">
+        <div data-reveal className="rounded-3xl border border-sky-2 bg-sky p-8 sm:p-12">
+          <p className="text-sm font-medium text-accent">{T.missionEyebrow}</p>
+          <p className="mt-3 font-display text-2xl font-semibold tracking-tight sm:text-3xl">{T.signature}</p>
+          <p className="mt-5 max-w-4xl text-lg leading-relaxed text-fg-2">{T.mission}</p>
+        </div>
+      </section>
+
       <section className="mx-auto max-w-7xl px-4 py-20 sm:px-6 lg:px-8">
         <div className="grid gap-12 lg:grid-cols-[1fr_1.3fr]">
           <div>
@@ -74,13 +90,16 @@ export function About({ locale = "fr" }: { locale?: Locale }) {
               <p>{T.p3(COMPANY.publisher.split(",")[0])}</p>
             </div>
           </div>
-          <div className="grid gap-4 sm:grid-cols-2">
-            {T.principles.map((p, i) => (
+          <div>
+          <p data-reveal className="text-sm font-medium text-accent">{T.valuesEyebrow}</p>
+          <div className="mt-4 grid gap-4 sm:grid-cols-2">
+            {T.values.map((p, i) => (
               <div key={p.t} data-reveal style={{ "--d": `${i * 70}ms` } as React.CSSProperties} className="rounded-3xl border border-line p-6">
                 <p className="font-display font-semibold">{p.t}</p>
                 <p className="mt-2 text-sm leading-relaxed text-fg-2">{p.d}</p>
               </div>
             ))}
+          </div>
           </div>
         </div>
       </section>
