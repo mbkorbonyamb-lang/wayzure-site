@@ -14,18 +14,24 @@ export const COMPANY = {
   email: "contact@wayzure.com",
   phone: "+33 6 61 35 86 52" as string | null, // numéro officiel (mentions légales, données structurées)
   phoneGuinea: "+224 627 04 45 70" as string | null,
+  whatsappGuinea: "+224 627 04 45 70" as string | null, // WhatsApp du bureau de Conakry
   publisher: "Moussa Baldé, Président",
   linkedin: "https://www.linkedin.com/company/wayzure1",
 };
 
 // Réseaux sociaux affichés dans le pied de page et déclarés à Google (sameAs).
 // Un réseau sans adresse (null) n'apparaît nulle part.
-export const SOCIALS: { name: "LinkedIn" | "Facebook" | "X"; url: string | null }[] = [
+export type SocialName = "LinkedIn" | "Facebook" | "Instagram" | "X";
+export const SOCIALS: { name: SocialName; url: string | null }[] = [
   { name: "LinkedIn", url: COMPANY.linkedin },
   { name: "Facebook", url: "https://www.facebook.com/Wayzure" },
+  { name: "Instagram", url: "https://www.instagram.com/wayzure" },
   { name: "X", url: null },
 ];
 export const SOCIAL_LINKS = SOCIALS.filter((s): s is { name: typeof s.name; url: string } => Boolean(s.url));
+
+/** Lien WhatsApp (wa.me) à partir d'un numéro au format international. */
+export const whatsappHref = (n: string, text?: string) => `https://wa.me/${n.replace(/\D/g, "")}${text ? `?text=${encodeURIComponent(text)}` : ""}`;
 
 export const GUINEA = {
   legalName: "Wayzure SASU",

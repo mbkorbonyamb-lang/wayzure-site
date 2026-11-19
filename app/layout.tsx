@@ -49,8 +49,8 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
     <html lang="fr" className={`${body.variable} ${head.variable}`} suppressHydrationWarning>
       <head>
         <link rel="preconnect" href="https://images.unsplash.com" />
-        {/* Active les animations d'apparition seulement si JavaScript tourne. */}
-        <script dangerouslySetInnerHTML={{ __html: "document.documentElement.classList.add('js')" }} />
+        {/* Active les animations d'apparition si JavaScript tourne, et applique l'apparence choisie avant l'affichage. */}
+        <script dangerouslySetInnerHTML={{ __html: "var d=document.documentElement;d.classList.add('js');try{var t=localStorage.getItem('theme');if(t==='light'||t==='dark')d.dataset.theme=t}catch(e){}" }} />
       </head>
       <body className="font-sans antialiased">
         <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: ORG_LD }} />

@@ -22,7 +22,7 @@
 }
 
 @media (prefers-color-scheme: dark) {
-  :root {
+  :root:not([data-theme="light"]) {
     --bg: #0a1216;
     --surface: #0f1b21;
     --border: #1f3039;
@@ -38,6 +38,23 @@
     --sky-2: #12303f;
   }
 }
+:root[data-theme="dark"] {
+    --bg: #0a1216;
+    --surface: #0f1b21;
+    --border: #1f3039;
+    --fg: #eef3f6;
+    --fg-2: #b3c1c8;
+    --muted: #82939b;
+    --accent: #3aa7e3;
+    --accent-hover: #63b9ea;
+    --accent-soft: #0f2a3a;
+    --deep: #122630;
+    --deep-2: #0b1a21;
+    --sky: #0d1d25;
+    --sky-2: #12303f;
+  }
+:root[data-theme="light"] { color-scheme: light; }
+:root[data-theme="dark"] { color-scheme: dark; }
 
 @theme inline {
   --font-sans: var(--font-body), ui-sans-serif, system-ui, -apple-system, "Segoe UI", sans-serif;
@@ -85,9 +102,11 @@ p { text-wrap: pretty; }
 
 .logo-dark { display: none !important; }
 @media (prefers-color-scheme: dark) {
-  .logo-light { display: none !important; }
-  .logo-dark { display: flex !important; }
+  :root:not([data-theme="light"]) .logo-light { display: none !important; }
+  :root:not([data-theme="light"]) .logo-dark { display: flex !important; }
 }
+:root[data-theme="dark"] .logo-light { display: none !important; }
+:root[data-theme="dark"] .logo-dark { display: flex !important; }
 
 @media (prefers-reduced-motion: reduce) {
   html { scroll-behavior: auto; }
@@ -115,3 +134,9 @@ p { text-wrap: pretty; }
 @keyframes vt-out { to { opacity: 0; } }
 @keyframes vt-in { from { opacity: 0; transform: translateY(6px); } }
 @media (prefers-reduced-motion: reduce) { ::view-transition-old(root), ::view-transition-new(root) { animation: none; } }
+
+/* Bande défilante des logos clients : boucle continue, pause au survol, statique si animations réduites. */
+@keyframes marquee { to { transform: translateX(-50%); } }
+.marquee { animation: marquee var(--speed, 40s) linear infinite; }
+.marquee-wrap:hover .marquee { animation-play-state: paused; }
+@media (prefers-reduced-motion: reduce) { .marquee { animation: none; flex-wrap: wrap; justify-content: center; } .marquee [data-dup] { display: none; } }

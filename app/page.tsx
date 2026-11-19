@@ -2,13 +2,15 @@ import Link from "next/link";
 import { Arrow, Check, CtaBand, GridGlow, Page, SectionTitle } from "@/components/chrome";
 import { ExpertiseIcon } from "@/components/icons";
 import { ProductMark } from "@/components/marks";
+import { ClientLogos } from "@/components/client-logos";
+import { KeyFigures } from "@/components/key-figures";
 import { HeroPhoto, Photo } from "@/components/photo";
 import { Testimonial } from "@/components/testimonial";
 import { SolutionVisual } from "@/components/solution-visual";
 import { VideoPlayer } from "@/components/video-player";
 import { JsonLd } from "@/components/json-ld";
 import { COMPANY, GUINEA, SITE_URL } from "@/lib/company";
-import { EXPERTISES, IT_SERVICES, SOLUTIONS, STEPS } from "@/lib/content";
+import { EXPERTISES, IT_SERVICES, KEY_FIGURES, SOLUTIONS, STEPS } from "@/lib/content";
 import { FILM } from "@/lib/media";
 import { PHOTOS, POLE_PHOTOS } from "@/lib/photos";
 
@@ -61,6 +63,19 @@ export default function Home() {
           </ul>
         </div>
       </section>
+
+      {/* Chiffres clés */}
+      <section className="mx-auto max-w-7xl px-4 pt-20 sm:px-6 lg:px-8">
+        <div data-reveal className="mb-8 flex flex-wrap items-end justify-between gap-4">
+          <div>
+            <p className="text-sm font-medium text-accent">Wayzure en chiffres</p>
+            <h2 className="mt-3 font-display text-3xl font-semibold tracking-tight sm:text-4xl">Une équipe installée, des logiciels en service.</h2>
+          </div>
+        </div>
+        <KeyFigures figures={KEY_FIGURES} />
+      </section>
+
+      <ClientLogos />
 
       {/* Problèmes et transformations */}
       <section className="mx-auto max-w-7xl px-4 py-24 sm:px-6 lg:px-8">
