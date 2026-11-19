@@ -32,9 +32,10 @@ const OLD: Record<string, string> = {
   "/aeronautique-et-deense": "/expertises",
   "/banque-assurance-et-tertiaire": "/expertises",
   "/actualites": "/",
-  "/carrieres": "/a-propos",
-  "/emplois": "/a-propos",
-  "/offres-demplois": "/a-propos",
+  "/emplois": "/carrieres",
+  "/offres-demplois": "/carrieres",
+  "/recrutement": "/carrieres",
+  "/nous-rejoindre": "/carrieres",
   "/realisations": "/solutions",
   // Adresses courtes, faciles à donner à l'oral ou sur un support imprimé.
   "/waypulse": "/solutions/waypulse",
@@ -63,7 +64,7 @@ const CSP = [
   "default-src 'self'",
   "script-src 'self' 'unsafe-inline'",
   "style-src 'self' 'unsafe-inline'",
-  "img-src 'self' data: blob: https://images.unsplash.com",
+  "img-src 'self' data: blob:",
   "media-src 'self'",
   "font-src 'self'",
   "connect-src 'self'",
@@ -80,6 +81,13 @@ const CSP = [
 const nextConfig: NextConfig = {
   poweredByHeader: false,
   trailingSlash: false,
+  // Photos Unsplash récupérées côté serveur et servies depuis wayzure.com (aucune requête du visiteur vers Unsplash).
+  images: {
+    remotePatterns: [{ protocol: "https", hostname: "images.unsplash.com", pathname: "/photo-*" }],
+    formats: ["image/avif", "image/webp"],
+    qualities: [72, 75],
+    minimumCacheTTL: 2678400,
+  },
   async redirects() {
     // Une barre finale (/nous-contacter/) est d'abord retirée par Next.js, puis la règle s'applique.
     return Object.entries(OLD).map(([source, destination]) => ({ source, destination, permanent: true }));

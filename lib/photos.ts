@@ -1,4 +1,4 @@
-// Photographies d'illustration, servies par le CDN d'Unsplash (licence Unsplash : usage commercial libre,
+// Photographies d'illustration issues d'Unsplash, servies depuis wayzure.com par l'optimiseur d'images (licence Unsplash : usage commercial libre,
 // sans obligation de crédit). Les personnes photographiées ne sont ni des collaborateurs ni des clients
 // de Wayzure : ne jamais les légender comme tels. Mention dans les mentions légales.
 
@@ -30,4 +30,5 @@ export const POLE_PHOTOS: Record<string, Photo> = {
 /** Photo d'illustration de certaines pages produit. */
 export const SOLUTION_PHOTOS: Record<string, Photo> = { waycare: PHOTOS.sante };
 
-export const photoSrc = (p: Photo) => `https://images.unsplash.com/photo-${p.id}`;
+// Source en 2400 px : l'optimiseur de Next.js en tire ensuite chaque taille utile (AVIF ou WebP).
+export const photoSrc = (p: Photo) => `https://images.unsplash.com/photo-${p.id}?w=2400&q=85&fm=jpg&fit=max`;

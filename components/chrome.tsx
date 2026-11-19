@@ -112,6 +112,7 @@ function Footer() {
           <p className="mt-7 text-sm font-semibold text-white">Wayzure</p>
           <ul className="mt-4 space-y-2.5 text-sm text-on-deep-2">
             <li><Link href="/a-propos" className="hover:text-white">À propos</Link></li>
+            <li><Link href="/carrieres" className="hover:text-white">Carrières</Link></li>
             <li><Link href="/contact" className="hover:text-white">Contact</Link></li>
           </ul>
         </div>

@@ -3,6 +3,7 @@ import { Arrow, Check, CtaBand, GridGlow, Page, SectionTitle } from "@/component
 import { ExpertiseIcon } from "@/components/icons";
 import { ProductMark } from "@/components/marks";
 import { ClientLogos } from "@/components/client-logos";
+import { JoinBand } from "@/components/join-band";
 import { KeyFigures } from "@/components/key-figures";
 import { HeroPhoto, Photo } from "@/components/photo";
 import { Testimonial } from "@/components/testimonial";
@@ -230,6 +231,8 @@ export default function Home() {
           </div>
         </div>
       </section>
+
+      <JoinBand />
 
       <CtaBand />
     </Page>
