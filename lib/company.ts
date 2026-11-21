@@ -14,7 +14,9 @@ export const COMPANY = {
   email: "contact@wayzure.com",
   phone: "+33 6 61 35 86 52" as string | null, // numéro officiel (mentions légales, données structurées)
   phoneGuinea: "+224 627 04 45 70" as string | null,
-  whatsappGuinea: "+224 627 04 45 70" as string | null, // WhatsApp du bureau de Conakry
+  whatsappGuinea: "+224 664 22 20 34" as string | null, // WhatsApp (donné par Moussa le 2026-11-21)
+  // Prise de rendez-vous : même lien que sur waypilot.wayzure.com (Cal.com). Ne pas en créer d'autre.
+  booking: "https://cal.com/waypilot" as string | null,
   publisher: "Moussa Baldé, Président",
   linkedin: "https://www.linkedin.com/company/wayzure1",
 };
@@ -33,6 +35,9 @@ export const SOCIAL_LINKS = SOCIALS.filter((s): s is { name: typeof s.name; url:
 
 /** Lien WhatsApp (wa.me) à partir d'un numéro au format international. */
 export const whatsappHref = (n: string, text?: string) => `https://wa.me/${n.replace(/\D/g, "")}${text ? `?text=${encodeURIComponent(text)}` : ""}`;
+
+/** Dossier « Présentation institutionnelle et capacités de partenariat » (scripts/dossier). */
+export const DOSSIER_PDF = "/documents/wayzure-presentation-institutionnelle.pdf";
 
 export const GUINEA = {
   legalName: "Wayzure SASU",

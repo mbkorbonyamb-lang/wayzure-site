@@ -170,6 +170,7 @@ function Footer({ locale }: { locale: Locale }) {
           <p className="mt-7 text-sm font-semibold text-white">Wayzure</p>
           <ul className="mt-4 space-y-2.5 text-sm text-on-deep-2">
             <li><Link href={h("/secteurs-dactivite")} className="hover:text-white">{u.sectors}</Link></li>
+            <li><Link href={h("/references")} className="hover:text-white">{u.references}</Link></li>
             <li><Link href={h("/a-propos")} className="hover:text-white">{u.about}</Link></li>
             <li><Link href={h("/nos-valeurs")} className="hover:text-white">{u.values}</Link></li>
             <li><Link href={h("/actualites")} className="hover:text-white">{u.news}</Link></li>
@@ -251,6 +252,7 @@ export function CtaBand({ title, text, locale = "fr" }: { title?: string; text?:
           <p className="mx-auto mt-4 max-w-xl text-lg text-white">{text ?? u.ctaText}</p>
           <div className="mt-9 flex flex-wrap justify-center gap-3">
             <Link href={href(locale, "/contact")} className="group inline-flex items-center gap-2 rounded-full bg-white px-6 py-3.5 text-sm font-medium text-[#0670aa] shadow-lg shadow-black/10 transition-colors hover:bg-[#eef7fd]">{u.write} <Arrow /></Link>
+            {COMPANY.booking && <a href={COMPANY.booking} target="_blank" rel="noopener" className="inline-flex items-center gap-2 rounded-full border border-white/60 px-6 py-3.5 text-sm font-medium text-white transition-colors hover:bg-white/10">{u.book}</a>}
             {COMPANY.phone && <a href={tel(COMPANY.phone)} className="inline-flex items-center gap-2 rounded-full border border-white/60 px-6 py-3.5 text-sm font-medium text-white transition-colors hover:bg-white/10">{COMPANY.phone}</a>}
           </div>
         </div>

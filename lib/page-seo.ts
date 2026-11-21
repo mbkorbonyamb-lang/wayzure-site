@@ -8,7 +8,7 @@ type Seo = { title: string; desc: string };
 
 type PageSeo = {
   home: Seo; expertises: Seo; sectors: Seo; solutions: Seo; about: Seo; values: Seo;
-  news: Seo; careers: Seo; contact: Seo;
+  news: Seo; careers: Seo; contact: Seo; references: Seo; caseAfl: Seo;
   expertise: Record<string, Seo>;
   solution: Record<string, Seo>;
   newsCategory: Record<string, string>;
@@ -47,6 +47,14 @@ export const PAGE_SEO: Record<Locale, PageSeo> = {
     careers: {
       title: "Carrières : rejoindre une ESN en France et en Guinée",
       desc: "Data et IA, conseil IT, développement d'applications, formation, services IT : envoyez votre candidature spontanée à Wayzure, ESN et éditeur de logiciels implantée en France et en Guinée.",
+    },
+    references: {
+      title: "Références : administrations, groupes et entreprises",
+      desc: "Direction générale du Fonds de l'hydraulique, Tastout Group, Africa Fight League, ASKALIA, Modpresco, JAARAY : les projets numériques et de conseil menés par Wayzure en Guinée, en France et au-delà.",
+    },
+    caseAfl: {
+      title: "AFL : d'une ambition sportive à une réalité institutionnelle",
+      desc: "Comment Wayzure a accompagné Africa Fight League : conseil stratégique, nom, identité visuelle, première ceinture et démarches institutionnelles, jusqu'aux premiers combats professionnels de MMA en Guinée.",
     },
     contact: {
       title: "Contact : parlez-nous de votre projet numérique",
@@ -131,6 +139,14 @@ export const PAGE_SEO: Record<Locale, PageSeo> = {
     careers: {
       title: "Careers: join an IT services company in France and Guinea",
       desc: "Data and AI, IT consulting, application development, training, IT services: send your speculative application to Wayzure, an IT services and software company in France and Guinea.",
+    },
+    references: {
+      title: "References: public bodies, groups and companies",
+      desc: "Guinea's Hydraulic Fund directorate, Tastout Group, Africa Fight League, ASKALIA, Modpresco, JAARAY: digital and consulting projects delivered by Wayzure in Guinea, France and beyond.",
+    },
+    caseAfl: {
+      title: "AFL: from sporting ambition to institutional reality",
+      desc: "How Wayzure supported Africa Fight League: strategy consulting, name, visual identity, first belt and institutional relations, through to the first professional MMA fights in Guinea.",
     },
     contact: {
       title: "Contact: tell us about your digital project",

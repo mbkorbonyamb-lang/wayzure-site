@@ -1,0 +1,338 @@
+<!doctype html>
+<!-- Dossier « Wayzure – Présentation institutionnelle et capacités de partenariat ».
+     Rendu PDF : NODE_PATH=/opt/node-tools/node_modules node scripts/dossier/render.mjs
+     Règle : aucun client, chiffre, certification ou résultat qui ne figure pas déjà, vérifié, sur le site. -->
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<title>Wayzure – Présentation institutionnelle et capacités de partenariat</title>
+<style>
+@font-face { font-family: "Inter"; src: url("../../app/fonts/inter-latin-var.woff2") format("woff2"); font-weight: 100 900; }
+@font-face { font-family: "Jakarta"; src: url("../../app/fonts/plus-jakarta-sans-latin-var.woff2") format("woff2"); font-weight: 200 800; }
+@page { size: A4; margin: 0; }
+:root { --blue: #0782C6; --deep: #19323E; --sky: #EEF7FD; --sky2: #D6ECF9; --fg: #14232b; --fg2: #46575f; --muted: #6b7b83; --line: #dfe7eb; }
+* { box-sizing: border-box; margin: 0; padding: 0; }
+html, body { font-family: "Inter", sans-serif; color: var(--fg); font-size: 9.6pt; line-height: 1.5; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+h1, h2, h3, .display { font-family: "Jakarta", sans-serif; letter-spacing: -0.015em; }
+.page { width: 210mm; height: 297mm; padding: 16mm 17mm 18mm; position: relative; overflow: hidden; page-break-after: always; break-after: page; }
+.page:last-child { page-break-after: auto; break-after: auto; }
+.foot { position: absolute; left: 18mm; right: 18mm; bottom: 10mm; display: flex; justify-content: space-between; font-size: 7.5pt; color: var(--muted); border-top: 1px solid var(--line); padding-top: 3mm; }
+.eyebrow { font-size: 8.5pt; font-weight: 600; letter-spacing: .08em; text-transform: uppercase; color: var(--blue); }
+h2 { font-size: 19pt; line-height: 1.15; margin-top: 3mm; color: var(--deep); }
+h3 { font-size: 12pt; line-height: 1.3; color: var(--deep); }
+p + p { margin-top: 2.5mm; }
+.lead { font-size: 10.5pt; color: var(--fg2); margin-top: 3.5mm; max-width: 155mm; }
+.grid2 { display: grid; grid-template-columns: 1fr 1fr; gap: 3.5mm; }
+.grid3 { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 3mm; }
+.card { border: 1px solid var(--line); border-radius: 3.5mm; padding: 4mm; background: #fff; }
+.card.sky { background: var(--sky); border-color: var(--sky2); }
+.card p { color: var(--fg2); font-size: 8.9pt; }
+.card h3 { margin-bottom: 1.5mm; }
+ul.dots { list-style: none; margin-top: 2mm; }
+ul.dots li { position: relative; padding-left: 4mm; color: var(--fg2); font-size: 8.7pt; }
+ul.dots li + li { margin-top: .8mm; }
+ul.dots li::before { content: ""; position: absolute; left: 0; top: 2.1mm; width: 1.6mm; height: 1.6mm; border-radius: 50%; background: var(--blue); }
+.tag { display: inline-block; font-size: 7.5pt; font-weight: 600; color: var(--blue); background: var(--sky); border-radius: 99px; padding: .6mm 2.6mm; margin-top: 2mm; }
+.mt4 { margin-top: 4mm; } .mt6 { margin-top: 4.5mm; } .mt8 { margin-top: 6mm; } .mt10 { margin-top: 8mm; }
+.deep { background: var(--deep); color: #fff; }
+.deep .eyebrow { color: #7cc4ec; }
+.deep h2, .deep h3 { color: #fff; }
+.deep p, .deep li { color: #cfdde4; }
+
+/* Couverture */
+.cover { background: linear-gradient(150deg, #0670aa 0%, #0782C6 45%, #19323E 100%); color: #fff; padding: 24mm 20mm; }
+.cover .logo { height: 13mm; }
+.cover h1 { font-size: 34pt; line-height: 1.08; margin-top: 62mm; max-width: 160mm; }
+.cover .sub { font-size: 13pt; margin-top: 8mm; color: #dff1fb; max-width: 140mm; }
+.cover .meta { position: absolute; left: 20mm; right: 20mm; bottom: 22mm; display: flex; justify-content: space-between; align-items: flex-end; font-size: 9.5pt; color: #dff1fb; }
+.cover .glow { position: absolute; right: -60mm; top: -40mm; width: 170mm; height: 170mm; border-radius: 50%; background: rgba(255,255,255,.10); }
+.cover .glow2 { position: absolute; left: -50mm; bottom: -70mm; width: 150mm; height: 150mm; border-radius: 50%; background: rgba(124,196,236,.18); }
+
+.figs { display: grid; grid-template-columns: repeat(4, 1fr); gap: 4mm; }
+.fig { border-left: 2px solid var(--blue); padding-left: 3.5mm; }
+.fig b { display: block; font-family: "Jakarta"; font-size: 20pt; color: var(--deep); line-height: 1.1; }
+.fig span { font-size: 8.5pt; color: var(--fg2); }
+
+.toc { margin-top: 6mm; columns: 2; column-gap: 10mm; }
+.toc li { list-style: none; padding: 1.4mm 0; border-bottom: 1px solid var(--line); font-size: 9.6pt; break-inside: avoid; display: flex; gap: 3mm; }
+.toc li b { color: var(--blue); font-family: "Jakarta"; width: 7mm; }
+
+.prod { display: grid; grid-template-columns: 1fr 1fr; gap: 5mm; }
+.prod .card { padding: 0; overflow: hidden; }
+.prod .shot { height: 34mm; background: var(--sky); display: flex; align-items: flex-start; justify-content: center; overflow: hidden; border-bottom: 1px solid var(--line); }
+.prod .shot img { width: 100%; height: auto; display: block; }
+.prod .body { padding: 4.5mm 5mm 5mm; }
+.prod .cat { font-size: 8pt; font-weight: 600; color: var(--blue); text-transform: uppercase; letter-spacing: .06em; }
+.prod h3 { font-size: 14pt; margin-top: .5mm; }
+.prod .kv { margin-top: 2.5mm; font-size: 8.3pt; color: var(--muted); }
+.prod .kv b { color: var(--fg); font-weight: 600; }
+
+.refs { display: grid; grid-template-columns: 1fr 1fr; gap: 3mm; }
+.ref { display: grid; grid-template-columns: 22mm 1fr; gap: 3.5mm; align-items: start; border: 1px solid var(--line); border-radius: 3.5mm; padding: 3.2mm; }
+.ref .logo { height: 13mm; border-radius: 2.5mm; background: #fff; border: 1px solid var(--line); display: flex; align-items: center; justify-content: center; padding: 1.5mm; }
+.ref .logo img { max-width: 100%; max-height: 100%; object-fit: contain; }
+.ref .logo .txt { font-family: "Jakarta"; font-weight: 700; font-size: 9pt; color: var(--deep); }
+.ref h3 { font-size: 10.5pt; }
+.ref .ctx { font-size: 7.8pt; color: var(--muted); }
+.ref p { font-size: 8.3pt; color: var(--fg2); margin-top: 1.2mm; }
+.quote { background: var(--sky); border: 1px solid var(--sky2); border-radius: 3.5mm; padding: 4mm 5mm; }
+.quote blockquote { font-family: "Jakarta"; font-size: 9.4pt; line-height: 1.5; color: var(--deep); }
+.quote .who { margin-top: 2.5mm; font-size: 8.5pt; color: var(--fg2); }
+
+.steps { display: grid; grid-template-columns: repeat(4, 1fr); gap: 4mm; }
+.step .n { font-family: "Jakarta"; font-weight: 700; font-size: 18pt; color: var(--blue); }
+.step h3 { font-size: 10.5pt; margin-top: 1mm; }
+.step p { font-size: 8.8pt; color: var(--fg2); margin-top: 1mm; }
+
+.contact { display: grid; grid-template-columns: 1fr 1fr; gap: 6mm; }
+.contact .card { background: rgba(255,255,255,.06); border-color: rgba(255,255,255,.18); }
+.contact .card p { color: #cfdde4; font-size: 9.6pt; }
+.contact a { color: #fff; text-decoration: none; font-weight: 600; }
+.small { font-size: 8pt; color: var(--muted); }
+</style>
+</head>
+<body>
+
+<!-- 1. Couverture -->
+<section class="page cover">
+  <div class="glow"></div><div class="glow2"></div>
+  <img class="logo" src="../../public/brand/wayzure-logo-horizontal-blanc.svg" alt="Wayzure">
+  <h1>Présentation institutionnelle et capacités de partenariat</h1>
+  <p class="sub">L'ingénierie numérique au service des transformations majeures. ESN et éditeur de solutions numériques, en France et en Guinée.</p>
+  <div class="meta">
+    <div>À l'attention des ministères, administrations, institutions,<br>banques, grandes entreprises et partenaires</div>
+    <div style="text-align:right">Novembre 2026<br>www.wayzure.com</div>
+  </div>
+</section>
+
+<!-- 2. Vision -->
+<section class="page">
+  <p class="eyebrow">Qui nous sommes</p>
+  <h2>Une ESN et un éditeur de logiciels, entre la France et la Guinée.</h2>
+  <p class="lead">Wayzure a été fondée en 2021 à Clamart, aux portes de Paris. Nous accompagnons administrations publiques, institutions et entreprises sur leurs données, leurs systèmes, leurs applications et la formation de leurs équipes, du cadrage jusqu'à l'adoption des outils.</p>
+
+  <div class="card sky mt8">
+    <p class="eyebrow">Notre mission</p>
+    <p style="font-size:11pt;color:var(--deep);margin-top:2mm">Accompagner la modernisation des administrations publiques, des institutions et des entreprises par la conception et le déploiement de systèmes numériques fiables, sécurisés et adaptés aux réalités du terrain, avec un impact opérationnel mesurable et un transfert de compétences garantissant l'autonomie des équipes.</p>
+  </div>
+
+  <div class="figs mt8">
+    <div class="fig"><b>2021</b><span>Année de création</span></div>
+    <div class="fig"><b>2</b><span>Marchés : France et Guinée, une société dans chaque pays</span></div>
+    <div class="fig"><b>4</b><span>Logiciels édités par Wayzure</span></div>
+    <div class="fig"><b>20+</b><span>Projets réalisés pour des entreprises, des institutions et des associations</span></div>
+  </div>
+
+  <h3 class="mt10">Nos valeurs</h3>
+  <div class="grid2 mt4">
+    <div class="card"><h3>Souveraineté &amp; rigueur</h3><p>Maîtrise des données, sécurité, traçabilité et respect des cadres réglementaires.</p></div>
+    <div class="card"><h3>Pragmatisme opérationnel</h3><p>Résoudre des problèmes concrets, avec des résultats mesurables.</p></div>
+    <div class="card"><h3>Résilience terrain</h3><p>Des solutions robustes, adaptées aux contraintes d'infrastructure et aux usages réels.</p></div>
+    <div class="card"><h3>Transparence &amp; autonomie</h3><p>Avancer sans effet tunnel, et rendre les équipes autonomes après le déploiement.</p></div>
+  </div>
+
+  <ul class="toc">
+    <li><b>01</b>Implantations France – Guinée</li>
+    <li><b>02</b>Nos expertises</li>
+    <li><b>03</b>Secteurs d'intervention</li>
+    <li><b>04</b>Modernisation des administrations</li>
+    <li><b>05</b>Nos logiciels</li>
+    <li><b>06</b>Références</li>
+    <li><b>07</b>Approche de réalisation</li>
+    <li><b>08</b>Possibilités de partenariat</li>
+  </ul>
+  <div class="foot"><span>Wayzure – Présentation institutionnelle</span><span>2</span></div>
+</section>
+
+<!-- 3. Implantations + Expertises -->
+<section class="page">
+  <p class="eyebrow">01 · Implantations</p>
+  <h2>Deux sociétés, une même équipe.</h2>
+  <p class="lead">Nous intervenons sur site en Île-de-France et à Conakry, et à distance partout ailleurs.</p>
+  <div class="grid2 mt6">
+    <div class="card sky">
+      <p class="eyebrow">France</p>
+      <h3 style="margin-top:1.5mm">Wayzure SAS</h3>
+      <p>Siège social : 132 avenue Jean Jaurès, 92140 Clamart.<br>RCS Nanterre 901 524 082 · TVA FR22901524082.</p>
+      <p>Entreprises, PME et organisations en France ; logiciels WayPulse et WayPilot.</p>
+    </div>
+    <div class="card sky">
+      <p class="eyebrow">Guinée</p>
+      <h3 style="margin-top:1.5mm">Wayzure SASU</h3>
+      <p>Bureau : Almamya, Conakry.<br>RCCM GN.TCC.2023.B.01274.</p>
+      <p>Administrations, institutions, entreprises publiques et privées en Guinée ; logiciels WayLog et Waycare.</p>
+    </div>
+  </div>
+
+  <p class="eyebrow mt10">02 · Nos expertises</p>
+  <h2>Quatre pôles, et des services IT en appui.</h2>
+  <div class="grid2 mt6">
+    <div class="card">
+      <h3>Data &amp; Intelligence artificielle</h3>
+      <p>Transformer vos données en décisions, et l'IA en gains réels.</p>
+      <ul class="dots"><li>Data analytics et business intelligence</li><li>Exploitation et valorisation des données</li><li>IA et IA générative</li><li>Automatisation intelligente</li></ul>
+    </div>
+    <div class="card">
+      <h3>Conseil</h3>
+      <p>Décider avant d'investir, puis piloter jusqu'au résultat.</p>
+      <ul class="dots"><li>Stratégie et transformation digitale</li><li>Conseil IT et systèmes d'information</li><li>Audit, cybersécurité, cloud et infrastructure</li><li>AMOA, gouvernance IT, organisation des processus</li></ul>
+    </div>
+    <div class="card">
+      <h3>Développement numérique</h3>
+      <p>Concevoir, développer et faire vivre les logiciels de votre métier.</p>
+      <ul class="dots"><li>Logiciels et applications métiers</li><li>Développement web et mobile</li><li>Plateformes SaaS et API</li><li>Intégration ERP et CRM, modernisation applicative</li></ul>
+    </div>
+    <div class="card">
+      <h3>Formation</h3>
+      <p>Que vos équipes maîtrisent les outils et en tirent parti.</p>
+      <ul class="dots"><li>Formation professionnelle IT et numérique</li><li>Data et intelligence artificielle</li><li>Cybersécurité et outils digitaux</li><li>Conduite du changement</li></ul>
+    </div>
+  </div>
+  <div class="card sky mt4"><h3>Services IT, transversaux</h3><p>Support utilisateurs et helpdesk, administration systèmes et réseaux, maintenance et infogérance, en appui des quatre pôles.</p></div>
+  <div class="foot"><span>Wayzure – Présentation institutionnelle</span><span>3</span></div>
+</section>
+
+<!-- 4. Secteurs + Administrations -->
+<section class="page">
+  <p class="eyebrow">03 · Secteurs d'intervention</p>
+  <h2>Des enjeux propres à chaque secteur.</h2>
+  <div class="grid3 mt6" style="grid-template-columns:repeat(4,1fr)">
+    <div class="card"><h3>Secteur public et institutions</h3><p>Dématérialisation, gouvernance des SI, pilotage par la donnée, services aux usagers.</p></div>
+    <div class="card"><h3>Banque, finance et assurance</h3><p>Données fiables, reporting, applications métiers et intégration.</p></div>
+    <div class="card"><h3>Mines, énergie et industrie</h3><p>Suivi des opérations, tableaux de bord, outils de terrain.</p></div>
+    <div class="card"><h3>Agriculture et agro-industrie</h3><p>Collecte de données terrain, suivi des filières et des programmes.</p></div>
+    <div class="card"><h3>Transport et logistique</h3><p>Traçabilité des livraisons, preuves numériques, suivi des tournées.</p></div>
+    <div class="card"><h3>Télécoms et services numériques</h3><p>Développement d'applications, intégration, services IT.</p></div>
+    <div class="card"><h3>Commerce et distribution</h3><p>Qualité des catalogues e-commerce, prospection, outils de gestion.</p></div>
+    <div class="card"><h3>Santé et éducation</h3><p>Plateformes de santé numérique, formation des équipes.</p></div>
+  </div>
+
+  <p class="eyebrow mt8">04 · Modernisation des administrations</p>
+  <h2>De la vision à la mise en œuvre.</h2>
+  <p class="lead">Cadres réglementaires, traçabilité, continuité du service, infrastructures inégales : nous intervenons sur quatre domaines.</p>
+  <div class="grid2 mt6">
+    <div class="card"><h3>Dématérialisation et simplification des procédures</h3><p>Formulaires en ligne, circuits de validation, archivage et suivi des dossiers : moins de papier et de ressaisies, des délais connus et traçables.</p></div>
+    <div class="card"><h3>Gouvernance et sécurisation des systèmes d'information</h3><p>Audit de l'existant, feuille de route, cybersécurité et hébergement : un SI maîtrisé, documenté et conforme.</p></div>
+    <div class="card"><h3>Pilotage des politiques publiques par la donnée</h3><p>Indicateurs fiables et tableaux de bord partagés pour suivre un programme, arbitrer et rendre compte.</p></div>
+    <div class="card"><h3>Qualité des services aux citoyens et aux usagers</h3><p>Démarches accessibles en ligne et sur mobile, pensées pour les contraintes de connexion, et agents formés pour les faire vivre.</p></div>
+  </div>
+  <div class="card sky mt4"><p><b style="color:var(--deep)">Référence :</b> Direction générale du Fonds de l'hydraulique (Guinée, 2023) : accompagnement dans la digitalisation, conception du site web et passage de plus de trente agents d'adresses personnelles à une messagerie professionnelle.</p></div>
+  <div class="foot"><span>Wayzure – Présentation institutionnelle</span><span>4</span></div>
+</section>
+
+<!-- 5. Logiciels -->
+<section class="page">
+  <p class="eyebrow">05 · Nos logiciels</p>
+  <h2>Quatre logiciels prêts à déployer dans votre organisation.</h2>
+  <p class="lead">Chacun répond à un problème précis, observé chez nos clients. Ils s'adoptent sans projet de développement ; Wayzure en assure la maintenance et les évolutions.</p>
+  <div class="prod mt6">
+    <div class="card">
+      <div class="shot"><img src="../../public/captures/waypulse/pipeline.webp" alt=""></div>
+      <div class="body"><p class="cat">Prospection commerciale B2B</p><h3>WayPulse</h3>
+      <p>Repère les entreprises qui ont une raison réelle d'acheter, trouve les bons interlocuteurs, prépare l'approche que vous validez et suit la relation jusqu'à la signature.</p>
+      <p class="kv"><b>Pour :</b> dirigeants et équipes commerciales B2B · <b>Marché :</b> France</p></div>
+    </div>
+    <div class="card">
+      <div class="shot"><img src="../../public/captures/waypilot/rapport.webp" alt=""></div>
+      <div class="body"><p class="cat">Qualité des catalogues e-commerce</p><h3>WayPilot</h3>
+      <p>Trouve dans une boutique WooCommerce ou Shopify les produits que les clients ne peuvent pas commander, les prix faux et les variations en double, puis les corrige après validation.</p>
+      <p class="kv"><b>Pour :</b> e-commerçants et agences · <b>Marché :</b> France</p></div>
+    </div>
+    <div class="card">
+      <div class="shot"><img src="../../public/captures/waylog/bon-signe.webp" alt=""></div>
+      <div class="body"><p class="cat">Logistique et opérations</p><h3>WayLog</h3>
+      <p>Remplace le bordereau papier par une preuve de livraison signée sur le téléphone du chauffeur, avec photo, position et heure. Fonctionne sans réseau.</p>
+      <p class="kv"><b>Pour :</b> grossistes, distributeurs et transporteurs · <b>Marché :</b> Guinée</p></div>
+    </div>
+    <div class="card">
+      <div class="shot"><img src="../../public/captures/waycare/parcours-desktop.webp" alt=""></div>
+      <div class="body"><p class="cat">Santé numérique</p><h3>Waycare</h3>
+      <p>Trouver un médecin vérifié, prendre rendez-vous, consulter à distance, tenir son dossier médical. La diaspora peut régler à distance les soins d'un proche.</p>
+      <p class="kv"><b>Pour :</b> patients, diaspora et professionnels de santé · <b>Marché :</b> Guinée et diaspora</p></div>
+    </div>
+  </div>
+  <p class="small mt4">Captures des applications en service, avec des données d'exemple. Sites : waypulse.wayzure.com · waypilot.wayzure.com · waylog.wayzure.com · waycare.care</p>
+  <div class="foot"><span>Wayzure – Présentation institutionnelle</span><span>5</span></div>
+</section>
+
+<!-- 6. Références -->
+<section class="page">
+  <p class="eyebrow">06 · Références</p>
+  <h2>Ils nous ont confié leurs projets.</h2>
+  <div class="refs mt6">
+    <div class="ref"><div class="logo"><img src="../../public/clients/dgfh.webp" alt="DGFH"></div><div><h3>Direction générale du Fonds de l'hydraulique</h3><p class="ctx">Administration publique, Guinée · 2023</p><p>Accompagnement dans la digitalisation : site web, puis passage de plus de trente agents à une messagerie professionnelle.</p></div></div>
+    <div class="ref"><div class="logo"><span class="txt">Tastout</span></div><div><h3>Tastout Group SARL</h3><p class="ctx">Guinée · 2021</p><p>Conseil et accompagnement du groupe ; logos de trois de ses marques : Villa Kijani, Écarlate et Khuru.</p></div></div>
+    <div class="ref"><div class="logo"><img src="../../public/clients/afl.webp" alt="AFL"></div><div><h3>Africa Fight League (AFL)</h3><p class="ctx">Ligue de combat française · 2024</p><p>Conseil en stratégie et en organisation, jusqu'à la première soirée de combat internationale de la ligue à Conakry ; création du logo.</p></div></div>
+    <div class="ref"><div class="logo"><img src="../../public/clients/askalia.webp" alt="ASKALIA"></div><div><h3>ASKALIA Logistique</h3><p class="ctx">Logistique et transport, Guinée · 2024</p><p>Accompagnement à la rédaction de ses documents stratégiques et création de son logo.</p></div></div>
+    <div class="ref"><div class="logo"><img src="../../public/clients/modpresco.webp" alt="Modpresco"></div><div><h3>Modpresco</h3><p class="ctx">Construction et services, Guinée</p><p>Création du logo, développement du site web, digitalisation de ses services et de son marketing.</p></div></div>
+    <div class="ref"><div class="logo"><img src="../../public/clients/jaaray.webp" alt="JAARAY"></div><div><h3>JAARAY</h3><p class="ctx">E-commerce, Maroc</p><p>Développement du site jaaray.site ; cas WayPilot publié avec l'accord de la boutique : 55 corrections appliquées après validation, sans échec.</p></div></div>
+    <div class="ref"><div class="logo"><img src="../../public/clients/cecl.webp" alt="CECL"></div><div><h3>CECL</h3><p class="ctx">Formation en ligne, Le Caire · depuis 2022</p><p>Accompagnement de la réflexion jusqu'à la conception de son centre de formation en ligne.</p></div></div>
+    <div class="ref"><div class="logo"><img src="../../public/clients/savane.webp" alt="Savané"></div><div><h3>Savané Industrie International</h3><p class="ctx">Industrie, Guinée</p><p>Maintenance du système et du parc informatiques, des systèmes de surveillance et de contrôle d'accès.</p></div></div>
+  </div>
+  <div class="quote mt6">
+    <blockquote>« Nous pensions que notre catalogue était propre. L’audit a montré des tailles L et XL que nos clientes ne pouvaient pas commander, un prix différent entre la fiche et la description, et des variations en double. Tout a été corrigé après notre accord, sans aucune erreur. Ensuite, WayPilot a converti nos prix du dirham à l’euro, avec des prix arrondis, en une seule opération. »</blockquote>
+    <p class="who"><b>Fatoumata Diaraye</b>, Directrice générale, JAARAY · avis publié sur waypilot.wayzure.com</p>
+  </div>
+  <p class="small mt4">Autres références : Larando Bio (site web), Bald Engineer (logo).</p>
+  <div class="foot"><span>Wayzure – Présentation institutionnelle</span><span>6</span></div>
+</section>
+
+<!-- 7. Approche + Partenariat -->
+<section class="page">
+  <p class="eyebrow">07 · Approche de réalisation</p>
+  <h2>Le métier d'abord, l'outil ensuite.</h2>
+  <p class="lead">Beaucoup de projets numériques déçoivent parce que l'outil a été choisi avant que le problème soit posé. Nous commençons par comprendre le métier, et nous restons jusqu'à ce que l'outil soit adopté.</p>
+  <div class="steps mt6">
+    <div class="step"><div class="n">01</div><h3>Un premier échange</h3><p>Vous exposez la situation, nous posons les questions qui comptent.</p></div>
+    <div class="step"><div class="n">02</div><h3>Une proposition écrite</h3><p>Ce qui sera fait, ce qui ne le sera pas, le délai et le prix. Si le projet ne nous paraît pas utile, nous le disons.</p></div>
+    <div class="step"><div class="n">03</div><h3>Des livraisons courtes</h3><p>Le travail avance par étapes de quelques semaines, que vous validez avant la suite.</p></div>
+    <div class="step"><div class="n">04</div><h3>Un suivi après la mise en service</h3><p>Maintenance, évolutions et formation, pour que vos équipes s'en servent sans nous.</p></div>
+  </div>
+  <div class="grid2 mt6">
+    <div class="card"><h3>Modes d'intervention</h3><p>Missions au forfait, sur un périmètre et un livrable définis, ou en régie, avec des consultants intégrés à vos équipes. Chaque mission est étudiée selon vos besoins et votre contexte.</p></div>
+    <div class="card"><h3>Conçu pour le terrain</h3><p>Qualité du réseau, équipements disponibles, organisation des équipes et règles propres à votre secteur sont pris en compte dès la conception.</p></div>
+  </div>
+
+  <p class="eyebrow mt10">08 · Possibilités de partenariat</p>
+  <h2>Travaillons ensemble.</h2>
+  <div class="grid2 mt6">
+    <div class="card sky"><h3>Programmes de modernisation</h3><p>Cadrage, mise en œuvre et accompagnement de projets numériques portés par des ministères, des administrations ou des institutions.</p></div>
+    <div class="card sky"><h3>Co-traitance et sous-traitance</h3><p>Réponse conjointe à des appels d'offres, ou intervention en appui d'un intégrateur ou d'un cabinet sur un périmètre défini.</p></div>
+    <div class="card sky"><h3>Déploiement de nos logiciels</h3><p>Mise en place de WayPulse, WayPilot, WayLog ou Waycare dans votre organisation, ou auprès de vos membres et partenaires.</p></div>
+    <div class="card sky"><h3>Partenaires techniques et de développement</h3><p>Projets menés avec des partenaires techniques et financiers, où la présence en Guinée et en France facilite le suivi sur le terrain.</p></div>
+  </div>
+  <div class="foot"><span>Wayzure – Présentation institutionnelle</span><span>7</span></div>
+</section>
+
+<!-- 8. Contact -->
+<section class="page deep">
+  <img src="../../public/brand/wayzure-logo-horizontal-blanc.svg" alt="Wayzure" style="height:11mm">
+  <p class="eyebrow" style="margin-top:40mm">Contact</p>
+  <h2 style="font-size:28pt">Parlons de votre projet.</h2>
+  <p style="font-size:11.5pt;margin-top:5mm;max-width:150mm">Quelques lignes suffisent : votre organisation, la situation actuelle, ce que vous voulez changer et l'échéance éventuelle. Nous revenons vers vous avec des questions précises ou une première analyse.</p>
+  <div class="contact mt10">
+    <div class="card">
+      <p class="eyebrow">France · Wayzure SAS</p>
+      <p style="margin-top:2mm">132 avenue Jean Jaurès, 92140 Clamart</p>
+      <p><a href="tel:+33661358652">+33 6 61 35 86 52</a></p>
+    </div>
+    <div class="card">
+      <p class="eyebrow">Guinée · Wayzure SASU</p>
+      <p style="margin-top:2mm">Almamya, Conakry</p>
+      <p><a href="tel:+224627044570">+224 627 04 45 70</a> · WhatsApp <a href="https://wa.me/224664222034">+224 664 22 20 34</a></p>
+    </div>
+    <div class="card">
+      <p class="eyebrow">E-mail</p>
+      <p style="margin-top:2mm"><a href="mailto:contact@wayzure.com">contact@wayzure.com</a></p>
+    </div>
+    <div class="card">
+      <p class="eyebrow">En ligne</p>
+      <p style="margin-top:2mm"><a href="https://www.wayzure.com">www.wayzure.com</a></p>
+      <p>Prendre rendez-vous : <a href="https://cal.com/waypilot">cal.com/waypilot</a></p>
+    </div>
+  </div>
+  <div class="foot" style="border-color:rgba(255,255,255,.18);color:#9fb4bf"><span>Wayzure SAS · RCS Nanterre 901 524 082 · Wayzure SASU · RCCM GN.TCC.2023.B.01274</span><span>Novembre 2026</span></div>
+</section>
+
+</body>
+</html>

@@ -3,8 +3,10 @@
 // Animation en CSS seul (transform), pause au survol ou au clavier ; si l'utilisateur réduit les animations,
 // la liste s'affiche en grille fixe. Liste dans lib/clients.ts ; rien ne s'affiche tant qu'elle est vide.
 import Image from "next/image";
+import Link from "next/link";
+import { Arrow } from "@/components/chrome";
 import { CLIENT_LOGOS } from "@/lib/clients";
-import { type Locale, UI } from "@/lib/i18n";
+import { href, type Locale, UI } from "@/lib/i18n";
 
 function Item({ c, locale, hidden = false }: { c: (typeof CLIENT_LOGOS)[number]; locale: Locale; hidden?: boolean }) {
   const meta = locale === "en" ? c.metaEn : c.meta;
@@ -26,7 +28,10 @@ export function ClientLogos({ locale = "fr" }: { locale?: Locale }) {
   return (
     <section aria-labelledby="confiance" className="pt-20">
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-        <h2 id="confiance" className="font-display text-3xl font-semibold tracking-tight sm:text-4xl">{UI[locale].trusted}</h2>
+        <div className="flex flex-wrap items-end justify-between gap-4">
+          <h2 id="confiance" className="font-display text-3xl font-semibold tracking-tight sm:text-4xl">{UI[locale].trusted}</h2>
+          <Link href={href(locale, "/references")} className="group inline-flex items-center gap-2 text-sm font-medium text-accent">{UI[locale].seeReferences} <Arrow /></Link>
+        </div>
       </div>
       <div className="logo-marquee mt-10 overflow-hidden [mask-image:linear-gradient(90deg,transparent,black_6%,black_94%,transparent)]">
         <div className="logo-track flex w-max">

@@ -13,6 +13,8 @@ export default function sitemap(): MetadataRoute.Sitemap {
     ["/secteurs-dactivite", 0.8],
     ["/solutions", 0.9],
     ...SOLUTIONS.map(s => [`/solutions/${s.slug}`, 0.7] as [string, number]),
+    ["/references", 0.7],
+    ["/references/afl", 0.6],
     ["/a-propos", 0.6],
     ["/nos-valeurs", 0.5],
     ["/actualites", 0.6],
