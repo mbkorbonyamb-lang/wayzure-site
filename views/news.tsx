@@ -160,7 +160,7 @@ export function NewsPost({ locale = "fr", slug }: { locale?: Locale; slug: strin
       <JsonLd data={[
         breadcrumb([[T.title, "/actualites"], [p.title, `/actualites/${slug}`]], locale),
         { "@context": "https://schema.org", "@type": "NewsArticle", headline: p.title, description: p.summary, datePublished: p.date, inLanguage: locale, mainEntityOfPage: url,
-          ...(p.image ? { image: `${SITE_URL}${p.image}` } : {}), author: { "@type": "Organization", name: "Wayzure" }, publisher: { "@type": "Organization", name: COMPANY.legalName } },
+          ...(p.image ? { image: p.image.startsWith("http") ? p.image : `${SITE_URL}${p.image}` } : {}), author: { "@type": "Organization", name: "Wayzure" }, publisher: { "@type": "Organization", name: COMPANY.legalName } },
       ]} />
       <article>
         <header className="relative overflow-hidden bg-sky">

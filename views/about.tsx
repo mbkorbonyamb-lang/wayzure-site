@@ -3,8 +3,8 @@ import { Arrow, CtaBand, GridGlow, Page, PageHero, SectionTitle } from "@/compon
 import { JoinBand } from "@/components/join-band";
 import { HeroPhoto } from "@/components/photo";
 import { VideoPlayer } from "@/components/video-player";
-import { COMPANY, GUINEA } from "@/lib/company";
-import { href, type Locale } from "@/lib/i18n";
+import { COMPANY, DOSSIER_PDF, GUINEA } from "@/lib/company";
+import { href, type Locale, UI } from "@/lib/i18n";
 import { FILM } from "@/lib/media";
 import { PHOTOS } from "@/lib/photos";
 import { meta } from "@/lib/seo";
@@ -137,6 +137,8 @@ export function About({ locale = "fr" }: { locale?: Locale }) {
         <div className="flex flex-wrap gap-3">
           <Link href={href(locale, "/expertises")} className="group inline-flex items-center gap-2 rounded-full bg-btn px-5 py-3 text-sm font-medium text-white transition-colors hover:bg-[#055e8f]">{T.exp} <Arrow /></Link>
           <Link href={href(locale, "/solutions")} className="group inline-flex items-center gap-2 rounded-full border border-line px-5 py-3 text-sm font-medium hover:bg-surface">{T.sol} <Arrow /></Link>
+          <Link href={href(locale, "/references")} className="group inline-flex items-center gap-2 rounded-full border border-line px-5 py-3 text-sm font-medium hover:bg-surface">{UI[locale].references} <Arrow /></Link>
+          <a href={DOSSIER_PDF} download className="group inline-flex items-center gap-2 rounded-full border border-line bg-bg px-5 py-3 text-sm font-medium hover:border-accent hover:text-accent">{UI[locale].dossier} <svg viewBox="0 0 16 16" className="size-3.5" fill="none" stroke="currentColor" strokeWidth={1.8} strokeLinecap="round" strokeLinejoin="round" aria-hidden><path d="M8 2v9M4 7l4 4 4-4M3 14h10" /></svg></a>
         </div>
       </section>
       <JoinBand locale={locale} />

@@ -8,6 +8,7 @@
    - `categorie` : une des valeurs `actualites-wayzure`, `projets-realisations`, `evenements`, `innovations-solutions` ;
    - `resume` : une ou deux phrases, affichées dans la liste et dans les aperçus de partage ;
    - `image` (facultatif) : une photo déposée dans `public/actualites/`, par exemple `/actualites/lancement-waylog.jpg` ;
+     ou une photo Unsplash (adresse `https://images.unsplash.com/photo-…`), jamais une photo présentée comme montrant nos clients ou nos équipes ;
    - `image_alt` : la description de cette photo ;
    - `brouillon: oui` pour préparer un article sans le publier.
 3. Écrire le texte sous l'en-tête : `## Intertitre`, paragraphes séparés par une ligne vide, listes avec `- `,
