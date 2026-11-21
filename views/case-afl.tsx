@@ -13,7 +13,29 @@ export const AFL_INSTAGRAM = "https://www.instagram.com/afl_officiel/";
 
 // Photos fournies par Moussa. La première est la photo d'ouverture.
 type Shot = { src: string; w: number; h: number; alt: string; altEn: string; caption: string; captionEn: string };
-export const AFL_PHOTOS: Shot[] = [];
+export const AFL_PHOTOS: Shot[] = [
+  {
+    src: "/realisations/afl/groupe-ceinture.webp", w: 938, h: 428,
+    alt: "Thierno Oumar et le ministre de la Jeunesse tiennent la ceinture AFL, entourés des représentants présents, dont le président de Wayzure.",
+    altEn: "Thierno Oumar and the Minister of Youth hold the AFL belt, surrounded by the representatives present, including Wayzure's president.",
+    caption: "Présentation de la ceinture AFL au ministère de la Jeunesse, en présence du président de Wayzure (en grand boubou, à droite de Thierno Oumar).",
+    captionEn: "The AFL belt presented at the Ministry of Youth, with Wayzure's president (in a grand boubou, to the right of Thierno Oumar).",
+  },
+  {
+    src: "/realisations/afl/rencontre-ministre.webp", w: 850, h: 648,
+    alt: "Le ministre de la Jeunesse, gants de boxe aux mains, aux côtés de Thierno Oumar qui tient la ceinture AFL.",
+    altEn: "The Minister of Youth, wearing boxing gloves, next to Thierno Oumar holding the AFL belt.",
+    caption: "Thierno Oumar et le ministre de la Jeunesse lors de la rencontre institutionnelle.",
+    captionEn: "Thierno Oumar and the Minister of Youth at the institutional meeting.",
+  },
+  {
+    src: "/realisations/afl/ceinture.webp", w: 988, h: 1078,
+    alt: "La ceinture de championne du monde AFL brandie au-dessus de la tête, devant le mur des partenaires.",
+    altEn: "The AFL world champion belt held overhead in front of the partners' wall.",
+    caption: "La ceinture AFL, réalisée avec l'accompagnement de Wayzure.",
+    captionEn: "The AFL belt, made with Wayzure's support.",
+  },
+];
 
 const TX = {
   fr: {
@@ -232,7 +254,7 @@ export function CaseAfl({ locale = "fr" }: { locale?: Locale }) {
         <section className="border-y border-line bg-surface">
           <div className="mx-auto max-w-7xl px-4 py-20 sm:px-6 lg:px-8">
             <SectionTitle eyebrow={T.galleryEyebrow} title={T.galleryTitle} />
-            <div className="mt-10 grid gap-5 md:grid-cols-2">
+            <div className="mt-10 grid items-start gap-5 md:grid-cols-2">
               {rest.map(p => (
                 <figure key={p.src} data-reveal className="overflow-hidden rounded-3xl bg-bg ring-1 ring-line">
                   <Image src={p.src} alt={en ? p.altEn : p.alt} width={p.w} height={p.h} sizes="(min-width: 768px) 600px, 100vw" className="h-auto w-full" />
