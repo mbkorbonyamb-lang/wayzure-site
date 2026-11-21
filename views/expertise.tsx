@@ -13,6 +13,7 @@ import { getContent } from "@/lib/content";
 import { href, type Locale } from "@/lib/i18n";
 import { POLE_PHOTOS } from "@/lib/photos";
 import { meta } from "@/lib/seo";
+import { PAGE_SEO } from "@/lib/page-seo";
 
 const TX = {
   fr: {
@@ -20,7 +21,7 @@ const TX = {
     probEyebrow: "Situations fréquentes", probTitle: "Vous vous reconnaissez ?",
     doEyebrow: "Ce que nous faisons", doTitle: "Nos interventions.",
     changes: "Ce qui change",
-    proof: "La preuve par nos produits", proofText: "Ces logiciels Wayzure mobilisent ce savoir-faire en production.",
+    proof: "Logiciels Wayzure associés", proofText: "Ces logiciels, prêts à l'emploi pour votre organisation, reposent sur ce savoir-faire.",
     seeImages: (n: string) => `Voir ${n} en images`,
     others: "Autres expertises",
     refEyebrow: "Références", refTitle: "Ils nous ont confié leur projet.",
@@ -30,7 +31,7 @@ const TX = {
     probEyebrow: "Common situations", probTitle: "Sound familiar?",
     doEyebrow: "What we do", doTitle: "How we help.",
     changes: "What changes",
-    proof: "Proof from our own products", proofText: "These Wayzure products put this know-how to work in production.",
+    proof: "Related Wayzure software", proofText: "These products, ready to use in your organisation, are built on this know-how.",
     seeImages: (n: string) => `See ${n} in pictures`,
     others: "Other areas of expertise",
     refEyebrow: "References", refTitle: "They trusted us with their project.",
@@ -41,7 +42,9 @@ export const expertiseSlugs = () => getContent("fr").ALL_EXPERTISES.map(e => ({ 
 
 export function expertiseMeta(locale: Locale, slug: string) {
   const e = getContent(locale).ALL_EXPERTISES.find(x => x.slug === slug);
-  return e ? meta(`/expertises/${e.slug}`, e.name, e.seo, locale) : {};
+  if (!e) return {};
+  const seo = PAGE_SEO[locale].expertise[e.slug];
+  return meta(`/expertises/${e.slug}`, seo?.title ?? e.name, seo?.desc ?? e.seo, locale);
 }
 
 export function Expertise({ locale = "fr", slug }: { locale?: Locale; slug: string }) {

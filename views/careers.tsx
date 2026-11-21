@@ -10,13 +10,13 @@ import { getContent } from "@/lib/content";
 import type { Locale } from "@/lib/i18n";
 import { PHOTOS } from "@/lib/photos";
 import { meta } from "@/lib/seo";
+import { PAGE_SEO } from "@/lib/page-seo";
 
 const TX = {
   fr: {
     title: "Rejoignez l'aventure Wayzure",
-    desc: "Candidature spontanée chez Wayzure : data et IA, conseil, développement numérique, formation et services IT, en France et en Guinée.",
     crumb: "Rejoindre Wayzure", eyebrow: "Carrières", h1: "Rejoignez l'aventure Wayzure.",
-    intro: "Nous construisons une ESN entre la France et la Guinée, et nous éditons nos propres logiciels. Si vous voulez travailler sur des projets concrets, au contact des métiers, envoyez-nous votre candidature.",
+    intro: "Nous construisons une ESN entre la France et la Guinée, et nous éditons des logiciels pour les entreprises et les organisations. Si vous voulez travailler sur des projets concrets, au contact des métiers, envoyez-nous votre candidature.",
     apply: "Déposer ma candidature",
     profiles: "Les profils que nous rencontrons", profilesTitle: "Quatre pôles et des services IT, une même exigence.",
     profilesText: "Consultants, développeurs, data analysts, formateurs, administrateurs systèmes : nous lisons toutes les candidatures, y compris quand aucun poste n'est ouvert.",
@@ -36,9 +36,8 @@ const TX = {
   },
   en: {
     title: "Join Wayzure",
-    desc: "Send a speculative application to Wayzure: data and AI, consulting, software development, training and IT services, in France and Guinea.",
     crumb: "Join Wayzure", eyebrow: "Careers", h1: "Join the Wayzure team.",
-    intro: "We are building an IT services company between France and Guinea, and we publish our own software. If you want to work on concrete projects, close to the business, send us your application.",
+    intro: "We are building an IT services company between France and Guinea, and we publish software for companies and organisations. If you want to work on concrete projects, close to the business, send us your application.",
     apply: "Apply now",
     profiles: "The profiles we meet", profilesTitle: "Four practices plus IT services, one standard.",
     profilesText: "Consultants, developers, data analysts, trainers, system administrators: we read every application, even when no position is open.",
@@ -58,7 +57,7 @@ const TX = {
   },
 };
 
-export const careersMeta = (locale: Locale) => meta("/carrieres", TX[locale].title, TX[locale].desc, locale);
+export const careersMeta = (locale: Locale) => meta("/carrieres", PAGE_SEO[locale].careers.title, PAGE_SEO[locale].careers.desc, locale);
 
 export function Careers({ locale = "fr" }: { locale?: Locale }) {
   const { ALL_EXPERTISES } = getContent(locale);

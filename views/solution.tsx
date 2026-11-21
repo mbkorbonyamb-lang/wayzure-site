@@ -14,32 +14,33 @@ import { href, type Locale } from "@/lib/i18n";
 import { PRODUCT_VIDEOS, SHOTS } from "@/lib/media";
 import { SOLUTION_PHOTOS } from "@/lib/photos";
 import { meta } from "@/lib/seo";
+import { PAGE_SEO } from "@/lib/page-seo";
 import { JAARAY } from "@/lib/testimonials";
 
 const TX = {
   fr: {
     goTo: (h: string) => `Aller sur ${h}`, demoCta: "Demander une démonstration", demoSubject: (n: string) => `Démonstration ${n}`,
-    problem: "Le problème", problemTitle: "Ce que nous avons voulu régler.",
+    problem: "Le problème", problemTitle: "Ce que le logiciel règle pour vous.",
     who: "Pour qui", market: "Marché", know: "À savoir",
     imgEyebrow: "Le logiciel en images", imgTitle: (n: string) => `${n}, tel que vos équipes l'utilisent.`,
     imgText: "Captures de l'application en service, avec ses données d'exemple.",
     featEyebrow: "Ce que fait le logiciel", featTitle: (n: string) => `${n}, en quatre temps.`,
     source: "Description tirée du site officiel", sourceEnd: ", qui fait foi pour les fonctions et les tarifs.",
-    review: "Avis client", others: "Nos autres solutions",
+    review: "Avis client", others: "Les autres logiciels Wayzure",
     ctaTitle: "Un outil sur mesure pour votre métier ?",
-    ctaText: "Nous appliquons à vos projets les méthodes qui font tourner nos propres logiciels.",
+    ctaText: "Si aucun de nos logiciels ne couvre votre besoin, nous concevons une application adaptée à vos processus.",
   },
   en: {
     goTo: (h: string) => `Go to ${h}`, demoCta: "Request a demo", demoSubject: (n: string) => `${n} demo`,
-    problem: "The problem", problemTitle: "What we set out to fix.",
+    problem: "The problem", problemTitle: "What the software solves for you.",
     who: "For whom", market: "Market", know: "Good to know",
     imgEyebrow: "The software in pictures", imgTitle: (n: string) => `${n}, as your teams use it.`,
     imgText: "Screenshots of the application in service, with its sample data.",
     featEyebrow: "What the software does", featTitle: (n: string) => `${n}, in four steps.`,
     source: "Description taken from the official website", sourceEnd: ", which is the reference for features and pricing.",
-    review: "Customer review", others: "Our other solutions",
+    review: "Customer review", others: "Other Wayzure software",
     ctaTitle: "A custom tool for your business?",
-    ctaText: "We apply to your projects the methods that keep our own software running.",
+    ctaText: "If none of our software covers your needs, we design an application built around your processes.",
   },
 };
 
@@ -48,7 +49,8 @@ export const solutionSlugs = () => getContent("fr").SOLUTIONS.map(s => ({ slug: 
 export function solutionMeta(locale: Locale, slug: string) {
   const s = getContent(locale).SOLUTIONS.find(x => x.slug === slug);
   if (!s) return {};
-  const m = meta(`/solutions/${s.slug}`, `${s.name}${locale === "en" ? ":" : " :"} ${s.category.toLowerCase()}`, s.seo, locale);
+  const seo = PAGE_SEO[locale].solution[s.slug];
+  const m = meta(`/solutions/${s.slug}`, seo?.title ?? s.name, seo?.desc ?? s.seo, locale);
   const shot = SHOTS[s.slug]?.[0];
   if (shot) m.openGraph = { ...m.openGraph, images: [{ url: shot.src, width: shot.w, height: shot.h, alt: locale === "en" ? shot.altEn : shot.alt }] };
   return m;
