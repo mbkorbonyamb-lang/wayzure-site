@@ -113,6 +113,7 @@ export function References({ locale = "fr" }: { locale?: Locale }) {
                 )}
                 <div className="mt-auto flex flex-wrap gap-2 pt-6">
                   {pole && <Link href={href(locale, `/expertises/${pole.slug}`)} className="group inline-flex items-center gap-1.5 rounded-full bg-sky px-3.5 py-1.5 text-xs font-medium text-accent">{T.expertise} : {pole.name} <Arrow className="size-3" /></Link>}
+                  {c.client.startsWith("Africa Fight") && <Link href={href(locale, "/references/afl")} className="group inline-flex items-center gap-1.5 rounded-full bg-btn px-3.5 py-1.5 text-xs font-medium text-white">{locale === "en" ? "Read the case study" : "Lire la réalisation"} <Arrow className="size-3" /></Link>}
                   {isJaaray && <Link href={href(locale, "/solutions/waypilot")} className="group inline-flex items-center gap-1.5 rounded-full bg-sky px-3.5 py-1.5 text-xs font-medium text-accent">{T.product} : WayPilot <Arrow className="size-3" /></Link>}
                 </div>
               </article>
