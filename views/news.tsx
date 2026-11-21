@@ -11,11 +11,11 @@ import { COMPANY, SITE_URL, SOCIAL_LINKS } from "@/lib/company";
 import { href, type Locale } from "@/lib/i18n";
 import { NEWS_CATEGORIES, type Post, categoryLabel, formatDate, getPost, getPosts } from "@/lib/news";
 import { meta } from "@/lib/seo";
+import { PAGE_SEO } from "@/lib/page-seo";
 
 const TX = {
   fr: {
     title: "Actualités",
-    desc: "Actualités de Wayzure : vie de l'entreprise, projets et réalisations, événements, innovations et solutions.",
     h1: "Les nouvelles de Wayzure.",
     intro: "Nos projets, nos solutions, les événements auxquels nous participons et la vie de l'entreprise, en France et en Guinée.",
     all: "Tout",
@@ -33,7 +33,6 @@ const TX = {
   },
   en: {
     title: "News",
-    desc: "Wayzure news: company life, projects and achievements, events, innovations and solutions.",
     h1: "News from Wayzure.",
     intro: "Our projects, our solutions, the events we take part in and company life, in France and Guinea.",
     all: "All",
@@ -54,11 +53,11 @@ const TX = {
 export const newsSlugs = (locale: Locale) => () => getPosts(locale).map(p => ({ slug: p.slug }));
 export const categorySlugs = () => NEWS_CATEGORIES.map(c => ({ categorie: c.slug }));
 
-export const newsMeta = (locale: Locale) => meta("/actualites", TX[locale].title, TX[locale].desc, locale);
+export const newsMeta = (locale: Locale) => meta("/actualites", PAGE_SEO[locale].news.title, PAGE_SEO[locale].news.desc, locale);
 
 export function newsCategoryMeta(locale: Locale, cat: string): Metadata {
   const label = categoryLabel(cat, locale);
-  const m = meta(`/actualites/categorie/${cat}`, `${label} · ${TX[locale].title}`, TX[locale].desc, locale);
+  const m = meta(`/actualites/categorie/${cat}`, `${label} · ${TX[locale].title}`, PAGE_SEO[locale].newsCategory[cat] ?? PAGE_SEO[locale].news.desc, locale);
   // Une catégorie encore vide n'a rien à proposer aux moteurs de recherche.
   return getPosts(locale).some(p => p.category === cat) ? m : { ...m, robots: { index: false, follow: true } };
 }

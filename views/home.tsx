@@ -16,6 +16,7 @@ import { href, type Locale } from "@/lib/i18n";
 import { FILM } from "@/lib/media";
 import { PHOTOS, POLE_PHOTOS } from "@/lib/photos";
 import { meta } from "@/lib/seo";
+import { PAGE_SEO } from "@/lib/page-seo";
 
 // Situation de départ, puis ce qui change. Formulées à partir de cas fréquents, sans client nommé.
 const STORIES = {
@@ -37,7 +38,7 @@ const TX = {
   fr: {
     badge: "ESN et éditeur de solutions numériques · France · Guinée",
     h1: <>L&apos;ingénierie numérique au service des <span className="text-accent">transformations majeures</span>.</>,
-    intro: "Wayzure accompagne administrations publiques, institutions et entreprises dans la conception et le déploiement de systèmes numériques fiables et sécurisés. Data et intelligence artificielle, conseil IT, applications métiers, formation et services IT : une seule équipe, du cadrage à la mise en service. Et nous éditons nos propres logiciels, en production chaque jour.",
+    intro: "Wayzure accompagne administrations publiques, institutions et entreprises dans la conception et le déploiement de systèmes numériques fiables et sécurisés. Data et intelligence artificielle, conseil IT, applications métiers, formation et services IT : une seule équipe, du cadrage à la mise en service. Nous proposons aussi des logiciels prêts à l'emploi pour la prospection commerciale, l'e-commerce, la logistique et la santé.",
     cta: "Parler de votre projet", cta2: "Découvrir nos expertises",
     chipA: "4 logiciels Wayzure", chipB: "en service en France et en Guinée", chipC: "Du cadrage à la mise en service",
     figEyebrow: "Wayzure en chiffres", figTitle: "Une équipe installée, des logiciels en service.",
@@ -49,11 +50,11 @@ const TX = {
     polesEyebrow: "Nos expertises", polesTitle: "Quatre pôles, une même équipe.",
     polesText: "Sur un même projet, ils se répondent : on cadre, on construit, on exploite les données, on forme les équipes.",
     discoverPole: "Découvrir le pôle", daily: "Transversal, en appui des quatre pôles", itTag: "transversal", more: "En savoir plus",
-    filmEyebrow: "Wayzure en 30 secondes", filmTitle: "Une ESN qui fait tourner ses propres logiciels.", filmNote: "Les écrans montrés sont ceux de nos applications, avec leurs données d'exemple.",
-    solEyebrow: "Nos solutions", solTitle: "Nous éditons aussi nos logiciels.",
-    solText: "Conçus, développés et exploités par Wayzure, ils sont en service en France et en Guinée. Les méthodes qui les font tourner sont celles que nous appliquons à vos projets.",
-    allSol: "Toutes nos solutions", see: (n: string) => `Voir ${n} en images`,
-    reviews: "Ils utilisent nos logiciels",
+    filmEyebrow: "Wayzure en 30 secondes", filmTitle: "Nos expertises et nos logiciels, en images.", filmNote: "Les écrans montrés sont ceux des logiciels Wayzure, avec des données d'exemple.",
+    solEyebrow: "Logiciels Wayzure", solTitle: "Des logiciels prêts à l'emploi pour vos équipes.",
+    solText: "Prospection commerciale, e-commerce, logistique, santé : quatre logiciels conçus par Wayzure, déjà en service en France et en Guinée. Votre organisation les adopte sans projet de développement, et nous assurons leur maintenance et leurs évolutions.",
+    allSol: "Découvrir les logiciels", see: (n: string) => `Voir ${n} en images`,
+    reviews: "Ce qu'en disent nos clients",
     methodEyebrow: "Notre façon de travailler", methodTitle: "Pas d'effet tunnel. Des résultats à chaque étape.",
     whereEyebrow: "Où nous intervenons", whereTitle: "Entre la France et la Guinée.",
     whereText: "Deux sociétés, une même équipe. Nous intervenons sur site en Île-de-France et à Conakry, et à distance partout ailleurs.",
@@ -64,7 +65,7 @@ const TX = {
   en: {
     badge: "IT services company and software publisher · France · Guinea",
     h1: <>Digital engineering for <span className="text-accent">major transformations</span>.</>,
-    intro: "Wayzure supports public administrations, institutions and companies in designing and deploying reliable, secure digital systems. Data and artificial intelligence, IT consulting, business applications, training and IT services: one team, from scoping to go-live. And we publish our own software, running in production every day.",
+    intro: "Wayzure supports public administrations, institutions and companies in designing and deploying reliable, secure digital systems. Data and artificial intelligence, IT consulting, business applications, training and IT services: one team, from scoping to go-live. We also offer ready-to-use software for sales prospecting, e-commerce, logistics and healthcare.",
     cta: "Discuss your project", cta2: "Explore our expertise",
     chipA: "4 Wayzure software products", chipB: "in service in France and Guinea", chipC: "From scoping to go-live",
     figEyebrow: "Wayzure in figures", figTitle: "An established team, software in service.",
@@ -76,11 +77,11 @@ const TX = {
     polesEyebrow: "Our expertise", polesTitle: "Four practices, one team.",
     polesText: "On a single project they work hand in hand: we scope, we build, we put the data to work, we train the teams.",
     discoverPole: "Explore this practice", daily: "Cross-cutting, supporting all four practices", itTag: "cross-cutting", more: "Learn more",
-    filmEyebrow: "Wayzure in 30 seconds", filmTitle: "An IT services company that runs its own software.", filmNote: "The screens shown are from our applications, with their sample data.",
-    solEyebrow: "Our solutions", solTitle: "We also publish our own software.",
-    solText: "Designed, built and operated by Wayzure, they are in service in France and Guinea. The methods that keep them running are the ones we apply to your projects.",
-    allSol: "All our solutions", see: (n: string) => `See ${n} in pictures`,
-    reviews: "They use our software",
+    filmEyebrow: "Wayzure in 30 seconds", filmTitle: "Our expertise and our software, in pictures.", filmNote: "The screens shown are from Wayzure software, with sample data.",
+    solEyebrow: "Wayzure software", solTitle: "Ready-to-use software for your teams.",
+    solText: "Sales prospecting, e-commerce, logistics, healthcare: four products designed by Wayzure, already in service in France and Guinea. Your organisation adopts them without a development project, and we handle maintenance and updates.",
+    allSol: "Explore the software", see: (n: string) => `See ${n} in pictures`,
+    reviews: "What our clients say",
     methodEyebrow: "How we work", methodTitle: "No black box. Results at every stage.",
     whereEyebrow: "Where we work", whereTitle: "Between France and Guinea.",
     whereText: "Two companies, one team. We work on site in the Paris region and in Conakry, and remotely everywhere else.",
@@ -125,13 +126,10 @@ const PUBLIC = {
   },
 };
 
-const HOME_TITLE = { fr: "Wayzure : l'ingénierie numérique au service des transformations majeures", en: "Wayzure: digital engineering for major transformations" };
-const HOME_DESC = {
-  fr: "Wayzure, ESN et éditeur de solutions numériques, accompagne administrations, institutions et entreprises : data et intelligence artificielle, conseil IT, développement d'applications, formation et services IT, en France et en Guinée.",
-  en: "Wayzure, IT services company and software publisher, supports administrations, institutions and companies: data and artificial intelligence, IT consulting, application development, training and IT services, in France and Guinea.",
+export const homeMeta = (locale: Locale) => {
+  const { title, desc } = PAGE_SEO[locale].home;
+  return { ...meta("/", title, desc, locale), title: { absolute: title } };
 };
-
-export const homeMeta = (locale: Locale) => ({ ...meta("/", HOME_TITLE[locale], HOME_DESC[locale], locale), title: { absolute: HOME_TITLE[locale] } });
 
 export function Home({ locale = "fr" }: { locale?: Locale }) {
   const { ALL_EXPERTISES, EXPERTISES, IT_SERVICES, KEY_FIGURES, SOLUTIONS, STEPS } = getContent(locale);

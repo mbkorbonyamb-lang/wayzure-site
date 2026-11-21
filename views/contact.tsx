@@ -7,10 +7,10 @@ import { FORM_ENABLED } from "@/lib/contact-link";
 import type { Locale } from "@/lib/i18n";
 import { PHOTOS } from "@/lib/photos";
 import { meta } from "@/lib/seo";
+import { PAGE_SEO } from "@/lib/page-seo";
 
 const TX = {
   fr: {
-    desc: "Parlez de votre projet à Wayzure : data et IA, conseil, développement, formation ou services IT. Réponse par e-mail ou par téléphone.",
     h1: "Parlons de votre projet.",
     intro: "Quelques lignes suffisent : qui vous êtes, ce qui bloque aujourd'hui, et pour quand. Nous revenons vers vous avec des questions précises ou une première analyse, sans engagement.",
     direct: "Écrivez-nous directement.",
@@ -20,7 +20,6 @@ const TX = {
     byEmail: "Par e-mail", france: "France", guinea: "Guinée", hello: "Bonjour Wayzure,", wa: "Écrire sur WhatsApp",
   },
   en: {
-    desc: "Tell Wayzure about your project: data and AI, consulting, software development, training or IT services. We reply by email or phone.",
     h1: "Let's talk about your project.",
     intro: "A few lines are enough: who you are, what is holding you back today, and your timeline. We will come back to you with precise questions or a first analysis, with no commitment.",
     direct: "Write to us directly.",
@@ -31,7 +30,7 @@ const TX = {
   },
 };
 
-export const contactMeta = (locale: Locale) => meta("/contact", "Contact", TX[locale].desc, locale);
+export const contactMeta = (locale: Locale) => meta("/contact", PAGE_SEO[locale].contact.title, PAGE_SEO[locale].contact.desc, locale);
 
 const tel = (n: string) => `tel:${n.replace(/\s/g, "")}`;
 const mailto = (subject: string) => `mailto:${COMPANY.email}?subject=${encodeURIComponent(subject)}`;

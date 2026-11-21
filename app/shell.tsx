@@ -8,13 +8,13 @@ import type { Locale } from "@/lib/i18n";
 
 const TX = {
   fr: {
-    title: "Wayzure : l'ingénierie numérique au service des transformations majeures",
-    desc: "Wayzure, ESN et éditeur de solutions numériques, accompagne administrations, institutions et entreprises : data et intelligence artificielle, conseil IT, développement d'applications, formation et services IT, en France et en Guinée.",
+    title: "Wayzure : ESN et éditeur de logiciels, France et Guinée",
+    desc: "ESN et éditeur de logiciels : data et IA, conseil IT, développement d'applications métiers, formation et services IT pour administrations, institutions et entreprises en France et en Guinée.",
     slogan: "L'ingénierie numérique au service des transformations majeures.",
   },
   en: {
-    title: "Wayzure: digital engineering for major transformations",
-    desc: "Wayzure, IT services company and software publisher, supports administrations, institutions and companies: data and artificial intelligence, IT consulting, application development, training and IT services, in France and Guinea.",
+    title: "Wayzure: IT services and software company, France and Guinea",
+    desc: "IT services company and software publisher: data and AI, IT consulting, business application development, training and IT services for governments, institutions and companies in France and Guinea.",
     slogan: "Digital engineering for major transformations.",
   },
 };

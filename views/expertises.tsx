@@ -6,11 +6,11 @@ import { getContent } from "@/lib/content";
 import { href, type Locale } from "@/lib/i18n";
 import { PHOTOS } from "@/lib/photos";
 import { meta } from "@/lib/seo";
+import { PAGE_SEO } from "@/lib/page-seo";
 
 const TX = {
   fr: {
     title: "Expertises",
-    desc: "Data et intelligence artificielle, conseil, développement numérique, formation et services IT : les expertises de Wayzure, en France et en Guinée.",
     h1: "Du conseil à la mise en service, une seule équipe.",
     intro: "Quatre pôles qui se complètent sur un même projet, pour les administrations, les institutions et les entreprises. Et des services IT transversaux pour que tout tourne au quotidien.",
     detail: "Voir le détail",
@@ -19,7 +19,6 @@ const TX = {
   },
   en: {
     title: "Expertise",
-    desc: "Data and artificial intelligence, consulting, software development, training and IT services: Wayzure's expertise, in France and Guinea.",
     h1: "From consulting to go-live, one team.",
     intro: "Four practices that complement each other on a single project, for administrations, institutions and companies. And cross-cutting IT services to keep everything running day to day.",
     detail: "See the details",
@@ -28,7 +27,7 @@ const TX = {
   },
 };
 
-export const expertisesMeta = (locale: Locale) => meta("/expertises", TX[locale].title, TX[locale].desc, locale);
+export const expertisesMeta = (locale: Locale) => meta("/expertises", PAGE_SEO[locale].expertises.title, PAGE_SEO[locale].expertises.desc, locale);
 
 export function Expertises({ locale = "fr" }: { locale?: Locale }) {
   const { EXPERTISES, IT_SERVICES } = getContent(locale);

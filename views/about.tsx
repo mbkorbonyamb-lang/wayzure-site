@@ -8,12 +8,12 @@ import { href, type Locale } from "@/lib/i18n";
 import { FILM } from "@/lib/media";
 import { PHOTOS } from "@/lib/photos";
 import { meta } from "@/lib/seo";
+import { PAGE_SEO } from "@/lib/page-seo";
 
 const TX = {
   fr: {
     title: "À propos",
-    desc: "Wayzure, ESN et éditeur de solutions numériques fondé en 2021 à Clamart : mission, valeurs et implantations en France et en Guinée.",
-    h1: "Une ESN qui édite aussi ses propres logiciels.",
+        h1: "Une ESN et un éditeur de logiciels, entre la France et la Guinée.",
     intro: "Wayzure a été fondée en 2021 à Clamart, aux portes de Paris. Nous accompagnons administrations publiques, institutions et entreprises sur leurs données, leurs systèmes, leurs applications et la formation de leurs équipes, en France et en Guinée.",
     signature: "L'ingénierie numérique au service des transformations majeures.",
     missionEyebrow: "Notre mission",
@@ -22,8 +22,8 @@ const TX = {
     valuesLink: "Ce que nos valeurs changent concrètement",
     approach: "Notre approche", approachTitle: "Le métier d'abord, l'outil ensuite.",
     p1: "Beaucoup de projets numériques déçoivent parce que l'outil a été choisi avant que le problème soit posé. Nous commençons donc par comprendre le métier, et nous restons jusqu'à ce que l'outil soit adopté.",
-    p2: "Nous éditons aussi nos propres logiciels : WayPulse pour la prospection commerciale, WayPilot pour l'e-commerce, WayLog pour la logistique et Waycare pour la santé.",
-    p3: (n: string) => `Wayzure est dirigée par son fondateur, ${n}.`,
+    p2: "Quand un besoin revient d'une organisation à l'autre, nous en faisons un logiciel prêt à l'emploi : WayPulse pour la prospection commerciale, WayPilot pour la qualité des catalogues e-commerce, WayLog pour la logistique et Waycare pour la santé. Nos clients les adoptent sans attendre un développement sur mesure.",
+    p3: "Nous intervenons en France et en Guinée, sur site ou à distance, du cadrage à la mise en service.",
     values: [
       { t: "Souveraineté & rigueur", d: "Maîtrise des données, sécurité, traçabilité et respect des cadres réglementaires." },
       { t: "Pragmatisme opérationnel", d: "Résoudre des problèmes concrets, avec des résultats mesurables." },
@@ -34,12 +34,11 @@ const TX = {
     france: "France", guinea: "Guinée",
     hq: `Siège social au ${COMPANY.address}. ${COMPANY.rcs}.`,
     gn: `Bureau à ${GUINEA.office}. ${GUINEA.rccm}. Société distincte de ${COMPANY.legalName}.`,
-    exp: "Nos expertises", sol: "Nos solutions",
+    exp: "Nos expertises", sol: "Logiciels et sur mesure",
   },
   en: {
     title: "About",
-    desc: "Wayzure, IT services company and software publisher founded in 2021 in Clamart, near Paris: mission, values and offices in France and Guinea.",
-    h1: "An IT services company that also publishes its own software.",
+        h1: "An IT services company and software publisher, between France and Guinea.",
     intro: "Wayzure was founded in 2021 in Clamart, on the edge of Paris. We support public administrations, institutions and companies with their data, systems, applications and staff training, in France and Guinea.",
     signature: "Digital engineering for major transformations.",
     missionEyebrow: "Our mission",
@@ -48,8 +47,8 @@ const TX = {
     valuesLink: "What our values change in practice",
     approach: "Our approach", approachTitle: "The business first, the tool second.",
     p1: "Many digital projects disappoint because the tool was chosen before the problem was understood. So we start by understanding the business, and we stay until the tool is adopted.",
-    p2: "We also publish our own software: WayPulse for sales prospecting, WayPilot for e-commerce, WayLog for logistics and Waycare for healthcare.",
-    p3: (n: string) => `Wayzure is run by its founder, ${n}.`,
+    p2: "When a need comes up again and again across organisations, we turn it into ready-to-use software: WayPulse for sales prospecting, WayPilot for e-commerce catalogue quality, WayLog for logistics and Waycare for healthcare. Our clients adopt them without waiting for custom development.",
+    p3: "We work in France and Guinea, on site or remotely, from scoping to go-live.",
     values: [
       { t: "Sovereignty & rigour", d: "Control over data, security, traceability and compliance with regulatory frameworks." },
       { t: "Operational pragmatism", d: "Solving concrete problems, with measurable results." },
@@ -60,11 +59,11 @@ const TX = {
     france: "France", guinea: "Guinea",
     hq: `Registered office: ${COMPANY.address}. ${COMPANY.rcs}.`,
     gn: `Office in ${GUINEA.office}. ${GUINEA.rccm}. A separate company from ${COMPANY.legalName}.`,
-    exp: "Our expertise", sol: "Our solutions",
+    exp: "Our expertise", sol: "Software and custom development",
   },
 };
 
-export const aboutMeta = (locale: Locale) => meta("/a-propos", TX[locale].title, TX[locale].desc, locale);
+export const aboutMeta = (locale: Locale) => meta("/a-propos", PAGE_SEO[locale].about.title, PAGE_SEO[locale].about.desc, locale);
 
 export function About({ locale = "fr" }: { locale?: Locale }) {
   const T = TX[locale];
@@ -89,7 +88,7 @@ export function About({ locale = "fr" }: { locale?: Locale }) {
             <div data-reveal className="mt-6 space-y-4 leading-relaxed text-fg-2">
               <p>{T.p1}</p>
               <p>{T.p2}</p>
-              <p>{T.p3(COMPANY.publisher.split(",")[0])}</p>
+              <p>{T.p3}</p>
             </div>
           </div>
           <div>

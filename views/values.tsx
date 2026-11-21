@@ -6,13 +6,13 @@ import { Arrow, Check, CtaBand, Page, PageHero } from "@/components/chrome";
 import { JsonLd, breadcrumb } from "@/components/json-ld";
 import { href, type Locale } from "@/lib/i18n";
 import { meta } from "@/lib/seo";
+import { PAGE_SEO } from "@/lib/page-seo";
 
 type Value = { t: string; d: string; how: string[] };
 
-const TX: Record<Locale, { title: string; desc: string; h1: string; intro: string; concretely: string; about: string; aboutText: string; ctaTitle: string; ctaText: string; values: Value[] }> = {
+const TX: Record<Locale, { title: string; h1: string; intro: string; concretely: string; about: string; aboutText: string; ctaTitle: string; ctaText: string; values: Value[] }> = {
   fr: {
     title: "Nos valeurs",
-    desc: "Souveraineté et rigueur, pragmatisme opérationnel, résilience terrain, transparence et autonomie : les quatre valeurs de Wayzure et ce qu'elles changent concrètement dans un projet.",
     h1: "Quatre engagements que vous retrouvez dans chaque projet.",
     intro: "Nos valeurs ne sont pas des slogans. Ce sont des règles de travail : la façon dont nous traitons vos données, dont nous décidons, dont nous construisons et dont nous partons, une fois vos équipes autonomes.",
     concretely: "Concrètement",
@@ -33,7 +33,6 @@ const TX: Record<Locale, { title: string; desc: string; h1: string; intro: strin
   },
   en: {
     title: "Our values",
-    desc: "Sovereignty and rigour, operational pragmatism, field resilience, transparency and autonomy: Wayzure's four values and what they change in practice on a project.",
     h1: "Four commitments you will find in every project.",
     intro: "Our values are not slogans. They are working rules: how we handle your data, how we make decisions, how we build, and how we step back once your teams are self-sufficient.",
     concretely: "In practice",
@@ -54,7 +53,7 @@ const TX: Record<Locale, { title: string; desc: string; h1: string; intro: strin
   },
 };
 
-export const valuesMeta = (locale: Locale) => meta("/nos-valeurs", TX[locale].title, TX[locale].desc, locale);
+export const valuesMeta = (locale: Locale) => meta("/nos-valeurs", PAGE_SEO[locale].values.title, PAGE_SEO[locale].values.desc, locale);
 
 export function Values({ locale = "fr" }: { locale?: Locale }) {
   const T = TX[locale];

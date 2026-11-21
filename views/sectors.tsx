@@ -9,6 +9,7 @@ import { HeroPhoto, Photo } from "@/components/photo";
 import { href, type Locale } from "@/lib/i18n";
 import { PHOTOS, SECTOR_PHOTOS } from "@/lib/photos";
 import { meta } from "@/lib/seo";
+import { PAGE_SEO } from "@/lib/page-seo";
 
 // Ancres identiques en français et en anglais (demande de Moussa) : /en/secteurs-dactivite#secteur-public.
 type Sector = { id: string; title: string; issues: string; items: string[]; links: [string, string][] };
@@ -35,7 +36,6 @@ const L = (locale: Locale) => {
 const TX = {
   fr: {
     title: "Secteurs d'activité",
-    desc: "Secteur public, banque, mines et industrie, agriculture, transport, télécoms, commerce, santé et éducation : les secteurs que Wayzure accompagne dans leur transformation numérique.",
     h1: "Le numérique au service des secteurs qui font avancer l'économie.",
     intro: "Chaque secteur possède ses propres enjeux et contraintes. Wayzure accompagne les administrations, les institutions et les entreprises dans leur transformation numérique, en mobilisant le conseil, la technologie, la donnée et la formation pour améliorer leurs organisations et leurs performances.",
     jump: "Accès direct",
@@ -49,7 +49,6 @@ const TX = {
   },
   en: {
     title: "Industries",
-    desc: "Public sector, banking, mining and industry, agriculture, transport, telecoms, retail, health and education: the industries Wayzure supports in their digital transformation.",
     h1: "Digital technology for the industries that move the economy forward.",
     intro: "Every industry has its own issues and constraints. Wayzure supports administrations, institutions and companies in their digital transformation, bringing together consulting, technology, data and training to improve how they are organised and how they perform.",
     jump: "Jump to",
@@ -122,7 +121,7 @@ function sectors(locale: Locale): Sector[] {
 /** Ancres et titres des huit secteurs, pour les menus. */
 export const sectorNav = (locale: Locale) => sectors(locale).map(({ id, title }) => ({ id, title }));
 
-export const sectorsMeta = (locale: Locale) => meta("/secteurs-dactivite", TX[locale].title, TX[locale].desc, locale);
+export const sectorsMeta = (locale: Locale) => meta("/secteurs-dactivite", PAGE_SEO[locale].sectors.title, PAGE_SEO[locale].sectors.desc, locale);
 
 export function Sectors({ locale = "fr" }: { locale?: Locale }) {
   const T = TX[locale];

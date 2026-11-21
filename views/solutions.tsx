@@ -5,24 +5,24 @@ import { SolutionVisual } from "@/components/solution-visual";
 import { getContent } from "@/lib/content";
 import { href, type Locale } from "@/lib/i18n";
 import { meta } from "@/lib/seo";
+import { PAGE_SEO } from "@/lib/page-seo";
 
 const TX = {
   fr: {
-    desc: "Wayzure édite ses propres logiciels (WayPulse, WayPilot, WayLog, Waycare) et développe sur mesure des applications métiers, plateformes numériques et logiciels de gestion.",
     h1: "Des solutions conçues par nous, pensées pour vos métiers.",
-    intro: "Nous concevons, éditons et commercialisons nos propres logiciels pour répondre à des enjeux métiers concrets. Des solutions que nous faisons évoluer en permanence pour accompagner les besoins des organisations.",
+    intro: "Nous concevons, éditons et commercialisons des logiciels qui répondent à des enjeux métiers concrets. Des solutions que nous faisons évoluer en permanence, au rythme des besoins de nos clients.",
     paths: [
-      { href: "#nos-logiciels", k: "Nos logiciels", t: "Quatre produits édités et commercialisés par Wayzure." },
+      { href: "#nos-logiciels", k: "Logiciels Wayzure", t: "Quatre logiciels prêts à l'emploi pour votre organisation." },
       { href: "#sur-mesure", k: "Développement sur mesure", t: "Une solution conçue pour votre organisation." },
     ],
-    productsEyebrow: "Nos logiciels",
-    productsTitle: "Quatre produits édités par Wayzure.",
-    productsText: "Chacun répond à un problème précis, observé sur le terrain. Nous les avons conçus et développés nous-mêmes, nous les commercialisons et nous les faisons tourner chaque jour.",
+    productsEyebrow: "Logiciels Wayzure",
+    productsTitle: "Quatre logiciels prêts à déployer chez vous.",
+    productsText: "Chacun répond à un problème précis, observé chez nos clients. Vous les adoptez sans projet de développement : nous assurons leur maintenance et les faisons évoluer.",
     short: { waypulse: "Intelligence commerciale et prospection.", waypilot: "Contrôle qualité et optimisation des catalogues e-commerce.", waylog: "Gestion des opérations et de la logistique.", waycare: "Plateforme numérique de santé." } as Record<string, string>,
     see: "Voir le produit",
     customEyebrow: "Développement sur mesure",
     customTitle: "Votre besoin est spécifique ? Nous concevons votre solution.",
-    customText: "Au-delà de nos propres logiciels, nous accompagnons les organisations dans la conception et le développement d'applications métiers, de plateformes numériques et de logiciels de gestion adaptés à leurs processus, leurs contraintes et leurs objectifs.",
+    customText: "Quand aucun logiciel existant ne correspond à votre besoin, nous accompagnons les organisations dans la conception et le développement d'applications métiers, de plateformes numériques et de logiciels de gestion adaptés à leurs processus, leurs contraintes et leurs objectifs.",
     customKinds: ["Applications métiers", "Plateformes numériques", "Logiciels de gestion"],
     customSteps: [
       { t: "Comprendre", d: "Nous partons de vos processus, de vos contraintes et de vos objectifs, avec les personnes qui utiliseront l'outil." },
@@ -30,28 +30,27 @@ const TX = {
       { t: "Développer", d: "Le travail avance par livraisons courtes : vous testez l'application à chaque étape." },
       { t: "Faire évoluer", d: "Après la mise en service : maintenance, évolutions et formation de vos équipes." },
     ],
-    customNote: "Ce sont les méthodes avec lesquelles nous construisons et exploitons nos propres logiciels. La solution développée pour vous reste la vôtre.",
+    customNote: "Ce sont les méthodes avec lesquelles nous construisons les logiciels Wayzure. La solution développée pour vous reste la vôtre.",
     customCta: "Parlons de votre projet",
     customMore: "Notre pôle Développement numérique",
     for: "Pour", market: "Marché", discover: (n: string) => `Découvrir ${n}`,
     note: "Captures des applications en service, avec leurs données d'exemple.",
   },
   en: {
-    desc: "Wayzure publishes its own software (WayPulse, WayPilot, WayLog, Waycare) and builds custom business applications, digital platforms and management software.",
     h1: "Solutions we design, built for your business.",
-    intro: "We design, publish and sell our own software to address concrete business needs. Solutions we keep improving to support the needs of organisations.",
+    intro: "We design, publish and sell software that addresses concrete business needs. Solutions we keep improving, in step with our clients' needs.",
     paths: [
-      { href: "#nos-logiciels", k: "Our software", t: "Four products published and sold by Wayzure." },
+      { href: "#nos-logiciels", k: "Wayzure software", t: "Four ready-to-use products for your organisation." },
       { href: "#sur-mesure", k: "Custom development", t: "A solution designed for your organisation." },
     ],
-    productsEyebrow: "Our software",
-    productsTitle: "Four products published by Wayzure.",
-    productsText: "Each one answers a specific problem we saw in the field. We designed and built them ourselves, we sell them and we run them every day.",
+    productsEyebrow: "Wayzure software",
+    productsTitle: "Four products ready to deploy in your organisation.",
+    productsText: "Each one answers a specific problem we saw at our clients. You adopt them without a development project: we handle maintenance and keep improving them.",
     short: { waypulse: "Sales intelligence and prospecting.", waypilot: "Quality control and optimisation of e-commerce catalogues.", waylog: "Operations and logistics management.", waycare: "Digital health platform." } as Record<string, string>,
     see: "See the product",
     customEyebrow: "Custom development",
     customTitle: "A specific need? We design your solution.",
-    customText: "Beyond our own software, we help organisations design and build business applications, digital platforms and management software tailored to their processes, their constraints and their goals.",
+    customText: "When no existing software fits your needs, we help organisations design and build business applications, digital platforms and management software tailored to their processes, their constraints and their goals.",
     customKinds: ["Business applications", "Digital platforms", "Management software"],
     customSteps: [
       { t: "Understand", d: "We start from your processes, constraints and goals, with the people who will use the tool." },
@@ -59,7 +58,7 @@ const TX = {
       { t: "Build", d: "Work moves forward in short deliveries: you test the application at every step." },
       { t: "Evolve", d: "After go-live: maintenance, improvements and training for your teams." },
     ],
-    customNote: "These are the methods we use to build and run our own software. The solution built for you remains yours.",
+    customNote: "These are the methods we use to build Wayzure software. The solution built for you remains yours.",
     customCta: "Let's talk about your project",
     customMore: "Our software development practice",
     for: "For", market: "Market", discover: (n: string) => `Explore ${n}`,
@@ -67,7 +66,7 @@ const TX = {
   },
 };
 
-export const solutionsMeta = (locale: Locale) => meta("/solutions", "Solutions", TX[locale].desc, locale);
+export const solutionsMeta = (locale: Locale) => meta("/solutions", PAGE_SEO[locale].solutions.title, PAGE_SEO[locale].solutions.desc, locale);
 
 export function Solutions({ locale = "fr" }: { locale?: Locale }) {
   const { SOLUTIONS } = getContent(locale);
