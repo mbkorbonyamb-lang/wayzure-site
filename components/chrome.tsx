@@ -13,6 +13,7 @@ import { sectorNav } from "@/views/sectors";
 const nav = (l: Locale) => [
   { href: href(l, "/solutions"), label: UI[l].solutions },
   { href: href(l, "/a-propos"), label: UI[l].about },
+  { href: href(l, "/actualites"), label: UI[l].news },
 ];
 
 /** Cadre d'une page. path : chemin français de la page, pour le lien vers l'autre langue. */
@@ -48,7 +49,7 @@ function Header({ locale, path }: { locale: Locale; path: string }) {
         <Link href={href(locale, "/")} aria-label={u.homeAria} className="shrink-0"><Logo /></Link>
         <nav aria-label={u.nav} className="hidden items-center gap-1 lg:flex">
           <div className="group relative">
-            <Link href={href(locale, "/expertises")} className="inline-flex items-center gap-1 rounded-md px-3 py-2 text-sm text-fg-2 transition-colors hover:text-fg">
+            <Link href={href(locale, "/expertises")} className="inline-flex items-center gap-1 rounded-md px-2 py-2 text-sm text-fg-2 xl:px-3 transition-colors hover:text-fg">
               {u.expertises}
               <svg viewBox="0 0 12 12" className="size-3 opacity-60" fill="none" stroke="currentColor" strokeWidth={1.6} aria-hidden><path d="m3 4.5 3 3 3-3" /></svg>
             </Link>
@@ -70,7 +71,7 @@ function Header({ locale, path }: { locale: Locale; path: string }) {
             </div>
           </div>
           <div className="group relative">
-            <Link href={href(locale, "/secteurs-dactivite")} className="inline-flex items-center gap-1 whitespace-nowrap rounded-md px-3 py-2 text-sm text-fg-2 transition-colors hover:text-fg">
+            <Link href={href(locale, "/secteurs-dactivite")} className="inline-flex items-center gap-1 whitespace-nowrap rounded-md px-2 py-2 text-sm text-fg-2 xl:px-3 transition-colors hover:text-fg">
               {u.sectors}
               <svg viewBox="0 0 12 12" className="size-3 opacity-60" fill="none" stroke="currentColor" strokeWidth={1.6} aria-hidden><path d="m3 4.5 3 3 3-3" /></svg>
             </Link>
@@ -86,10 +87,10 @@ function Header({ locale, path }: { locale: Locale; path: string }) {
               </div>
             </div>
           </div>
-          {nav(locale).map(n => <Link key={n.href} href={n.href} className="whitespace-nowrap rounded-md px-3 py-2 text-sm text-fg-2 transition-colors hover:text-fg">{n.label}</Link>)}
+          {nav(locale).map(n => <Link key={n.href} href={n.href} className="whitespace-nowrap rounded-md px-2 py-2 text-sm text-fg-2 xl:px-3 transition-colors hover:text-fg">{n.label}</Link>)}
           <LangSwitch locale={locale} path={path} className="ml-2" />
           <ThemeToggle locale={locale} className="ml-2" />
-          <Link href={href(locale, "/contact")} className="ml-2 inline-flex items-center gap-2 rounded-full bg-btn px-4 py-2 text-sm font-medium text-white transition-colors hover:bg-[#055e8f]">{u.cta}</Link>
+          <Link href={href(locale, "/contact")} className="ml-2 inline-flex items-center gap-2 whitespace-nowrap rounded-full bg-btn px-4 py-2 text-sm font-medium text-white transition-colors hover:bg-[#055e8f]">{u.cta}</Link>
         </nav>
         <div className="flex items-center gap-1.5 lg:hidden">
           <LangSwitch locale={locale} path={path} />
@@ -122,6 +123,7 @@ function Header({ locale, path }: { locale: Locale; path: string }) {
               </div>
               <div className="my-3 border-t border-line" />
               <Link href={href(locale, "/a-propos")} className="block rounded-lg px-3 py-3 text-base hover:bg-surface">{u.about}</Link>
+              <Link href={href(locale, "/actualites")} className="block rounded-lg px-3 py-3 text-base hover:bg-surface">{u.news}</Link>
               <Link href={href(locale, "/carrieres")} className="block rounded-lg px-3 py-3 text-base hover:bg-surface">{u.careers}</Link>
               <Link href={href(locale, "/contact")} className="mt-3 block rounded-full bg-btn px-3 py-3.5 text-center text-base font-medium text-white">{u.cta}</Link>
             </div>
@@ -169,6 +171,8 @@ function Footer({ locale }: { locale: Locale }) {
           <ul className="mt-4 space-y-2.5 text-sm text-on-deep-2">
             <li><Link href={h("/secteurs-dactivite")} className="hover:text-white">{u.sectors}</Link></li>
             <li><Link href={h("/a-propos")} className="hover:text-white">{u.about}</Link></li>
+            <li><Link href={h("/nos-valeurs")} className="hover:text-white">{u.values}</Link></li>
+            <li><Link href={h("/actualites")} className="hover:text-white">{u.news}</Link></li>
             <li><Link href={h("/carrieres")} className="hover:text-white">{u.careers}</Link></li>
             <li><Link href={h("/contact")} className="hover:text-white">{u.contact}</Link></li>
           </ul>

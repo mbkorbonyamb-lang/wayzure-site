@@ -19,6 +19,7 @@ const TX = {
     missionEyebrow: "Notre mission",
     mission: "Accompagner la modernisation des administrations publiques, des institutions et des entreprises par la conception et le déploiement de systèmes numériques fiables, sécurisés et adaptés aux réalités du terrain, avec un impact opérationnel mesurable et un transfert de compétences garantissant l'autonomie des équipes.",
     valuesEyebrow: "Nos valeurs",
+    valuesLink: "Ce que nos valeurs changent concrètement",
     approach: "Notre approche", approachTitle: "Le métier d'abord, l'outil ensuite.",
     p1: "Beaucoup de projets numériques déçoivent parce que l'outil a été choisi avant que le problème soit posé. Nous commençons donc par comprendre le métier, et nous restons jusqu'à ce que l'outil soit adopté.",
     p2: "Nous éditons aussi nos propres logiciels : WayPulse pour la prospection commerciale, WayPilot pour l'e-commerce, WayLog pour la logistique et Waycare pour la santé.",
@@ -44,6 +45,7 @@ const TX = {
     missionEyebrow: "Our mission",
     mission: "To support the modernisation of public administrations, institutions and companies by designing and deploying digital systems that are reliable, secure and suited to conditions on the ground, with measurable operational impact and a transfer of skills that leaves teams self-sufficient.",
     valuesEyebrow: "Our values",
+    valuesLink: "What our values change in practice",
     approach: "Our approach", approachTitle: "The business first, the tool second.",
     p1: "Many digital projects disappoint because the tool was chosen before the problem was understood. So we start by understanding the business, and we stay until the tool is adopted.",
     p2: "We also publish our own software: WayPulse for sales prospecting, WayPilot for e-commerce, WayLog for logistics and Waycare for healthcare.",
@@ -100,6 +102,7 @@ export function About({ locale = "fr" }: { locale?: Locale }) {
               </div>
             ))}
           </div>
+          <Link data-reveal href={href(locale, "/nos-valeurs")} className="group mt-5 inline-flex items-center gap-2 text-sm font-medium text-accent">{T.valuesLink} <Arrow /></Link>
           </div>
         </div>
       </section>
