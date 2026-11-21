@@ -136,3 +136,29 @@ p { text-wrap: pretty; }
 @media (prefers-reduced-motion: reduce) { ::view-transition-old(root), ::view-transition-new(root) { animation: none; } }
 
 /* Bande défilante des logos clients : boucle continue, pause au survol, statique si animations réduites. */
+
+/* « Ils nous ont fait confiance » : défilement continu (une liste + sa copie, décalage de 50 %), pause au survol
+   et au clavier. Animations réduites : grille fixe, sans copie. */
+@keyframes logo-scroll { to { transform: translateX(-50%); } }
+.logo-track { animation: logo-scroll 55s linear infinite; }
+.logo-marquee:hover .logo-track, .logo-marquee:focus-within .logo-track { animation-play-state: paused; }
+@media (prefers-reduced-motion: reduce) {
+  .logo-marquee { mask-image: none; }
+  .logo-track { animation: none; width: auto; max-width: 80rem; margin-inline: auto; padding-inline: 1rem; }
+  .logo-track > ul:first-child { flex-wrap: wrap; justify-content: center; padding-right: 0; }
+  .logo-copy { display: none; }
+}
+
+/* Corps des actualités (rendu Markdown). */
+.prose-news { color: var(--fg-2); font-size: 1.075rem; line-height: 1.8; }
+.prose-news > * + * { margin-top: 1.15rem; }
+.prose-news h2 { font-family: var(--font-head), sans-serif; font-weight: 600; font-size: 1.6rem; line-height: 1.25; letter-spacing: -.01em; color: var(--fg); margin-top: 2.5rem; }
+.prose-news h3 { font-family: var(--font-head), sans-serif; font-weight: 600; font-size: 1.2rem; color: var(--fg); margin-top: 2rem; }
+.prose-news ul { list-style: disc; padding-left: 1.3rem; }
+.prose-news ol { list-style: decimal; padding-left: 1.3rem; }
+.prose-news li + li { margin-top: .35rem; }
+.prose-news a { color: var(--accent); text-decoration: underline; text-underline-offset: 3px; }
+.prose-news strong { color: var(--fg); font-weight: 600; }
+.prose-news blockquote { border-left: 3px solid var(--accent); padding-left: 1.1rem; font-style: italic; color: var(--fg); }
+.prose-news figure { margin-block: 2rem; }
+.prose-news figcaption { margin-top: .6rem; font-size: .85rem; color: var(--muted); }
