@@ -1,6 +1,6 @@
 // Page « Nos valeurs » (/nos-valeurs, adresse de l'ancien site). Les quatre valeurs validées (page À propos) sont
-// reprises ici avec, pour chacune, ce qu'elle change concrètement dans un projet. Chaque engagement « concrètement »
-// s'appuie sur ce que le site dit déjà de la méthode et des produits : n'y ajouter que des pratiques réelles.
+// reprises ici avec, pour chacune, ce qu'elle change concrètement pour un client, quel que soit son secteur.
+// Ne pas y citer nos produits (demande de Moussa) ; n'y ajouter que des pratiques réelles.
 import Link from "next/link";
 import { Arrow, Check, CtaBand, Page, PageHero } from "@/components/chrome";
 import { JsonLd, breadcrumb } from "@/components/json-ld";
@@ -22,11 +22,11 @@ const TX: Record<Locale, { title: string; desc: string; h1: string; intro: strin
     ctaText: "Exposez votre situation : vous verrez rapidement si notre façon de travailler vous convient.",
     values: [
       { t: "Souveraineté & rigueur", d: "Maîtrise des données, sécurité, traçabilité et respect des cadres réglementaires.",
-        how: ["Vos données restent les vôtres : où elles sont hébergées et qui y accède est décidé avec vous.", "L'hébergement suit les règles de chaque domaine. Les données de santé de Waycare, par exemple, sont hébergées dans l'Union européenne sur une infrastructure certifiée HDS.", "Chaque intervention est documentée : vous savez ce qui a été fait, et pourquoi."] },
+        how: ["Vos données restent les vôtres : où elles sont hébergées et qui y accède est décidé avec vous.", "Les règles propres à votre secteur (données personnelles, données de santé, informations sensibles) sont prises en compte dès la conception, pas après coup.", "Chaque intervention est documentée : vous savez ce qui a été fait, et pourquoi."] },
       { t: "Pragmatisme opérationnel", d: "Résoudre des problèmes concrets, avec des résultats mesurables.",
         how: ["Nous commençons par comprendre le métier, avant de choisir l'outil.", "Une proposition écrite précise ce qui sera fait, ce qui ne le sera pas, le délai et le prix.", "Si un projet ne nous paraît pas utile, nous le disons."] },
       { t: "Résilience terrain", d: "Concevoir des solutions robustes, adaptées aux contraintes d'infrastructure et aux usages réels.",
-        how: ["Quand le réseau est incertain, nos applications continuent de fonctionner : WayLog et Waycare restent utilisables sans connexion.", "Les outils sont conçus pour ceux qui s'en servent, sur leurs appareils et dans leurs conditions de travail.", "Après la mise en service, la maintenance et le support font partie de l'accompagnement."] },
+        how: ["Nous partons de vos conditions réelles : qualité du réseau, équipements disponibles, organisation et habitudes de vos équipes.", "Les outils sont conçus pour ceux qui s'en servent, et éprouvés avec eux avant d'être déployés.", "Après la mise en service, nous restons présents pour la maintenance et le support."] },
       { t: "Transparence & autonomie", d: "Avancer sans effet tunnel, et rendre les équipes autonomes après le déploiement.",
         how: ["Le travail avance par livraisons courtes : vous voyez le résultat et vous validez avant la suite.", "La formation de vos équipes fait partie du projet, pas d'une option.", "Notre objectif : que vos équipes puissent se servir de l'outil, et le faire vivre, sans dépendre de nous."] },
     ],
@@ -43,11 +43,11 @@ const TX: Record<Locale, { title: string; desc: string; h1: string; intro: strin
     ctaText: "Describe your situation: you will quickly see whether the way we work suits you.",
     values: [
       { t: "Sovereignty & rigour", d: "Control over data, security, traceability and compliance with regulatory frameworks.",
-        how: ["Your data remains yours: where it is hosted and who can access it is decided with you.", "Hosting follows the rules of each field. Waycare's health data, for example, is hosted in the European Union on HDS-certified infrastructure.", "Every intervention is documented: you know what was done, and why."] },
+        how: ["Your data remains yours: where it is hosted and who can access it is decided with you.", "The rules that apply to your sector (personal data, health data, sensitive information) are built in from the design stage, not added afterwards.", "Every intervention is documented: you know what was done, and why."] },
       { t: "Operational pragmatism", d: "Solving concrete problems, with measurable results.",
         how: ["We start by understanding the business, before choosing the tool.", "A written proposal states what will be done, what will not, the timeline and the price.", "If a project does not seem useful to us, we say so."] },
       { t: "Field resilience", d: "Designing robust solutions suited to infrastructure constraints and real-world use.",
-        how: ["When the network is unreliable, our applications keep working: WayLog and Waycare can be used offline.", "Tools are designed for the people who use them, on their devices and in their working conditions.", "After go-live, maintenance and support are part of what we provide."] },
+        how: ["We start from your actual conditions: network quality, available equipment, and how your teams are organised and work.", "Tools are designed for the people who use them, and tested with them before they are rolled out.", "After go-live, we stay on hand for maintenance and support."] },
       { t: "Transparency & autonomy", d: "No black box, and teams that run on their own after deployment.",
         how: ["Work moves forward in short deliveries: you see the result and approve it before the next step.", "Training your teams is part of the project, not an option.", "Our goal: your teams can use the tool, and keep it running, without depending on us."] },
     ],
