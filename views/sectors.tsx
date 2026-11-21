@@ -62,7 +62,7 @@ const TX = {
   },
 };
 
-function sectors(locale: Locale): Sector[] {
+export function sectors(locale: Locale): Sector[] {
   const l = L(locale);
   if (locale === "en") return [
     { id: "secteur-public", title: "Public sector and institutions", links: [l.conseil, l.dev, l.formation],

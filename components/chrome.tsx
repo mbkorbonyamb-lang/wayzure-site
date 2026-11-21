@@ -4,6 +4,7 @@ import type { ReactNode } from "react";
 import { Logo } from "./marks";
 import { MenuCloser } from "./menu-closer";
 import { RevealOnScroll } from "./reveal";
+import { SiteSearch } from "./search";
 import { ThemeToggle } from "./theme-toggle";
 import { COMPANY, GUINEA, SOCIAL_LINKS, type SocialName, whatsappHref } from "@/lib/company";
 import { getContent } from "@/lib/content";
@@ -88,14 +89,16 @@ function Header({ locale, path }: { locale: Locale; path: string }) {
             </div>
           </div>
           {nav(locale).map(n => <Link key={n.href} href={n.href} className="whitespace-nowrap rounded-md px-2 py-2 text-sm text-fg-2 xl:px-3 transition-colors hover:text-fg">{n.label}</Link>)}
-          <LangSwitch locale={locale} path={path} className="ml-2" />
-          <ThemeToggle locale={locale} className="ml-2" />
-          <Link href={href(locale, "/contact")} className="ml-2 inline-flex items-center gap-2 whitespace-nowrap rounded-full bg-btn px-4 py-2 text-sm font-medium text-white transition-colors hover:bg-[#055e8f]">{u.cta}</Link>
+          <SiteSearch locale={locale} className="ml-1 xl:ml-2" />
+          <LangSwitch locale={locale} path={path} className="ml-1 xl:ml-2" />
+          <ThemeToggle locale={locale} className="ml-1 xl:ml-2" />
+          <Link href={href(locale, "/contact")} className="ml-1 inline-flex items-center gap-2 whitespace-nowrap rounded-full bg-btn px-3.5 py-2 xl:ml-2 xl:px-4 text-sm font-medium text-white transition-colors hover:bg-[#055e8f]">{u.cta}</Link>
         </nav>
         <div className="flex items-center gap-1.5 lg:hidden">
+          <SiteSearch locale={locale} />
           <LangSwitch locale={locale} path={path} />
           <ThemeToggle locale={locale} />
-          <Link href={href(locale, "/contact")} className="hidden rounded-full bg-btn px-3 py-2 text-sm font-medium text-white min-[390px]:inline-flex">{u.contact}</Link>
+          <Link href={href(locale, "/contact")} className="hidden rounded-full bg-btn px-3 py-2 text-sm font-medium text-white min-[450px]:inline-flex">{u.contact}</Link>
           <details data-menu className="group/m">
             <summary className="flex size-10 cursor-pointer list-none items-center justify-center rounded-lg border border-line [&::-webkit-details-marker]:hidden" aria-label={u.menu}>
               <svg viewBox="0 0 20 20" className="size-5 group-open/m:hidden" fill="none" stroke="currentColor" strokeWidth={1.6} strokeLinecap="round" aria-hidden><path d="M3 6h14M3 10h14M3 14h14" /></svg>
