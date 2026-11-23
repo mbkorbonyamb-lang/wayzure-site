@@ -14,7 +14,7 @@ const TX = {
   fr: {
     title: "À propos",
         h1: "Une ESN et un éditeur de logiciels, entre la France et la Guinée.",
-    intro: "Wayzure a été fondée en 2021 à Clamart, aux portes de Paris. Nous accompagnons administrations publiques, institutions et entreprises sur leurs données, leurs systèmes, leurs applications et la formation de leurs équipes, en France et en Guinée.",
+    intro: "Wayzure est une entreprise de services numériques et un éditeur de logiciels, créée en 2021 en France, puis en Guinée en 2023, avec des équipes dans les deux pays. Elle intervient en data et intelligence artificielle, en conseil stratégique et organisationnel, en développement d'applications métiers, en formation et en services IT. Elle propose aussi des logiciels prêts à l'emploi : WayPulse pour la prospection B2B, WayPilot pour les catalogues e-commerce, WayLog pour la logistique et Waycare pour la santé.",
     signature: "L'ingénierie numérique au service des transformations majeures.",
     missionEyebrow: "Notre mission",
     mission: "Accompagner la modernisation des administrations publiques, des institutions et des entreprises par la conception et le déploiement de systèmes numériques fiables, sécurisés et adaptés aux réalités du terrain, avec un impact opérationnel mesurable et un transfert de compétences garantissant l'autonomie des équipes.",
@@ -39,7 +39,7 @@ const TX = {
   en: {
     title: "About",
         h1: "An IT services company and software publisher, between France and Guinea.",
-    intro: "Wayzure was founded in 2021 in Clamart, on the edge of Paris. We support public administrations, institutions and companies with their data, systems, applications and staff training, in France and Guinea.",
+    intro: "Wayzure is an IT services company and software publisher, founded in France in 2021 and in Guinea in 2023, with teams in both countries. It works in data and artificial intelligence, strategy and organisation consulting, business application development, training and IT services. It also offers ready-to-use software: WayPulse for B2B prospecting, WayPilot for e-commerce catalogues, WayLog for logistics and Waycare for healthcare.",
     signature: "Digital engineering for major transformations.",
     missionEyebrow: "Our mission",
     mission: "To support the modernisation of public administrations, institutions and companies by designing and deploying digital systems that are reliable, secure and suited to conditions on the ground, with measurable operational impact and a transfer of skills that leaves teams self-sufficient.",
